@@ -6,16 +6,20 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header.jsx'
 import Test from './pages/test.jsx'
 import Project from './pages/[slug].jsx'
+import Footer from './components/Footer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+
       <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
         <Route path="/:projectId" element={<Project />} />
       </Routes>
+      <Footer/>
+
     </BrowserRouter>
   </StrictMode>,
 )
