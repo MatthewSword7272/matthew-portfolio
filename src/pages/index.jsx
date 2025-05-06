@@ -1,5 +1,6 @@
 import Header from "../components/Header"
 import ProjectPreview from "../components/ProjectPreview"
+import MainLayout from "../layouts/MainLayout"
 
 function Home() {
 
@@ -19,19 +20,21 @@ function Home() {
   ]
 
   return (
-    <div className="h-screen bg-blue-500">
-      <main className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
-        {projects.map((project, index) => (
-          <ProjectPreview
-            key={index}
-            title={project.title}
-            description={project.description}
-            imageUrl={project.imageUrl}
-            link={project.link}
-          />
-        ))}
-      </main>
-    </div>
+    
+      <MainLayout>
+        <main className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+          {projects.map((project, index) => (
+            <ProjectPreview
+              key={index}
+              title={project.title}
+              description={project.description}
+              imageUrl={project.imageUrl}
+              link={project.link}
+            />
+          ))}
+        </main>
+      </MainLayout>
+   
   )
 }
 
