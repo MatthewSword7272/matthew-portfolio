@@ -11,7 +11,7 @@ const Header = () => {
     </Link>
       <nav className='flex gap-5 justify-between'>
         <Link to='/test'>Projects</Link>
-        <a>Resume</a>
+        <Link to='/Matthew_Catalfamo_CV.pdf' target='_blank'>Resume</Link>
       </nav>
     </header>
   )
