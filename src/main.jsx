@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import AboutMe from './pages/AboutMe.jsx'
 import Project from './pages/[slug].jsx'
 import MainLayout from './layouts/MainLayout.jsx'
+import Projects from './pages/projects.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
       
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<Projects />} />
         <Route path="/about-me" element={<AboutMe />} />
         <Route path="/:projectId" element={<Project />} />
       </Routes>

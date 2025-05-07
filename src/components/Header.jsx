@@ -10,32 +10,49 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const mobileNavRef = useRef();
+  const titleRef = useRef();
+  const navRef = useRef();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // gsap.set(mobileNavRef.current, { opacity: 1, duration: 0.5, y: 0});
-
 
   useEffect(() => {
-    if (isMenuOpen && mobileNavRef.current) {
-      gsap.fromTo(mobileNavRef.current, { opacity: 0, y: -20 }, { opacity: 1, duration: 0.5, y: 0, ease: "power2.out" });
-    } else {
-      gsap.fromTo(mobileNavRef.current, { opacity: 1, y: 0, }, { opacity: 0, y: -20, duration: 0.5, ease: "power2.out" });
-
+    if (mobileNavRef.current) {
+      if (isMenuOpen) {
+        gsap.fromTo(mobileNavRef.current, { opacity: 0, y: -20 }, { opacity: 1, duration: 0.5, y: 0, ease: "power2.out" });
+      } else {
+        gsap.fromTo(mobileNavRef.current, { opacity: 1, y: 0, }, { opacity: 0, y: -20, duration: 0.5, ease: "power2.out" });
+      }
     }
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    const hasAnimated = sessionStorage.getItem('headerAnimationPlayed');
+
+    if (!hasAnimated) {
+      gsap.fromTo(titleRef.current, { x: -1000 }, { duration: 1, x: 0, ease: "power2.out" });
+      gsap.fromTo(navRef.current, { x: 1000 }, { duration: 1, x: 0, ease: "power2.out" });
+      // Mark animation as played
+      sessionStorage.setItem('headerAnimationPlayed', 'true');
+    } else {
+      // Skip animation if it has already played
+      gsap.set(titleRef.current, { x: 0 });
+      gsap.set(navRef.current, { x: 0 });
+    }
+  }, [])
 
   return (
     <header className="p-6 flex items-center justify-between bg-gray-100 fixed top-0 w-full z-20">
       <Link to="/">
-        <h1>Matthew Catalfamo</h1>
+        <h1 ref={titleRef}>Matthew Catalfamo</h1>
       </Link>
 
-      <nav className="md:flex hidden gap-5 justify-between">
+      <nav ref={navRef} className="md:flex hidden gap-5 justify-between">
         <Link to="/">Home</Link>
         <Link to="/about-me">About Me</Link>
+        <Link to="/projects">Projects</Link>
         <Link to="/Matthew_Catalfamo_CV.pdf" target="_blank">
           Resume
         </Link>
