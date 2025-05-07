@@ -15,7 +15,7 @@ const AboutMe = () => {
 
     gsap.fromTo(titleRef.current, { opacity: 0, y: 5000 }, { stagger: 0.2, delay: 0.3, opacity: 1, duration: 1, y: 0, ease: "power2.out" });
     gsap.fromTo(paragraphElements, { opacity: 0, x: 1000 }, { stagger: 0.2, delay: 0.3, opacity: 1, duration: 1, x: 0, ease: "power2.out" });
-    
+
   }, []);
 
   return (

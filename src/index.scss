@@ -36,3 +36,17 @@ h1 {
     -o-transform: scale(1);
   }
 }
+
+.projectView {
+  animation: fadeIn 0.5s ease-in-out backwards;
+  -webkit-animation: fadeIn 0.5s ease-in-out backwards;
+}
+
+@keyframes fadeIn {
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+}
