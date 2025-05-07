@@ -17,6 +17,12 @@ function Projects() {
       imageUrl: "/images/gameCatalog.png",
       link: "https://matthewvideogamecatalog.netlify.app/",
     },
+    {
+      title: "The Amazing Button",
+      description: "A button component that does a thing in GSAP",
+      imageUrl: "/images/button.png",
+      link: "/amazing-button",
+    },
   ];
 
   return (
