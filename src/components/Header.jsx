@@ -45,7 +45,8 @@ const Header = () => {
 
   return (
     <header className="p-6 flex items-center justify-between bg-gray-100 fixed top-0 w-full z-20">
-      <Link to="/">
+      <Link to="/" className="flex items-center gap-10">
+        <img src="images/mc_logo.png" class="size-10" alt=""/>
         <h1 ref={titleRef}>Matthew Catalfamo</h1>
       </Link>
 
