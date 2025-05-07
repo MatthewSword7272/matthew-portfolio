@@ -7,6 +7,7 @@ import AboutMe from './pages/AboutMe.jsx'
 import Project from './pages/[slug].jsx'
 import MainLayout from './layouts/MainLayout.jsx'
 import Projects from './pages/projects.jsx'
+import AmazingButton from './pages/amazing_button.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/projects" element={<Projects />} />
         <Route path="/about-me" element={<AboutMe />} />
         <Route path="/:projectId" element={<Project />} />
+        <Route path="/amazing-button" element={<AmazingButton />} />
       </Routes>
       
 

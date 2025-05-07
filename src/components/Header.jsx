@@ -29,13 +29,13 @@ const Header = () => {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    const hasAnimated = sessionStorage.getItem('headerAnimationPlayed');
+    const hasAnimated = localStorage.getItem('headerAnimationPlayed');
 
     if (!hasAnimated) {
       gsap.fromTo(titleRef.current, { x: -1000 }, { duration: 1, x: 0, ease: "power2.out" });
       gsap.fromTo(navRef.current, { x: 1000 }, { duration: 1, x: 0, ease: "power2.out" });
       // Mark animation as played
-      sessionStorage.setItem('headerAnimationPlayed', 'true');
+      localStorage.setItem('headerAnimationPlayed', 'true');
     } else {
       // Skip animation if it has already played
       gsap.set(titleRef.current, { x: 0 });
@@ -45,9 +45,8 @@ const Header = () => {
 
   return (
     <header className="p-6 flex items-center justify-between bg-gray-100 fixed top-0 w-full z-20">
-      <Link to="/" className="flex items-center gap-10">
-        <img src="images/mc_logo.png" class="size-10" alt=""/>
-        <h1 ref={titleRef}>Matthew Catalfamo</h1>
+      <Link to="/" className="flex items-center gap-10" ref={titleRef}>
+        <img src="images/mc_logo.png" className="size-10" alt=""/>
       </Link>
 
       <nav ref={navRef} className="md:flex hidden gap-5 justify-between">

@@ -43,10 +43,48 @@ h1 {
 }
 
 @keyframes fadeIn {
-0% {
-  opacity: 0;
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-100% {
-  opacity: 1;
+
+.revealUp {
+  animation: revealUp 2s backwards;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  -webkit-animation: revealUp 2s backwards;
 }
+
+@keyframes revealUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.revealLeft {
+  animation: revealLeft 1s backwards;
+  animation-delay: 0.5s;
+  animation-timing-function: linear;
+}
+
+@keyframes revealLeft {
+  0% {
+    transform: translateX(150%);
+    opacity: 0;
+    -webkit-transform: translateX(150%);
+    -moz-transform: translateX(150%);
+    -ms-transform: translateX(150%);
+    -o-transform: translateX(150%);
+}
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
