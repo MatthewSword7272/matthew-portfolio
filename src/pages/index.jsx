@@ -6,12 +6,16 @@ function Home() {
   return (
     <MainLayout>
       <div className=" absolute w-full inset-0 overflow-hidden">
-        <img src="images/stars.jpeg" alt="" className="object-cover h-full w-full" />
+        <img
+          src="images/stars.jpeg"
+          alt=""
+          className="object-cover h-full w-full"
+        />
       </div>
-      <main className="w-full flex max-md:flex-col py-1 px-6 h-[30rem] overflow-hidden md:justify-between justify-around md:items-end z-10 relative">
+      <main className="w-full flex max-md:flex-col py-1 px-6 h-[70vh] overflow-hidden md:justify-between justify-around md:items-end z-10 relative">
         <div className="flex flex-col gap-2 justify-end overflow-hidden text-left text-cyan-200">
           <p className="text-5xl revealUp">Welcome!</p>
-          <h1 className="text-8xl !text-justify revealUp font-[Impact] uppercase text-cyan-200">
+          <h1 className="text-8xl max-md:text-6xl !text-justify revealUp font-[Impact] uppercase text-cyan-200">
             Matthew
             <hr />
             Catalfamo
