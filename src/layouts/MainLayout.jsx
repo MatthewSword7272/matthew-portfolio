@@ -1,18 +1,18 @@
-import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-const MainLayout = ({children}) => {
+const MainLayout = ({ children }) => {
   return (
-    <div className='min-h-screen flex flex-col'>
-      <Header/>
-      <div className='flex-grow bg-gray-200 w-full'>
-        <div className='mt-[80px]'></div>
-        {children}
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <div className="flex flex-col flex-grow bg-gray-200 w-full">
+        <div className="mt-32" />
+        <div className="flex-grow overflow-hidden">{children}</div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;

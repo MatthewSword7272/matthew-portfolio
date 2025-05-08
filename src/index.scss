@@ -42,6 +42,10 @@ h1 {
   -webkit-animation: fadeIn 0.5s ease-in-out backwards;
 }
 
+.box-shadow {
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -82,7 +86,7 @@ h1 {
     -moz-transform: translateX(150%);
     -ms-transform: translateX(150%);
     -o-transform: translateX(150%);
-}
+  }
   100% {
     opacity: 1;
     transform: translateX(0);

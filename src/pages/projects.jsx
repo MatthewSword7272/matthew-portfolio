@@ -23,11 +23,18 @@ function Projects() {
       imageUrl: "/images/button.png",
       link: "/amazing-button",
     },
+    {
+      title: "An Interactive Marquee",
+      description:
+        "A fun marquee component built with Fast Marquee and Framer Motion",
+      imageUrl: "/images/marquee.png",
+      link: "/marquee",
+    },
   ];
 
   return (
     <MainLayout>
-      <main className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+      <main className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-20 py-6 px-20">
         {projects.map((project, index) => (
           <ProjectPreview
             delay={index * 250}
