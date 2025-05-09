@@ -22,12 +22,12 @@ const Scrolling = () => {
         scrollTrigger: {
           trigger: line1.current,
           start: "top bottom",
-          end: "top top",
+          end: "80%",
           scrub: true,
         },
         scaleX: 0,
         transformOrigin: "left center",
-        ease: "none",
+        ease: "bounce.in",
       });
 
       // second line
@@ -57,16 +57,23 @@ const Scrolling = () => {
 
       tl.from(".purple p", {
         scale: 0.3,
-        rotation: 45,
+        rotation: 180,
         autoAlpha: 0,
         ease: "power2",
       })
         .from(
           line3.current,
-          { scaleX: 0, transformOrigin: "left center", ease: "none" },
+          {
+            scaleX: 0,
+            scaleZ: 2,
+            z: 200,
+            rotate: () => gsap.utils.random(-180, 180),
+            transformOrigin: "left center",
+            ease: "none",
+          },
           0
         )
-        .to(".purple", { backgroundColor: "#28a92b" }, 0);
+        .to(".purple", { backgroundColor: "#28a92b", rotate: 0 }, 0);
     }, container);
 
     // cleanup on unmount
@@ -96,7 +103,7 @@ const Scrolling = () => {
           <div className="scroll-down flex flex-col items-center justify-center">
             Scroll down
             <div className="arrow">
-              <FaChevronDown />
+              <FaChevronDown size={25} />
             </div>
           </div>
         </section>
