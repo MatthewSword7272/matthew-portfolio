@@ -1,0 +1,20 @@
+h1 {
+  @apply text-3xl text-center font-bold;
+}
+p {
+  @apply text-lg text-left;
+}
+
+.line {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 0 10px 0;
+  position: relative;
+  height: 8px;
+  display: inline-block;
+  background-color: white;
+}
+
+section {
+  padding-inline: 100px;
+}
