@@ -10,6 +10,7 @@ import Projects from "./pages/projects.jsx";
 import AmazingButton from "./pages/amazing_button.jsx";
 import MarqueeComponent from "./pages/marquee.jsx";
 import Scrolling from "./pages/scrolling.jsx";
+import Path from "./pages/path.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/amazing-button" element={<AmazingButton />} />
         <Route path="/marquee" element={<MarqueeComponent />} />
         <Route path="/scrolling" element={<Scrolling />} />
+        <Route path="/path" element={<Path />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
