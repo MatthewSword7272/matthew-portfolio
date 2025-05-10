@@ -4,6 +4,7 @@ import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
 import gsap from "gsap";
 import MainLayout from "../layouts/MainLayout";
+import { FaChevronDown } from "react-icons/fa6";
 
 const Path = () => {
   gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
@@ -58,8 +59,20 @@ const Path = () => {
 
   return (
     <MainLayout>
-      <div className="section">
-        <svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+      <section className="section">
+        <p className="text-center">
+          Scroll down
+          <div className="flex justify-center">
+            <FaChevronDown size={25} />
+          </div>
+        </p>
+
+        <svg
+          className="mb-5"
+          width="800"
+          height="600"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             id="circle"
             d="M 560 160 A 200 200 0 1 0 560 560 A 200 200 0 1 0 560 160"
@@ -78,7 +91,7 @@ const Path = () => {
             </textPath>
           </text>
         </svg>
-      </div>
+      </section>
     </MainLayout>
   );
 };
