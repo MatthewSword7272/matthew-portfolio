@@ -24,7 +24,7 @@ const ProjectPreview = ({ title, description, imageUrl, link, delay }) => {
       </div>
       <div className="absolute text-center inset-0 translate-1/2 bg-gray-50/80 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 p-4">
         <h2 className="md:text-xl font-medium mb-2">{title}</h2>
-        <p className="max-md:text-sm text-black">{description}</p>
+        <p className="max-md:text-sm text-center text-black">{description}</p>
       </div>
     </a>
   );
