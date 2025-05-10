@@ -22,7 +22,15 @@ const Path = () => {
       });
 
       tl.from(
-        "#circle",
+        "#circle1",
+        {
+          drawSVG: 0,
+        },
+        0
+      );
+
+      tl.from(
+        "#circle2",
         {
           drawSVG: 0,
         },
@@ -30,7 +38,15 @@ const Path = () => {
       );
 
       tl.to(
-        "#circle",
+        "#circle1",
+        {
+          opacity: 0,
+        },
+        0.5
+      );
+
+      tl.to(
+        "#circle2",
         {
           opacity: 0,
         },
@@ -74,20 +90,51 @@ const Path = () => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            id="circle"
+            id="circle1"
             d="M 560 160 A 200 200 0 1 0 560 560 A 200 200 0 1 0 560 160"
             stroke="#000"
             fill="none"
           />
-
-          <text fontSize={"50px"} letterSpacing={"24px"}>
+          <path
+            id="circle2"
+            d="M 560 360 m-120,0 a120,120 0 1,1 240,0 a120,120 0 1,1 -240,0"
+            stroke="#000"
+            fill="none"
+          />
+          <text fontSize={"50px"} letterSpacing={"23px"}>
             <textPath
               id="circleText"
-              href="#circle"
+              href="#circle1"
               method="align"
               spacing="auto"
+              startOffset="0%"
             >
               abcdefghijklmnopqrstuvwxyz
+              <animate
+                attributeName="startOffset"
+                from="0%"
+                to="100%"
+                dur="20s"
+                repeatCount="indefinite"
+              />
+            </textPath>
+          </text>
+          <text fontSize={"50px"} letterSpacing={"23px"}>
+            <textPath
+              id="circleText"
+              href="#circle1"
+              method="align"
+              spacing="auto"
+              startOffset="-100%"
+            >
+              abcdefghijklmnopqrstuvwxyz
+              <animate
+                attributeName="startOffset"
+                from="-100%"
+                to="0%"
+                dur="20s"
+                repeatCount="indefinite"
+              />
             </textPath>
           </text>
         </svg>
