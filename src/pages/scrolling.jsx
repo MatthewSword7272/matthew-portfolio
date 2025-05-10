@@ -12,6 +12,8 @@ const Scrolling = () => {
   const line1 = useRef(null);
   const line2 = useRef(null);
   const line3 = useRef(null);
+  const box1 = useRef(null);
+  const box2 = useRef(null);
   const container = useRef(null);
 
   useLayoutEffect(() => {
@@ -22,16 +24,29 @@ const Scrolling = () => {
         scrollTrigger: {
           trigger: line1.current,
           start: "top bottom",
-          end: "80%",
+          end: "80vh 50%",
           scrub: true,
         },
         scaleX: 0,
-        transformOrigin: "left center",
-        ease: "bounce.in",
+        transformOrigin: "center",
+        ease: "circ.in",
       });
 
       // second line
-      gsap.from(line2.current, {
+      // gsap.from(line2.current, {
+      //   scrollTrigger: {
+      //     trigger: line2.current.closest("section"),
+      //     start: "top top",
+      //     end: "+=100%",
+      //     scrub: true,
+      //     pin: true,
+      //   },
+      //   scaleX: 0,
+      //   transformOrigin: "left center",
+      //   ease: "none",
+      // });
+
+      var tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: line2.current.closest("section"),
           start: "top top",
@@ -39,10 +54,38 @@ const Scrolling = () => {
           scrub: true,
           pin: true,
         },
-        scaleX: 0,
-        transformOrigin: "left center",
-        ease: "none",
       });
+
+      tl2
+        .from(
+          line2.current,
+          {
+            scaleX: 0,
+            transformOrigin: "left center",
+            ease: "none",
+          },
+          0
+        )
+        .from(
+          box1.current,
+          {
+            backgroundColor: "purple",
+            rotation: 720,
+            opacity: 0,
+            scale: -10,
+          },
+          1
+        )
+        .from(
+          box2.current,
+          {
+            backgroundColor: "blue",
+            rotation: 720,
+            opacity: 0,
+            scale: -10,
+          },
+          1
+        );
 
       // third section timeline
       var tl = gsap.timeline({
@@ -107,7 +150,7 @@ const Scrolling = () => {
             </div>
           </div>
         </section>
-        <section className="h-screen bg-pink-400 flex flex-col items-center justify-center">
+        <section className="h-screen bg-gradient-to-b from-pink-400 to-white flex flex-col items-center justify-center">
           <span ref={line1} className="line line-1"></span>
           <p>
             his line's animation will begin when it enters the viewport and
@@ -116,7 +159,7 @@ const Scrolling = () => {
             <code>scrub:&nbsp;true</code>
           </p>
         </section>
-        <section className="h-screen orange bg-orange-400 flex flex-col items-center justify-center">
+        <section className="h-screen orange bg-gradient-to-b to-white from-orange-400 flex flex-col items-center justify-center relative">
           <span ref={line2} className="line line-2"></span>
           <p>
             This orange panel gets pinned when its top edge hits the top of the
@@ -128,8 +171,16 @@ const Scrolling = () => {
             it unpins. You can set <code>pinSpacing: false</code> to prevent
             that if you prefer.
           </p>
+          <div
+            ref={box1}
+            className="absolute rounded bg-green-600 size-24 top-1/4 left-1/4"
+          ></div>
+          <div
+            ref={box2}
+            className="absolute rounded bg-red-600 size-24 top-1/4 right-1/4"
+          ></div>
         </section>
-        <section className="h-screen purple bg-purple-400 flex flex-col items-center justify-center">
+        <section className="h-screen purple bg-gradient-to-b from-purple-400 to-white flex flex-col items-center justify-center">
           <span ref={line3} className="line line-3"></span>
           <p>
             This panel gets pinned in a similar way, and has a more involved
