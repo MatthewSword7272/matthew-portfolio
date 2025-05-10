@@ -36,19 +36,32 @@ const Path = () => {
         },
         0
       );
+      tl.from(
+        "#circle3",
+        {
+          drawSVG: 0,
+        },
+        0
+      );
 
       tl.to(
         "#circle1",
         {
-          opacity: 0,
+          fill: "red",
         },
         0.5
       );
-
       tl.to(
         "#circle2",
         {
-          opacity: 0,
+          fill: "green",
+        },
+        0.5
+      );
+      tl.to(
+        "#circle3",
+        {
+          fill: "white",
         },
         0.5
       );
@@ -58,16 +71,32 @@ const Path = () => {
         {
           opacity: 0,
         },
-        0.5
+        1
       );
 
-      // gsap.to("#circleText", {
-      //   attr: { startOffset: "100%" },
-      //   duration: 10,
-      //   repeat: -1,
-      //   rotation: "+=20",
-      //   ease: "none",
-      // });
+      tl.to(
+        "#circle1",
+        {
+          opacity: 0,
+        },
+        1.5
+      );
+
+      tl.to(
+        "#circle2",
+        {
+          opacity: 0,
+        },
+        1.5
+      );
+
+      tl.to(
+        "#circle3",
+        {
+          opacity: 0,
+        },
+        1.5
+      );
     });
 
     return () => ctx.revert();
@@ -98,6 +127,12 @@ const Path = () => {
           <path
             id="circle2"
             d="M 560 360 m-120,0 a120,120 0 1,1 240,0 a120,120 0 1,1 -240,0"
+            stroke="#000"
+            fill="none"
+          />
+          <path
+            id="circle3"
+            d="M 540 360 m-40,0 a40,40 0 1,1 120,0 a40,40 0 1,1 -120,0"
             stroke="#000"
             fill="none"
           />
