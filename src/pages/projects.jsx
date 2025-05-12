@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import ProjectPreview from "../components/ProjectPreview";
 import MainLayout from "../layouts/MainLayout";
 
