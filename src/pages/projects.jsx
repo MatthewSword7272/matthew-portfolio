@@ -30,6 +30,18 @@ function Projects() {
       imageUrl: "/images/marquee.png",
       link: "/marquee",
     },
+    {
+      title: "GSAP Scrolling",
+      description: "A Demonstration of a GSAP Scrolling Animation",
+      imageUrl: "/images/scrolling.png",
+      link: "/scrolling",
+    },
+    {
+      title: "GSAP Draw Svg",
+      description: "Here, we are using GSAP DrawSVG and ScrollTrigger",
+      imageUrl: "/images/path.png",
+      link: "/path",
+    },
   ];
 
   return (
