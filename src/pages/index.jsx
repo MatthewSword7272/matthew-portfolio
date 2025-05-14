@@ -24,7 +24,7 @@ function Home() {
               <p className="text-5xl revealUp">Welcome</p>
               <p className="text-3xl tracking-widest underline decoration-dotted revealUp">I create web pages</p>
               <button className="revealLeft w-fit text-2xl bg-cyan-950 text-cyan-200 border border-cyan-200 px-5 py-2 hover:bg-white hover:text-black hover:rounded-3xl duration-300">
-                <Link href="/projects">Check out my Work</Link>
+                <Link to="/projects">Check out my Work</Link>
               </button>
             </div>
           </div>

@@ -39,12 +39,12 @@ function Projects() {
       imageUrl: "/images/path.png",
       link: "/path",
     },
-    {
-      title: "Natalie Catalfamo Designs",
-      description: "Recrated my sister's online portfolio",
-      imageUrl: "",
-      link: "/natalie",
-    },
+    // {
+    //   title: "Natalie Catalfamo Designs",
+    //   description: "Recrated my sister's online portfolio",
+    //   imageUrl: "",
+    //   link: "/natalie",
+    // },
   ];
 
   return (

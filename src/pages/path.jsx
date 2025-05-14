@@ -1,105 +1,101 @@
-import React, { useLayoutEffect } from "react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import DrawSVGPlugin from "gsap/DrawSVGPlugin";
 
 import gsap from "gsap";
 import MainLayout from "../layouts/MainLayout";
 import { FaChevronDown } from "react-icons/fa6";
+import { useGSAP } from "@gsap/react";
 
 const Path = () => {
-  gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+  gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin);
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      var tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".section",
-          start: "top top",
-          end: "+=100%",
-          scrub: true,
-          pin: true,
-        },
-      });
-
-      tl.from(
-        "#circle1",
-        {
-          drawSVG: 0,
-        },
-        0
-      );
-
-      tl.from(
-        "#circle2",
-        {
-          drawSVG: 0,
-        },
-        0
-      );
-      tl.from(
-        "#circle3",
-        {
-          drawSVG: 0,
-        },
-        0
-      );
-
-      tl.to(
-        "#circle1",
-        {
-          fill: "red",
-        },
-        0.5
-      );
-      tl.to(
-        "#circle2",
-        {
-          fill: "green",
-        },
-        0.5
-      );
-      tl.to(
-        "#circle3",
-        {
-          fill: "white",
-        },
-        0.5
-      );
-
-      tl.from(
-        "#circleText",
-        {
-          opacity: 0,
-        },
-        1
-      );
-
-      tl.to(
-        "#circle1",
-        {
-          opacity: 0,
-        },
-        1.5
-      );
-
-      tl.to(
-        "#circle2",
-        {
-          opacity: 0,
-        },
-        1.5
-      );
-
-      tl.to(
-        "#circle3",
-        {
-          opacity: 0,
-        },
-        1.5
-      );
+  useGSAP(() => {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section",
+        start: "top top",
+        end: "+=100%",
+        scrub: true,
+        pin: true,
+      },
     });
 
-    return () => ctx.revert();
+    tl.from(
+      "#circle1",
+      {
+        drawSVG: 0,
+      },
+      0
+    );
+
+    tl.from(
+      "#circle2",
+      {
+        drawSVG: 0,
+      },
+      0
+    );
+    tl.from(
+      "#circle3",
+      {
+        drawSVG: 0,
+      },
+      0
+    );
+
+    tl.to(
+      "#circle1",
+      {
+        fill: "#002347",
+      },
+      1
+    );
+    tl.to(
+      "#circle2",
+      {
+        fill: "#FFB703",
+      },
+      1
+    );
+    tl.to(
+      "#circle3",
+      {
+        fill: "#FB8500",
+      },
+      1
+    );
+
+    tl.from(
+      "#circleText",
+      {
+        opacity: 0,
+      },
+      2
+    );
+
+    tl.to(
+      "#circle1",
+      {
+        opacity: 0,
+      },
+      2
+    );
+
+    tl.to(
+      "#circle2",
+      {
+        opacity: 0,
+      },
+      2
+    );
+
+    tl.to(
+      "#circle3",
+      {
+        opacity: 0,
+      },
+      2
+    );
   }, []);
 
   return (
