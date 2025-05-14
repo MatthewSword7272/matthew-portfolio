@@ -1,11 +1,8 @@
-import React from 'react'
+import React from "react";
+import MainLayout from "../layouts/MainLayout";
 
 const Project = () => {
-  return (
-    <div>
-      Slug Page
-    </div>
-  )
-}
+  return <MainLayout>Slug Page</MainLayout>;
+};
 
-export default Project
+export default Project;

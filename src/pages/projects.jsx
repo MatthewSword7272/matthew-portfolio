@@ -5,8 +5,7 @@ function Projects() {
   const projects = [
     {
       title: "PS Design Studio Revamp",
-      description:
-        "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
+      description: "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
       imageUrl: "/images/psdesign.png",
       link: "https://psdesign.netlify.app/",
     },
@@ -24,8 +23,7 @@ function Projects() {
     },
     {
       title: "An Interactive Marquee",
-      description:
-        "A fun marquee component built with Fast Marquee and Framer Motion",
+      description: "A fun marquee component built with Fast Marquee and Framer Motion",
       imageUrl: "/images/marquee.png",
       link: "/marquee",
     },
@@ -41,11 +39,17 @@ function Projects() {
       imageUrl: "/images/path.png",
       link: "/path",
     },
+    {
+      title: "Natalie Catalfamo Designs",
+      description: "Recrated my sister's online portfolio",
+      imageUrl: "",
+      link: "/natalie",
+    },
   ];
 
   return (
     <MainLayout>
-      <main className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-20 py-6 px-20">
+      <main className="w-full grid grid-cols-1 md:grid-cols-2 gap-20 py-6 px-20 max-md:px-9">
         {projects.map((project, index) => (
           <ProjectPreview
             delay={index * 250}
