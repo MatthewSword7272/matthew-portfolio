@@ -108,7 +108,7 @@ const Path = () => {
           </div>
         </p>
 
-        <svg className="mb-5" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+        <svg className="mb-5" viewBox="50 100 1000 700" xmlns="http://www.w3.org/2000/svg">
           <path id="circle1" d="M 560 160 A 200 200 0 1 0 560 560 A 200 200 0 1 0 560 160" stroke="#000" fill="none" />
           <path
             id="circle2"

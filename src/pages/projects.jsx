@@ -34,6 +34,12 @@ function Projects() {
       link: "/scrolling",
     },
     {
+      title: "Animate Svg",
+      description: "Here, we are using GSAP DrawSVG and ScrollTrigger",
+      imageUrl: "/images/path.png",
+      link: "/svg-animate",
+    },
+    {
       title: "GSAP Draw Svg",
       description: "Here, we are using GSAP DrawSVG and ScrollTrigger",
       imageUrl: "/images/path.png",
