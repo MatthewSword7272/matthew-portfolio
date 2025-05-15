@@ -12,6 +12,7 @@ import MarqueeComponent from "./pages/marquee.jsx";
 import Scrolling from "./pages/scrolling.jsx";
 import Path from "./pages/path.jsx";
 import SvgAnimate from "./pages/svg_animate.jsx";
+import Transition from "./pages/transition.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/scrolling" element={<Scrolling />} />
         <Route path="/path" element={<Path />} />
         <Route path="/svg-animate" element={<SvgAnimate />} />
+        <Route path="/transition" element={<Transition />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

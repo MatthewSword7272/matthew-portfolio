@@ -5,7 +5,8 @@ function Projects() {
   const projects = [
     {
       title: "PS Design Studio Revamp",
-      description: "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
+      description:
+        "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
       imageUrl: "/images/psdesign.png",
       link: "https://psdesign.netlify.app/",
     },
@@ -23,7 +24,8 @@ function Projects() {
     },
     {
       title: "An Interactive Marquee",
-      description: "A fun marquee component built with Fast Marquee and Framer Motion",
+      description:
+        "A fun marquee component built with Fast Marquee and Framer Motion",
       imageUrl: "/images/marquee.png",
       link: "/marquee",
     },
@@ -35,15 +37,23 @@ function Projects() {
     },
     {
       title: "Animate Svg",
-      description: "Here, we are using GSAP DrawSVG and ScrollTrigger",
-      imageUrl: "/images/path.png",
+      description: "Using the animate tag in SVG to animate the text",
+      imageUrl: "/images/svg-animate.png",
       link: "/svg-animate",
     },
     {
       title: "GSAP Draw Svg",
-      description: "Here, we are using GSAP DrawSVG and ScrollTrigger",
+      description:
+        "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
       imageUrl: "/images/path.png",
       link: "/path",
+    },
+    {
+      title: "React useTransition",
+      description:
+        "Demonstrates useTransition by generating a large list in the background while keeping the UI smooth and interactive.",
+      imageUrl: "/images/transition.png",
+      link: "/transition",
     },
     // {
     //   title: "Natalie Catalfamo Designs",
