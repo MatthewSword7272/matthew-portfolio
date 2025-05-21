@@ -17,6 +17,13 @@ function Projects() {
       link: "https://matthewvideogamecatalog.netlify.app/",
     },
     {
+      title: "Positivus Design",
+      description:
+        "A Web Page Design from Figma using React and GSAP Animations",
+      imageUrl: "/images/positivus.png",
+      link: "https://positivus-matthewc.netlify.app/",
+    },
+    {
       title: "The Amazing Button",
       description: "A button component that does a thing in GSAP",
       imageUrl: "/images/button.png",
