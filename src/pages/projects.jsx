@@ -56,6 +56,12 @@ function Projects() {
       link: "/path",
     },
     {
+      title: "3-D Image Cube",
+      description: "A movable 3D Cube with images you can search for",
+      imageUrl: "/images/cube.png",
+      link: "/cube",
+    },
+    {
       title: "React useTransition",
       description:
         "Demonstrates useTransition by generating a large list in the background while keeping the UI smooth and interactive.",

@@ -9,106 +9,74 @@ const ITEM_SIZE = 240;
 const ITEM_DISTANCE = 40;
 
 const Cube = () => {
-  const timeOut = useRef(0);
+  const timeoutRef = useRef(null);
   const cubeRef = useRef(null);
   const containerRef = useRef(null);
+  const [imageData, setImageData] = useState([]);
 
-  const [imageData, setData] = useState([]);
+  const handleSearch = (e) => {
+    clearTimeout(timeoutRef.current);
 
-  gsap.registerPlugin(useGSAP);
+    timeoutRef.current = setTimeout(async () => {
+      const query = e.target.value.trim();
 
-  const setImageData = (data) => {
-    setData(data);
-    console.log(data);
-  };
-
-  const changeHandler = (e) => {
-    clearTimeout(timeOut.current);
-
-    timeOut.current = setTimeout(async () => {
-      const el = e.target.value;
-
-      if (el.length > 0) {
-        const res = await axios.get("https://pixabay.com/api/", {
-          params: {
-            key: import.meta.env.VITE_PIXABAY_API,
-            q: encodeURIComponent(el),
-            image_type: "photo",
-            per_page: 54,
-            orientation: "horizontal",
-          },
-        });
-        setImageData(res.data.hits.map((it) => it.webformatURL));
+      if (query.length > 0) {
+        try {
+          const { data } = await axios.get("https://pixabay.com/api/", {
+            params: {
+              key: import.meta.env.VITE_PIXABAY_API,
+              q: encodeURIComponent(query),
+              per_page: 54,
+              orientation: "horizontal",
+            },
+          });
+          setImageData(data.hits.map((hit) => hit.webformatURL));
+        } catch (error) {
+          console.error("Failed to fetch images:", error);
+          setImageData([]);
+        }
+      } else {
+        setImageData([]);
       }
     }, 600);
   };
 
   useEffect(() => {
-    if (imageData.length === 0) return;
+    if (imageData.length < 54) return;
 
     const items = cubeRef.current.children;
-
-    let count = 0;
     const cellSize = ITEM_SIZE + ITEM_DISTANCE;
     const cubeSize = cellSize * FACE_SIZE;
     const origin = -cubeSize * 0.5 + cellSize * 0.5;
 
-    const buildFace = (faceId) => {
+    let count = 0;
+
+    // Face transforms for cube positioning
+    const faceTransforms = [
+      "", // front
+      "rotateY(180deg)", // back
+      "rotateY(-90deg)", // left
+      "rotateY(90deg)", // right
+      "rotateX(90deg)", // top
+      "rotateX(-90deg)", // bottom
+    ];
+
+    for (let faceId = 0; faceId < 6; faceId++) {
       for (let i = 0; i < FACE_SIZE; i++) {
         for (let j = 0; j < FACE_SIZE; j++) {
           const item = items[count++];
+          const baseTransform = `translateX(${
+            j * cellSize + origin
+          }px) translateY(${i * cellSize + origin}px) translateZ(${
+            cubeSize * 0.5
+          }px)`;
 
-          switch (faceId) {
-            case 0:
-              item.style.transform = `translateX(${
-                j * cellSize + origin
-              }px) translateY(${i * cellSize + origin}px) translateZ(${
-                cubeSize * 0.5
-              }px)`;
-              break;
-            case 1:
-              item.style.transform = `rotateY(180deg) translateX(${
-                j * cellSize + origin
-              }px) translateY(${i * cellSize + origin}px) translateZ(${
-                cubeSize * 0.5
-              }px)`;
-              break;
-            case 2:
-              item.style.transform = `rotateY(-90deg) translateX(${
-                j * cellSize + origin
-              }px) translateY(${i * cellSize + origin}px) translateZ(${
-                cubeSize * 0.5
-              }px)`;
-              break;
-            case 3:
-              item.style.transform = `rotateY(90deg) translateX(${
-                j * cellSize + origin
-              }px) translateY(${i * cellSize + origin}px) translateZ(${
-                cubeSize * 0.5
-              }px)`;
-              break;
-            case 4:
-              item.style.transform = `rotateX(90deg) translateX(${
-                j * cellSize + origin
-              }px) translateY(${i * cellSize + origin}px) translateZ(${
-                cubeSize * 0.5
-              }px)`;
-              break;
-            case 5:
-              item.style.transform = `rotateX(-90deg) translateX(${
-                j * cellSize + origin
-              }px) translateY(${i * cellSize + origin}px) translateZ(${
-                cubeSize * 0.5
-              }px)`;
-              break;
-          }
+          item.style.transform = faceTransforms[faceId]
+            ? `${faceTransforms[faceId]} ${baseTransform}`
+            : baseTransform;
         }
       }
-    };
-
-    for (let i = 0; i < 6; i++) buildFace(i);
-
-    // angleX
+    }
   }, [imageData]);
 
   useGSAP(() => {
@@ -119,7 +87,6 @@ const Cube = () => {
 
     const setRotY = gsap.quickSetter(cube, "rotationY", "deg");
     const setRotX = gsap.quickSetter(cube, "rotationX", "deg");
-
     let isDragging = false;
 
     const handleMouseMove = (e) => {
@@ -127,8 +94,8 @@ const Cube = () => {
 
       const xRatio = e.clientX / window.innerWidth;
       const yRatio = e.clientY / window.innerHeight;
-      const rotY = (xRatio - 0.5) * 2 * 100;
-      const rotX = -(yRatio - 0.5) * 2 * 100;
+      const rotY = (xRatio - 0.5) * 200;
+      const rotX = -(yRatio - 0.5) * 200;
 
       gsap.to(
         {},
@@ -155,44 +122,59 @@ const Cube = () => {
       );
     };
 
-    const onMouseDown = () => {
+    const handleMouseDown = () => {
       isDragging = true;
       container.style.cursor = "grabbing";
     };
-    const onMouseUp = () => {
+
+    const handleMouseUp = () => {
       isDragging = false;
       container.style.cursor = "grab";
     };
 
-    container.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mouseup", onMouseUp);
+    container.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      container.removeEventListener("mousedown", onMouseDown);
-      window.removeEventListener("mouseup", onMouseUp);
+      container.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   });
 
   return (
     <MainLayout>
-      <div className={"flex flex-col items-center space-y-5"}>
+      <div className="flex flex-col items-center space-y-5">
+        <div>
+          From:{" "}
+          <a
+            href={"https://www.youtube.com/watch?v=uXISY-cMmuQ&t=1362s"}
+            target={"_blank"}
+            className={"underline hover:text-blue-500"}
+          >
+            this tutorial
+          </a>
+        </div>
         <h1>Cube Gallery</h1>
+        {imageData.length > 0 && imageData.length < 54 && (
+          <h4 className="text-red-600">Not enough results found. Try Again</h4>
+        )}
         <input
           type="text"
-          placeholder={"Search for something"}
-          className={"rounded block bg-white text-center text-lg w-64"}
-          onChange={changeHandler}
+          placeholder="Search for something"
+          className="rounded bg-white text-center text-lg w-64 select-none"
+          onChange={handleSearch}
         />
       </div>
-      <div className={"cube-container"} ref={containerRef}>
-        <div className={"cubic-gallery"} ref={cubeRef}>
+
+      <div className="cube-container" ref={containerRef}>
+        <div className="cubic-gallery" ref={cubeRef}>
           {imageData.map((image, index) => (
             <div
               key={index}
               style={{ backgroundImage: `url(${image})` }}
-              className={"cubic-gallery-item"}
+              className="cubic-gallery-item"
             />
           ))}
         </div>
