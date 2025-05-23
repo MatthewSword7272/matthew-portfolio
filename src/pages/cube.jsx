@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import MainLayout from "../layouts/MainLayout";
 import axios from "axios";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const FACE_SIZE = 3;
 const ITEM_SIZE = 240;
@@ -9,9 +11,11 @@ const ITEM_DISTANCE = 40;
 const Cube = () => {
   const timeOut = useRef(0);
   const cubeRef = useRef(null);
-  const imgRef = useRef(null);
+  const containerRef = useRef(null);
 
   const [imageData, setData] = useState([]);
+
+  gsap.registerPlugin(useGSAP);
 
   const setImageData = (data) => {
     setData(data);
@@ -107,24 +111,89 @@ const Cube = () => {
     // angleX
   }, [imageData]);
 
+  useGSAP(() => {
+    const container = containerRef.current;
+    const cube = cubeRef.current;
+
+    if (!cube) return;
+
+    const setRotY = gsap.quickSetter(cube, "rotationY", "deg");
+    const setRotX = gsap.quickSetter(cube, "rotationX", "deg");
+
+    let isDragging = false;
+
+    const handleMouseMove = (e) => {
+      if (!isDragging) return;
+
+      const xRatio = e.clientX / window.innerWidth;
+      const yRatio = e.clientY / window.innerHeight;
+      const rotY = (xRatio - 0.5) * 2 * 100;
+      const rotX = -(yRatio - 0.5) * 2 * 100;
+
+      gsap.to(
+        {},
+        {
+          duration: 0.5,
+          onUpdate() {
+            setRotY(
+              gsap.utils.interpolate(
+                parseFloat(cube._gsap?.rotationY) || 0,
+                rotY,
+                this.progress()
+              )
+            );
+            setRotX(
+              gsap.utils.interpolate(
+                parseFloat(cube._gsap?.rotationX) || 0,
+                rotX,
+                this.progress()
+              )
+            );
+          },
+          ease: "power3.out",
+        }
+      );
+    };
+
+    const onMouseDown = () => {
+      isDragging = true;
+      container.style.cursor = "grabbing";
+    };
+    const onMouseUp = () => {
+      isDragging = false;
+      container.style.cursor = "grab";
+    };
+
+    container.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      container.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  });
+
   return (
     <MainLayout>
       <div className={"flex flex-col items-center space-y-5"}>
         <h1>Cube Gallery</h1>
         <input
           type="text"
+          placeholder={"Search for something"}
           className={"rounded block bg-white text-center text-lg w-64"}
           onChange={changeHandler}
         />
       </div>
-      <div className={"cube-container"}>
+      <div className={"cube-container"} ref={containerRef}>
         <div className={"cubic-gallery"} ref={cubeRef}>
           {imageData.map((image, index) => (
             <div
               key={index}
               style={{ backgroundImage: `url(${image})` }}
               className={"cubic-gallery-item"}
-            ></div>
+            />
           ))}
         </div>
       </div>

@@ -126,7 +126,7 @@ h1 {
   transform-style: preserve-3d;
   transform-origin: 50% 50%;
   transform: translateZ(-1000px);
-  cursor: pointer;
+  cursor: grab;
   -webkit-backface-visibility: visible;
   -webkit-transform: translateZ(-1000px);
   -moz-transform: translateZ(-1000px);
