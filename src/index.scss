@@ -114,8 +114,8 @@ h1 {
   perspective: 1000px;
   perspective-origin: 50% 50%;
   transform-style: preserve-3d;
-  margin: 25rem auto;
-  @apply max-w-full w-full h-full relative;
+  padding: 25rem 0;
+  @apply max-w-full w-full h-full relative block;
 }
 
 .cubic-gallery {
@@ -126,7 +126,6 @@ h1 {
   transform-style: preserve-3d;
   transform-origin: 50% 50%;
   transform: translateZ(-1000px);
-  cursor: grab;
   -webkit-backface-visibility: visible;
   -webkit-transform: translateZ(-1000px);
   -moz-transform: translateZ(-1000px);
