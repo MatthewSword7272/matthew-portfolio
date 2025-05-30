@@ -108,28 +108,35 @@ const Path = () => {
           </div>
         </p>
 
-        <svg className="mb-5" viewBox="50 100 1000 700" xmlns="http://www.w3.org/2000/svg">
-          <path id="circle1" d="M 560 160 A 200 200 0 1 0 560 560 A 200 200 0 1 0 560 160" stroke="#000" fill="none" />
-          <path
-            id="circle2"
-            d="M 560 360 m-120,0 a120,120 0 1,1 240,0 a120,120 0 1,1 -240,0"
-            stroke="#000"
-            fill="none"
-          />
-          <path id="circle3" d="M 540 360 m-40,0 a40,40 0 1,1 120,0 a40,40 0 1,1 -120,0" stroke="#000" fill="none" />
-          <text fontSize={"50px"} letterSpacing={"23px"}>
-            <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="0%">
-              abcdefghijklmnopqrstuvwxyz
-              <animate attributeName="startOffset" from="0%" to="100%" dur="20s" repeatCount="indefinite" />
-            </textPath>
-          </text>
-          <text fontSize={"50px"} letterSpacing={"23px"}>
-            <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="-100%">
-              abcdefghijklmnopqrstuvwxyz
-              <animate attributeName="startOffset" from="-100%" to="0%" dur="20s" repeatCount="indefinite" />
-            </textPath>
-          </text>
-        </svg>
+        <div className="flex flex-col justify-center items-center min-h-screen">
+          <svg className="mb-5" viewBox="50 100 1000 700" xmlns="http://www.w3.org/2000/svg">
+            <path
+              id="circle1"
+              d="M 560 160 A 200 200 0 1 0 560 560 A 200 200 0 1 0 560 160"
+              stroke="#000"
+              fill="none"
+            />
+            <path
+              id="circle2"
+              d="M 560 360 m-120,0 a120,120 0 1,1 240,0 a120,120 0 1,1 -240,0"
+              stroke="#000"
+              fill="none"
+            />
+            <path id="circle3" d="M 540 360 m-40,0 a40,40 0 1,1 120,0 a40,40 0 1,1 -120,0" stroke="#000" fill="none" />
+            <text fontSize={"50px"} letterSpacing={"23px"}>
+              <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="0%">
+                abcdefghijklmnopqrstuvwxyz
+                <animate attributeName="startOffset" from="0%" to="100%" dur="20s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+            <text fontSize={"50px"} letterSpacing={"23px"}>
+              <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="-100%">
+                abcdefghijklmnopqrstuvwxyz
+                <animate attributeName="startOffset" from="-100%" to="0%" dur="20s" repeatCount="indefinite" />
+              </textPath>
+            </text>
+          </svg>
+        </div>
       </section>
     </MainLayout>
   );

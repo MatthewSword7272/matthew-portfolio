@@ -65,15 +65,11 @@ const Cube = () => {
       for (let i = 0; i < FACE_SIZE; i++) {
         for (let j = 0; j < FACE_SIZE; j++) {
           const item = items[count++];
-          const baseTransform = `translateX(${
-            j * cellSize + origin
-          }px) translateY(${i * cellSize + origin}px) translateZ(${
-            cubeSize * 0.5
-          }px)`;
+          const baseTransform = `translateX(${j * cellSize + origin}px) translateY(${
+            i * cellSize + origin
+          }px) translateZ(${cubeSize * 0.5}px)`;
 
-          item.style.transform = faceTransforms[faceId]
-            ? `${faceTransforms[faceId]} ${baseTransform}`
-            : baseTransform;
+          item.style.transform = faceTransforms[faceId] ? `${faceTransforms[faceId]} ${baseTransform}` : baseTransform;
         }
       }
     }
@@ -102,20 +98,8 @@ const Cube = () => {
         {
           duration: 0.5,
           onUpdate() {
-            setRotY(
-              gsap.utils.interpolate(
-                parseFloat(cube._gsap?.rotationY) || 0,
-                rotY,
-                this.progress()
-              )
-            );
-            setRotX(
-              gsap.utils.interpolate(
-                parseFloat(cube._gsap?.rotationX) || 0,
-                rotX,
-                this.progress()
-              )
-            );
+            setRotY(gsap.utils.interpolate(parseFloat(cube._gsap?.rotationY) || 0, rotY, this.progress()));
+            setRotX(gsap.utils.interpolate(parseFloat(cube._gsap?.rotationX) || 0, rotX, this.progress()));
           },
           ease: "power3.out",
         }
@@ -136,10 +120,18 @@ const Cube = () => {
     window.addEventListener("mouseup", handleMouseUp);
     window.addEventListener("mousemove", handleMouseMove);
 
+    container.addEventListener("touchend", handleMouseDown);
+    window.addEventListener("touchstart", handleMouseUp);
+    window.addEventListener("touchmove", handleMouseMove);
+
     return () => {
       container.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
       window.removeEventListener("mousemove", handleMouseMove);
+
+      container.addEventListener("touchend", handleMouseDown);
+      window.addEventListener("touchstart", handleMouseUp);
+      window.addEventListener("touchmove", handleMouseMove);
     };
   });
 
@@ -171,11 +163,7 @@ const Cube = () => {
       <div className="cube-container" ref={containerRef}>
         <div className="cubic-gallery" ref={cubeRef}>
           {imageData.map((image, index) => (
-            <div
-              key={index}
-              style={{ backgroundImage: `url(${image})` }}
-              className="cubic-gallery-item"
-            />
+            <div key={index} style={{ backgroundImage: `url(${image})` }} className="cubic-gallery-item" />
           ))}
         </div>
       </div>

@@ -1,13 +1,6 @@
-import ScrollTrigger from "gsap/ScrollTrigger";
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
-
-import gsap from "gsap";
 import MainLayout from "../layouts/MainLayout";
-import { useGSAP } from "@gsap/react";
 
 const SvgAnimate = () => {
-  gsap.registerPlugin(useGSAP, ScrollTrigger, DrawSVGPlugin);
-
   const text = "Welcome to my World of Design! * ";
   const longText = text.repeat(4);
 
@@ -29,7 +22,7 @@ const SvgAnimate = () => {
     T 525 60"
               fill="none"
               stroke="transparent"
-              stroke-width="2"
+              strokeWidth="2"
             />
           </defs>
 

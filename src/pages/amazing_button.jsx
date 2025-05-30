@@ -69,7 +69,8 @@ const AmazingButton = () => {
 
   return (
     <MainLayout>
-      <div className="flex justify-center items-center h-96 ">
+      <div className="flex justify-center items-center h-96 flex-col space-y-5">
+        <h2>Click this Button, and it will do animations</h2>
         <button
           ref={buttonRef}
           onClick={handleClick}

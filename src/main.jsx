@@ -5,15 +5,16 @@ import "./index.scss";
 const Home = lazy(() => import("./pages/index.jsx"));
 const AboutMe = lazy(() => import("./pages/AboutMe.jsx"));
 // const Project = lazy(() => import("./pages/[slug].jsx"));
-const MainLayout = lazy(() => import("./layouts/MainLayout.jsx"));
 const Projects = lazy(() => import("./pages/projects.jsx"));
 const AmazingButton = lazy(() => import("./pages/amazing_button.jsx"));
 const MarqueeComponent = lazy(() => import("./pages/marquee.jsx"));
 const Scrolling = lazy(() => import("./pages/scrolling.jsx"));
-const Path = lazy(() => import("./pages/path.jsx"));
-const SvgAnimate = lazy(() => import("./pages/svg_animate.jsx"));
 const Transition = lazy(() => import("./pages/transition.jsx"));
 const Cube = lazy(() => import("./pages/cube.jsx"));
+import Path from "./pages/path.jsx";
+// const Path = lazy(() => import("./pages/path.jsx"));
+import SvgAnimate from "./pages/svg_animate.jsx";
+import MainLayout from "./layouts/MainLayout.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
