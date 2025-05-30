@@ -16,9 +16,12 @@ function Home() {
     "I recently graduated from Swinburne University with a Bachelor of Computer Science (Professional) and am currently honing my skills as a Web Developer. My technical expertise spans front-end technologies like React, TypeScript, Vue.js, and Tailwind, back-end frameworks including Node.js, PHP, and Laravel, plus DevOps tools like AWS and Docker.";
 
   useGSAP(() => {
-    let split = SplitText.create("#name", { type: "words, chars", position: "relative" });
+    let split = SplitText.create("#name", {
+      type: "words, chars",
+      position: "relative",
+    });
     gsap.from(split.chars, {
-      y: 100,
+      y: 200,
       duration: 1,
       stagger: 0.05,
       delay: 1,
@@ -47,7 +50,7 @@ function Home() {
       <div className="fixed inset-0 size-full bg-[url('/images/stars.jpeg')] bg-cover bg-center" />
       <main className="w-full h-4/5 flex max-md:flex-col py-2 px-6 overflow-hidden justify-center md:items-center z-10 relative">
         <div className="bg-black/70 h-full w-full projectView">
-          <div className="h-full delay-500 projectView grid grid-cols-2 max-md:grid-cols-1 gap-4 p-7 overflow-hidden text-left text-cyan-200 shadow-2xl rounded inset-shadow-sm inset-shadow-white/20 drop-shadow-2xl">
+          <div className="md:h-[75vh] h-full delay-500 projectView grid grid-cols-2 max-md:grid-cols-1 gap-4 p-7 overflow-hidden text-left text-cyan-200 shadow-2xl rounded inset-shadow-sm inset-shadow-white/20 drop-shadow-2xl">
             <h1
               style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}
               className="leading-none overflow-hidden content-center w-fit text-justify revealUp font-[Impact] uppercase text-cyan-200"
@@ -61,7 +64,8 @@ function Home() {
               {/* <p className="text-5xl revealUp">Welcome</p> */}
               <div className="">
                 <p className="font-bold">
-                  <span className="text-3xl min-h-[3rem]" id="hello"></span> <br />
+                  <span className="text-3xl min-h-[3rem]" id="hello"></span>{" "}
+                  <br />
                   <span className="min-h-[5rem]" id="description"></span>
                 </p>
                 <br />

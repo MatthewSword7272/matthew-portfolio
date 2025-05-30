@@ -11,6 +11,13 @@ function Projects() {
       link: "https://psdesign.netlify.app/",
     },
     {
+      title: "Movember: Family Man",
+      description:
+        "One of the projects I worked on when I was at Movember. A Website to teach parenting strategies to new parents",
+      imageUrl: "/images/family_man.png",
+      link: "https://familyman.movember.com/en-au/",
+    },
+    {
       title: "Matthew's Game Catalog",
       description: "A personal game catalog built with Vue.js and Tailwind CSS",
       imageUrl: "/images/gameCatalog.png",
