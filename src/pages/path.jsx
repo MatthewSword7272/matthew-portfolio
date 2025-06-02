@@ -14,7 +14,7 @@ const Path = () => {
       scrollTrigger: {
         trigger: ".section",
         start: "top top",
-        end: "+=100%",
+        end: "+=450%",
         scrub: true,
         pin: true,
       },
@@ -48,21 +48,21 @@ const Path = () => {
       {
         fill: "#002347",
       },
-      1
+      0.5
     );
     tl.to(
       "#circle2",
       {
         fill: "#FFB703",
       },
-      1
+      0.5
     );
     tl.to(
       "#circle3",
       {
         fill: "#FB8500",
       },
-      1
+      0.5
     );
 
     tl.from(
@@ -70,7 +70,7 @@ const Path = () => {
       {
         opacity: 0,
       },
-      2
+      1.5
     );
 
     tl.to(
@@ -78,7 +78,7 @@ const Path = () => {
       {
         opacity: 0,
       },
-      2
+      1.5
     );
 
     tl.to(
@@ -86,7 +86,7 @@ const Path = () => {
       {
         opacity: 0,
       },
-      2
+      1.5
     );
 
     tl.to(
@@ -94,7 +94,7 @@ const Path = () => {
       {
         opacity: 0,
       },
-      2
+      1.5
     );
   }, []);
 
@@ -109,7 +109,11 @@ const Path = () => {
         </p>
 
         <div className="flex flex-col justify-center items-center min-h-screen">
-          <svg className="mb-5" viewBox="50 100 1000 700" xmlns="http://www.w3.org/2000/svg">
+          <svg
+            className="mb-5"
+            viewBox="50 100 1000 700"
+            xmlns="http://www.w3.org/2000/svg"
+          >
             <path
               id="circle1"
               d="M 560 160 A 200 200 0 1 0 560 560 A 200 200 0 1 0 560 160"
@@ -122,17 +126,46 @@ const Path = () => {
               stroke="#000"
               fill="none"
             />
-            <path id="circle3" d="M 540 360 m-40,0 a40,40 0 1,1 120,0 a40,40 0 1,1 -120,0" stroke="#000" fill="none" />
+            <path
+              id="circle3"
+              d="M 540 360 m-40,0 a40,40 0 1,1 120,0 a40,40 0 1,1 -120,0"
+              stroke="#000"
+              fill="none"
+            />
             <text fontSize={"50px"} letterSpacing={"23px"}>
-              <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="0%">
+              <textPath
+                id="circleText"
+                href="#circle1"
+                method="align"
+                spacing="auto"
+                startOffset="0%"
+              >
                 abcdefghijklmnopqrstuvwxyz
-                <animate attributeName="startOffset" from="0%" to="100%" dur="20s" repeatCount="indefinite" />
+                <animate
+                  attributeName="startOffset"
+                  from="0%"
+                  to="100%"
+                  dur="20s"
+                  repeatCount="indefinite"
+                />
               </textPath>
             </text>
             <text fontSize={"50px"} letterSpacing={"23px"}>
-              <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="-100%">
+              <textPath
+                id="circleText"
+                href="#circle1"
+                method="align"
+                spacing="auto"
+                startOffset="-100%"
+              >
                 abcdefghijklmnopqrstuvwxyz
-                <animate attributeName="startOffset" from="-100%" to="0%" dur="20s" repeatCount="indefinite" />
+                <animate
+                  attributeName="startOffset"
+                  from="-100%"
+                  to="0%"
+                  dur="20s"
+                  repeatCount="indefinite"
+                />
               </textPath>
             </text>
           </svg>
