@@ -15,6 +15,7 @@ import Path from "./pages/path.jsx";
 // const Path = lazy(() => import("./pages/path.jsx"));
 import SvgAnimate from "./pages/svg_animate.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
+const MemoryGame = lazy(() => import("./pages/memory_game.jsx"));
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/svg-animate" element={<SvgAnimate />} />
         <Route path="/transition" element={<Transition />} />
         <Route path="/cube" element={<Cube />} />
+        <Route path="/memory-game" element={<MemoryGame />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

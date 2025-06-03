@@ -44,6 +44,13 @@ function Projects() {
       link: "/marquee",
     },
     {
+      title: "Memory Game",
+      description:
+        "A fun marquee component built with Fast Marquee and Framer Motion",
+      imageUrl: "/images/marquee.png",
+      link: "/memory-game",
+    },
+    {
       title: "GSAP Scrolling",
       description: "A Demonstration of a GSAP Scrolling Animation",
       imageUrl: "/images/scrolling.png",

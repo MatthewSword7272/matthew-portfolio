@@ -1,0 +1,22 @@
+.card {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+
+  @apply md:h-48 md:w-32 h-24 w-16 rounded-lg bg-white relative shadow-lg cursor-pointer;
+}
+
+.card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+
+  @apply absolute flex items-center justify-center inset-0 rounded-lg m-1;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
