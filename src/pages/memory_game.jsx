@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Card from "../components/Card";
 import MainLayout from "../layouts/MainLayout";
 
@@ -17,9 +18,13 @@ const MemoryGame = () => {
     },
   ];
 
+  const [matchedCards, setMatchedCards] = useState(0);
+
   const doubleCards = [...cards, ...cards].map((card, id) => ({
     ...card,
     id: id,
+    flipped: false,
+    matched: false,
   }));
 
   const shuffledCards = shuffle(doubleCards);
@@ -39,10 +44,15 @@ const MemoryGame = () => {
 
     return array;
   }
+
   return (
     <MainLayout>
-      <div className="flex items-center flex-col justify-center mx-auto">
-        <h2>Memory Game</h2>
+      <div className="flex items-center flex-col justify-center mx-auto space-y-5 pb-10">
+        <h2 className="font-bold">Memory Game</h2>
+        <p>Click on the Cards and try to match them up!</p>
+        <p>
+          Cards Matched: <span>{matchedCards}</span>
+        </p>
         <div className="grid md:grid-cols-4 grid-cols-3 gap-10">
           {shuffledCards.map((card) => (
             <Card key={card.id} image={card.image} />
