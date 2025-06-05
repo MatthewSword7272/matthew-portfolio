@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import MainLayout from "../layouts/MainLayout";
 import shuffleCards from "../utils/shuffledCards";
+import { Dialog, DialogPanel } from "@headlessui/react";
+import { motion } from "framer-motion";
 
 const MemoryGame = () => {
   const [cards, setCards] = useState(() => shuffleCards());
@@ -21,7 +23,7 @@ const MemoryGame = () => {
     if (flippedCards.length === 2) {
       setTimeout(() => {
         checkForMatch();
-      }, 1000); // Small delay to let animations complete
+      }, 1000);
     }
 
     if (matchedCards === cards.length / 2) {
@@ -54,25 +56,35 @@ const MemoryGame = () => {
       }
       setFlippedCards([]);
     }
-  }, [cards.length, flippedCards, matchedCards]);
+  }, [flippedCards, matchedCards]);
 
   return (
     <MainLayout>
-      {gameWon && (
-        <div className={" absolute inset-0 bg-black/50 z-50"}>
-          <div
-            className={
-              "absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-400 w-64 h-24 rounded-xl shadow-xl"
-            }
+      <Dialog
+        open={gameWon}
+        as={motion.div}
+        onClose={() => {}}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, transition: { duration: 0.5 } }}
+        className={"inset-0 bg-black/50 z-50 fixed overflow-hidden"}
+      >
+        <DialogPanel
+          className={
+            "absolute p-9 inset-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-400 w-64 h-fit rounded-xl shadow-xl"
+          }
+        >
+          <p className={"text-center text-4xl font-bold h-full content-center"}>
+            You Win!
+          </p>
+
+          <button
+            onClick={() => window.location.reload()}
+            className={"hover:underline text-center block mx-auto mt-3"}
           >
-            <p
-              className={"text-center text-4xl font-bold h-full content-center"}
-            >
-              You Win!
-            </p>
-          </div>
-        </div>
-      )}
+            Click here to refresh
+          </button>
+        </DialogPanel>
+      </Dialog>
       <div className="flex items-center flex-col justify-center mx-auto space-y-5 pb-10">
         <h2 className="font-bold">Memory Game</h2>
         <p>Click on the Cards and try to match them up!</p>

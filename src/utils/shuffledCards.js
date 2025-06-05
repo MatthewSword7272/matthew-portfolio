@@ -13,6 +13,18 @@ function shuffleCards() {
             name: "fish",
             image: "./images/memory/fish.jpg",
         },
+        {
+            name: "horse",
+            image: "./images/memory/horse.jpg",
+        },
+        {
+            name: "cow",
+            image: "./images/memory/cow.jpg",
+        },
+        {
+            name: "kangaroo",
+            image: "./images/memory/kangaroo.jpg",
+        },
     ];
 
 
