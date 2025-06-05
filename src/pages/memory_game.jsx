@@ -91,7 +91,7 @@ const MemoryGame = () => {
         <p>
           Cards Matched: <span>{matchedCards}</span>
         </p>
-        <div className="grid md:grid-cols-4 grid-cols-3 gap-10">
+        <div className="grid md:grid-cols-6 grid-cols-4 gap-10">
           {cards.map((card) => (
             <Card addFlippedCard={addFlippedCard} card={card} key={card.id} />
           ))}

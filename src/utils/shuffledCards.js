@@ -25,6 +25,18 @@ function shuffleCards() {
             name: "kangaroo",
             image: "./images/memory/kangaroo.jpg",
         },
+        {
+            name: "bird",
+            image: "./images/memory/bird.jpg",
+        },
+        {
+            name: "bunny",
+            image: "./images/memory/bunny.jpg",
+        },
+        {
+            name: "lizard",
+            image: "./images/memory/lizard.jpg",
+        },
     ];
 
 
