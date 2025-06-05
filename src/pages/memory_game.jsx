@@ -12,9 +12,7 @@ const MemoryGame = () => {
   const [gameWon, setGameWon] = useState(false);
 
   function addFlippedCard(card) {
-    setCards((prev) =>
-      prev.map((c) => (c.id === card.id ? { ...c, flipped: true } : c))
-    );
+    setCards((prev) => prev.map((c) => (c.id === card.id ? { ...c, flipped: true } : c)));
 
     setFlippedCards((prev) => [...prev, card]);
   }
@@ -23,7 +21,7 @@ const MemoryGame = () => {
     if (flippedCards.length === 2) {
       setTimeout(() => {
         checkForMatch();
-      }, 1000);
+      }, 500);
     }
 
     if (matchedCards === cards.length / 2) {
@@ -40,17 +38,13 @@ const MemoryGame = () => {
 
         setCards((prev) =>
           prev.map((card) =>
-            card.id === firstCard.id || card.id === secondCard.id
-              ? { ...card, matched: true, flipped: true }
-              : card
+            card.id === firstCard.id || card.id === secondCard.id ? { ...card, matched: true, flipped: true } : card
           )
         );
       } else {
         setCards((prev) =>
           prev.map((card) =>
-            card.id === firstCard.id || card.id === secondCard.id
-              ? { ...card, flipped: false }
-              : card
+            card.id === firstCard.id || card.id === secondCard.id ? { ...card, flipped: false } : card
           )
         );
       }
@@ -73,14 +67,9 @@ const MemoryGame = () => {
             "absolute p-9 inset-1/2 -translate-x-1/2 -translate-y-1/2 bg-green-400 w-64 h-fit rounded-xl shadow-xl"
           }
         >
-          <p className={"text-center text-4xl font-bold h-full content-center"}>
-            You Win!
-          </p>
+          <p className={"text-center text-4xl font-bold h-full content-center"}>You Win!</p>
 
-          <button
-            onClick={() => window.location.reload()}
-            className={"hover:underline text-center block mx-auto mt-3"}
-          >
+          <button onClick={() => window.location.reload()} className={"hover:underline text-center block mx-auto mt-3"}>
             Click here to refresh
           </button>
         </DialogPanel>
