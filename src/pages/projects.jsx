@@ -45,9 +45,8 @@ function Projects() {
     },
     {
       title: "Memory Game",
-      description:
-        "A fun marquee component built with Fast Marquee and Framer Motion",
-      imageUrl: "/images/marquee.png",
+      description: "A Memory Game with Animals, test your might",
+      imageUrl: "/images/memory.png",
       link: "/memory-game",
     },
     {
