@@ -1,12 +1,15 @@
+import { useRef, useState } from "react";
 import ProjectPreview from "../components/ProjectPreview";
 import MainLayout from "../layouts/MainLayout";
+import ReactPaginate from "react-paginate";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 function Projects() {
   const projects = [
     {
       title: "PS Design Studio Revamp",
-      description:
-        "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
+      description: "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
       imageUrl: "/images/psdesign.png",
       link: "https://psdesign.netlify.app/",
     },
@@ -25,8 +28,7 @@ function Projects() {
     },
     {
       title: "Positivus Design",
-      description:
-        "A Web Page Design from Figma using React and GSAP Animations",
+      description: "A Web Page Design from Figma using React and GSAP Animations",
       imageUrl: "/images/positivus.png",
       link: "https://positivus-matthewc.netlify.app/",
     },
@@ -38,8 +40,7 @@ function Projects() {
     },
     {
       title: "An Interactive Marquee",
-      description:
-        "A fun marquee component built with Fast Marquee and Framer Motion",
+      description: "A fun marquee component built with Fast Marquee and Framer Motion",
       imageUrl: "/images/marquee.png",
       link: "/marquee",
     },
@@ -63,8 +64,7 @@ function Projects() {
     },
     {
       title: "GSAP Draw Svg",
-      description:
-        "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
+      description: "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
       imageUrl: "/images/path.png",
       link: "/path",
     },
@@ -89,10 +89,47 @@ function Projects() {
     // },
   ];
 
+  const projectList = useRef(null);
+
+  const itemsPerPage = 6; //Projects per page
+
+  const [itemOffset, setItemOffset] = useState(0);
+
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = projects.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(projects.length / itemsPerPage);
+
+  const handlePageClick = async (event) => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    // Fade out current items
+    await gsap.to(projectList.current.children, {
+      opacity: 0,
+      duration: 0.5,
+    });
+
+    const newOffset = (event.selected * itemsPerPage) % projects.length;
+    setItemOffset(newOffset);
+  };
+
+  useGSAP(() => {
+    gsap.fromTo(
+      projectList.current.children,
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+      }
+    );
+  }, [itemOffset]);
+
   return (
     <MainLayout>
-      <main className="w-full grid grid-cols-1 md:grid-cols-2 gap-20 py-6 px-20 max-md:px-9">
-        {projects.map((project, index) => (
+      <main ref={projectList} className="w-full grid grid-cols-1 md:grid-cols-2 gap-20 py-6 px-20 max-md:px-9">
+        {currentItems.map((project, index) => (
           <ProjectPreview
             delay={index * 250}
             key={index}
@@ -102,6 +139,16 @@ function Projects() {
             link={project.link}
           />
         ))}
+        <ReactPaginate
+          nextLabel=">"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          pageCount={pageCount}
+          previousLabel="<"
+          className="flex justify-between items-center w-1/2 col-span-full mx-auto"
+          pageLinkClassName="rounded-full px-3 py-1.5 hover:bg-blue-500/50 duration-300"
+          activeLinkClassName="bg-blue-500"
+        />
       </main>
     </MainLayout>
   );
