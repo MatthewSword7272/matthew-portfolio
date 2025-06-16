@@ -17,12 +17,22 @@ const DotGrid = () => {
   return (
     <MainLayout className="">
       <div className={"relative grid h-screen place-content-center bg-slate-900"}>
-        <div className="text-white text-center space-y-5 mb-5">
+        <div className="text-white text-center space-y-4 mb-5">
           <h2 ref={title} className="rainbow_text_animated font-bold text-3xl">
             Magical Grid
           </h2>
           <p>A Grid that uses Anime.js to create animations</p>
-          <p>Click on a dot and see something magical</p>
+          <p>Click on a dot and see something magical!</p>
+          <p>
+            Expanded from{" "}
+            <a
+              className="underline text-blue-500"
+              target="_blank"
+              href="https://www.youtube.com/watch?v=wo-rf-dzoHo&pp=ygUNYW5pbWUuanMgZ3JpZA%3D%3D"
+            >
+              this video
+            </a>
+          </p>
         </div>
         <Grid />
       </div>
