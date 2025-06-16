@@ -1,12 +1,29 @@
 import { animate, stagger } from "animejs";
 import MainLayout from "../layouts/MainLayout";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "../assets/dot.scss";
 
 const DotGrid = () => {
+  const title = useRef(null);
+  useEffect(() => {
+    animate(title.current, {
+      opacity: [0, 1],
+      translateY: [-20, 0],
+      duration: 1000,
+      easing: "easeOutBack",
+    });
+  }, []);
+
   return (
-    <MainLayout>
+    <MainLayout className="">
       <div className={"relative grid h-screen place-content-center bg-slate-900"}>
+        <div className="text-white text-center space-y-5 mb-5">
+          <h2 ref={title} className="rainbow_text_animated font-bold text-3xl">
+            Magical Grid
+          </h2>
+          <p>A Grid that uses Anime.js to create animations</p>
+          <p>Click on a dot and see something magical</p>
+        </div>
         <Grid />
       </div>
     </MainLayout>
