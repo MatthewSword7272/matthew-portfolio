@@ -125,18 +125,19 @@ function Projects() {
 
   useGSAP(() => {
     if (isTransitioning) {
-      // Set initial opacity to 0 immediately when transitioning
-      gsap.set(projectList.current.children, { opacity: 0 });
-
-      // Then animate in
-      gsap.to(projectList.current.children, {
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        onComplete: () => setIsTransitioning(false),
-      });
+      gsap.fromTo(
+        projectList.current.children,
+        {
+          opacity: 0,
+        },
+        {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+          onComplete: () => setIsTransitioning(false),
+        }
+      );
     } else {
-      // Initial load animation
       gsap.fromTo(
         projectList.current.children,
         {
