@@ -1,0 +1,21 @@
+.dot {
+  --h: 205;
+  --color: hsl(var(--h), 60%, 50%);
+  @apply bg-gradient-to-b from-[--color] to-gray-700;
+}
+
+.rainbow_text_animated {
+  color: red;
+  filter: hue-rotate(0deg);
+  animation: rainbow_animation 5s linear infinite;
+  -webkit-animation: rainbow_animation 5s linear infinite;
+}
+
+@keyframes rainbow_animation {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
