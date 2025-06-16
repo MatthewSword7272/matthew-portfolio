@@ -146,8 +146,8 @@ function Projects() {
           pageCount={pageCount}
           previousLabel="<"
           className="flex justify-between items-center w-1/2 col-span-full mx-auto"
-          pageLinkClassName="rounded-full px-3 py-1.5 hover:bg-blue-500/50 duration-300"
-          activeLinkClassName="bg-blue-500"
+          pageLinkClassName="rounded-full px-3 py-1.5 hover:bg-blue-800/50 duration-300"
+          activeLinkClassName="bg-blue-800/80"
         />
       </main>
     </MainLayout>
