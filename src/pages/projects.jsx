@@ -140,12 +140,14 @@ function Projects() {
           />
         ))}
         <ReactPaginate
-          nextLabel=">"
           onPageChange={handlePageClick}
           pageRangeDisplayed={3}
           pageCount={pageCount}
           previousLabel="<"
-          className="flex justify-between items-center w-1/2 col-span-full mx-auto"
+          nextLabel=">"
+          className="flex justify-between items-center md:w-1/2 w-full col-span-full mx-auto"
+          nextClassName="text-lg"
+          previousClassName="text-lg"
           pageLinkClassName="rounded-full size-9 flex items-center justify-center hover:bg-blue-800/50 duration-300"
           activeLinkClassName="bg-blue-800/80"
         />
