@@ -1,0 +1,5 @@
+.dot {
+  --h: 215;
+  --color: hsl(var(--h), 60%, 50%);
+  @apply bg-gradient-to-b from-[--color] to-gray-700;
+}
