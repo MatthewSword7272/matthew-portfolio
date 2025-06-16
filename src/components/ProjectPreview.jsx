@@ -1,8 +1,11 @@
 import { useInView } from "framer-motion";
+import { useState } from "react";
 import { useRef } from "react";
 
 const ProjectPreview = ({ title, description, imageUrl, link, delay }) => {
   const delayIndex = (delay / 2) % 2;
+
+  const [loaded, setLoaded] = useState(false);
 
   const style = {
     animationDelay: `${delayIndex}ms`,
@@ -23,7 +26,9 @@ const ProjectPreview = ({ title, description, imageUrl, link, delay }) => {
         <div className=" relative overflow-hidden rounded-lg size-full">
           <img
             src={imageUrl}
+            style={loaded ? {} : { display: "none" }}
             alt="Project Thumbnail"
+            onLoad={() => setLoaded(true)}
             className="object-cover rounded-lg group-hover:scale-110 duration-300 size-full"
           />
         </div>
