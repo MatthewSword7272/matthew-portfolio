@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useRef } from "react";
 
 const ProjectPreview = ({ title, description, imageUrl, link, delay, last }) => {
+  //TODO: Preload images
   const delayIndex = (delay / 2) % 2;
 
   const [loaded, setLoaded] = useState(false);

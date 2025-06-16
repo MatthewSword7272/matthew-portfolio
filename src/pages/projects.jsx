@@ -133,7 +133,7 @@ function Projects() {
         {
           opacity: 1,
           duration: 0.5,
-          ease: "power2.out",
+          ease: "power2.in",
           onComplete: () => setIsTransitioning(false),
         }
       );
