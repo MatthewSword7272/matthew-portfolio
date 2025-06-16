@@ -75,6 +75,12 @@ function Projects() {
       link: "/cube",
     },
     {
+      title: "Magical Dot Grid",
+      description: "A Dot Grid that uses Anime.js to create animations",
+      imageUrl: "/images/dot_grid.png",
+      link: "/dot-grid",
+    },
+    {
       title: "React useTransition",
       description:
         "Demonstrates useTransition by generating a large list in the background while keeping the UI smooth and interactive.",

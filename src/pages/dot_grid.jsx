@@ -19,7 +19,7 @@ const DotGrid = () => {
       <div className={"relative grid h-screen place-content-center bg-slate-900"}>
         <div className="text-white text-center space-y-4 mb-5">
           <h2 ref={title} className="rainbow_text_animated font-bold text-3xl">
-            Magical Grid
+            Magical Dot Grid
           </h2>
           <p>A Grid that uses Anime.js to create animations</p>
           <p>Click on a dot and see something magical!</p>
