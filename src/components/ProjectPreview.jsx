@@ -2,7 +2,7 @@ import { useInView } from "framer-motion";
 import { useState } from "react";
 import { useRef } from "react";
 
-const ProjectPreview = ({ title, description, imageUrl, link, delay }) => {
+const ProjectPreview = ({ title, description, imageUrl, link, delay, last }) => {
   const delayIndex = (delay / 2) % 2;
 
   const [loaded, setLoaded] = useState(false);
@@ -38,6 +38,7 @@ const ProjectPreview = ({ title, description, imageUrl, link, delay }) => {
         </div>
       </a>
       <p className="text-center md:hidden">{description}</p>
+      {!last && <div className="w-full h-px bg-slate-500 md:hidden"></div>}
     </>
   );
 };
