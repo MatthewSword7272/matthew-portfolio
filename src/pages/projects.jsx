@@ -3,6 +3,7 @@ import ProjectPreview from "../components/ProjectPreview";
 import MainLayout from "../layouts/MainLayout";
 import ReactPaginate from "react-paginate";
 import gsap from "gsap";
+import { preload } from "react-dom";
 import { useGSAP } from "@gsap/react";
 
 function Projects() {
@@ -94,6 +95,10 @@ function Projects() {
     //   link: "/natalie",
     // },
   ];
+
+  projects.forEach((project) => {
+    preload(project.imageUrl, { as: "image" });
+  });
 
   const projectList = useRef(null);
 
