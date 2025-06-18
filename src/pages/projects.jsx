@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import ProjectPreview from "../components/ProjectPreview";
 import MainLayout from "../layouts/MainLayout";
 import ReactPaginate from "react-paginate";
@@ -6,13 +6,13 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function Projects({ projects }) {
-  useEffect(() => {
-    projects.forEach((project) => {
-      const img = new Image();
-      img.src = project.imageUrl;
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   projects.forEach((project) => {
+  //     const img = new Image();
+  //     img.src = project.imageUrl;
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const projectList = useRef(null);
 

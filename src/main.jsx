@@ -107,6 +107,11 @@ const projects = [
   // },
 ];
 
+projects.forEach((project) => {
+  const img = new Image();
+  img.src = project.imageUrl;
+});
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter element={<MainLayout />}>
