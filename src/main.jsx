@@ -20,29 +20,10 @@ const DotGrid = lazy(() => import("./pages/dot_grid.jsx"));
 
 const projects = [
   {
-    title: "PS Design Studio Revamp",
-    description: "Revamping the PS Design Studio website using Nuxt.js and Statamic CMS",
-    imageUrl: "/images/psdesign.png",
-    link: "https://psdesign.netlify.app/",
-  },
-  {
-    title: "Movember: Family Man",
-    description:
-      "One of the projects I worked on when I was at Movember. A Website to teach parenting strategies to new parents",
-    imageUrl: "/images/family_man.png",
-    link: "https://familyman.movember.com/en-au/",
-  },
-  {
-    title: "Matthew's Game Catalog",
-    description: "A personal game catalog built with Vue.js and Tailwind CSS",
-    imageUrl: "/images/gameCatalog.png",
-    link: "https://matthewvideogamecatalog.netlify.app/",
-  },
-  {
-    title: "Positivus Design",
-    description: "A Web Page Design from Figma using React and GSAP Animations",
-    imageUrl: "/images/positivus.png",
-    link: "https://positivus-matthewc.netlify.app/",
+    title: "One Two Boxing",
+    description: "Revamped the One Two Boxing website using React and Tailwind CSS",
+    imageUrl: "/images/one_two_boxing.png",
+    link: "https://onetwoboxing.com.au/",
   },
   {
     title: "The Amazing Button",

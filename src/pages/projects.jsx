@@ -95,7 +95,7 @@ function Projects({ projects }) {
         pageCount={pageCount}
         previousLabel="<"
         nextLabel=">"
-        className="flex justify-between items-center md:w-1/2 w-full mx-auto px-5 my-10"
+        className="flex justify-center gap-10 items-center md:w-1/2 w-full mx-auto px-5 my-10"
         nextClassName="text-lg"
         previousClassName="text-lg"
         pageLinkClassName="rounded-full size-9 flex items-center justify-center hover:bg-blue-800/50 duration-300"
