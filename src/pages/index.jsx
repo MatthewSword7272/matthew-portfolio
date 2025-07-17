@@ -58,7 +58,7 @@ function Home() {
               <hr />
               Catalfamo
             </h1> */}
-            <div className="aspect-square profile-image">
+            <div className="aspect-square profile-image w-[20rem] m-auto">
               <img className="rounded-lg" src="/images/ME.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">
