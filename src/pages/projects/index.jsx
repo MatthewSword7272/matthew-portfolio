@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import ProjectPreview from "../components/ProjectPreview";
-import MainLayout from "../layouts/MainLayout";
+import ProjectPreview from "../../components/ProjectPreview";
+import MainLayout from "../../layouts/MainLayout";
 import ReactPaginate from "react-paginate";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -75,17 +75,14 @@ function Projects({ projects }) {
     <MainLayout>
       <main
         ref={projectList}
-        className="w-full grid grid-cols-1 md:grid-cols-2 md:gap-20 gap-10 py-6 px-20 max-md:px-9"
+        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-20 gap-10 py-6 px-20 max-md:px-9"
       >
         {currentItems.map((project, index) => (
           <ProjectPreview
+            project={project}
             delay={index * 250}
             last={index === currentItems.length - 1}
             key={`${itemOffset}-${index}`}
-            title={project.title}
-            description={project.description}
-            imageUrl={project.imageUrl}
-            link={project.link}
           />
         ))}
       </main>

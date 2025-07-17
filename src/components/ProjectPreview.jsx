@@ -1,32 +1,32 @@
-import { useInView } from "framer-motion";
 import { useState } from "react";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
-const ProjectPreview = ({ title, description, imageUrl, link, delay, last }) => {
+const ProjectPreview = ({ project, delay, last }) => {
   //TODO: Preload images
   const delayIndex = (delay / 2) % 2;
 
   const [loaded, setLoaded] = useState(false);
+
+  const { title, description, imageUrl, link } = project;
 
   const style = {
     animationDelay: `${delayIndex}ms`,
   };
 
   const ref = useRef(null);
-  const inView = useInView(ref, { amount: 0.4, once: true });
+  // const inView = useInView(ref, { amount: 0.4, once: true });
 
   return (
     <>
-      <a
+      <Link
         ref={ref}
-        className={` border border-white bg-white p-5 rounded-lg  group box-shadow ${
-          inView ? "projectView" : "opacity-0"
-        }`}
+        className={`border border-white bg-white p-5 rounded-lg projectView group box-shadow`}
         href={link}
         style={style}
         target={link.startsWith("http") ? "_blank" : "_self"}
       >
-        <div className="  rounded-lg ">
+        <div className="rounded-lg">
           <img
             src={imageUrl}
             style={loaded ? {} : { display: "none" }}
@@ -43,7 +43,7 @@ const ProjectPreview = ({ title, description, imageUrl, link, delay, last }) => 
           <h2 className="text-xl font-medium mb-2">{title}</h2>
           <p className="text-center text-black">{description}</p>
         </div>
-      </a>
+      </Link>
       {/* <p className="text-center md:hidden">{description}</p> */}
       {!last && <div className="w-full h-px bg-slate-500 md:hidden"></div>}
     </>

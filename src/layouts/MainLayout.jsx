@@ -6,7 +6,7 @@ const MainLayout = ({ children, className = "" }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="flex flex-col flex-grow bg-gray-200 w-full">
+      <div className="flex bg-gray-200 w-full">
         <div className="mt-32" />
         <div className={`flex-grow overflow-hidden ${className}`}>{children}</div>
       </div>

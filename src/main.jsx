@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import "./index.scss";
 import Home from "./pages/index.jsx";
 import AboutMe from "./pages/AboutMe.jsx";
-import Projects from "./pages/projects.jsx";
+import Projects from "./pages/projects/index.jsx";
 // const Project = lazy(() => import("./pages/[slug].jsx"));
 const AmazingButton = lazy(() => import("./pages/amazing_button.jsx"));
 const MarqueeComponent = lazy(() => import("./pages/marquee.jsx"));
@@ -15,77 +15,75 @@ import Path from "./pages/path.jsx";
 // const Path = lazy(() => import("./pages/path.jsx"));
 import SvgAnimate from "./pages/svg_animate.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
+import ProjectView from "./pages/projects/[slug].jsx";
 const MemoryGame = lazy(() => import("./pages/memory_game.jsx"));
 const DotGrid = lazy(() => import("./pages/dot_grid.jsx"));
 
 const projects = [
   {
+    id: 1,
     title: "One Two Boxing",
     description: "Revamped the One Two Boxing website using React and Tailwind CSS",
     imageUrl: "/images/one_two_boxing.png",
-    link: "https://onetwoboxing.com.au/",
+    link: '/projects/one-two-boxing',
+    projectUrl: "https://onetwoboxing.com.au/",
   },
   {
+    id: 2,
     title: "The Amazing Button",
     description: "A button component that does a thing in GSAP",
     imageUrl: "/images/button.png",
-    link: "/amazing-button",
+    link: "/projects/amazing-button",
   },
   {
+    id: 3,
     title: "An Interactive Marquee",
     description: "A fun marquee component built with Fast Marquee and Framer Motion",
     imageUrl: "/images/marquee.png",
-    link: "/marquee",
+    link: "/projects/marquee",
   },
   {
+    id: 4,
     title: "Memory Game",
     description: "A Memory Game with Animals, test your might",
     imageUrl: "/images/memory.png",
-    link: "/memory-game",
+    link: "/projects/memory-game",
   },
   {
+    id: 5,
     title: "GSAP Scrolling",
     description: "A Demonstration of a GSAP Scrolling Animation",
     imageUrl: "/images/scrolling.png",
-    link: "/scrolling",
+    link: "/projects/scrolling",
   },
   {
+    id: 6,
     title: "Animate Svg",
     description: "Using the animate tag in SVG to animate the text",
     imageUrl: "/images/svg-animate.png",
-    link: "/svg-animate",
+    link: "/projects/svg-animate",
   },
   {
+    id: 7,
     title: "GSAP Draw Svg",
     description: "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
     imageUrl: "/images/path.png",
-    link: "/path",
+    link: "/projects/path",
   },
   {
+    id: 8,
     title: "3-D Image Cube",
     description: "A movable 3D Cube with images you can search for",
     imageUrl: "/images/cube.png",
-    link: "/cube",
+    link: "/projects/cube",
   },
   {
+    id: 9,
     title: "Magical Dot Grid",
     description: "A Dot Grid that uses Anime.js to create animations",
     imageUrl: "/images/dot_grid.png",
-    link: "/dot-grid",
+    link: "/projects/dot-grid",
   },
-  {
-    title: "React useTransition",
-    description:
-      "Demonstrates useTransition by generating a large list in the background while keeping the UI smooth and interactive.",
-    imageUrl: "/images/transition.png",
-    link: "/transition",
-  },
-  // {
-  //   title: "Natalie Catalfamo Designs",
-  //   description: "Recrated my sister's online portfolio",
-  //   imageUrl: "",
-  //   link: "/natalie",
-  // },
 ];
 
 projects.forEach((project) => {
@@ -99,6 +97,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects projects={projects} />} />
+        <Route path="/projects/:projectId" element={<ProjectView />} />
         <Route path="/about-me" element={<AboutMe />} />
         {/* <Route path="/:projectId" element={<Project />} /> */}
         <Route path="/amazing-button" element={<AmazingButton />} />
