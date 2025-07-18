@@ -46,7 +46,7 @@ function Home() {
   return (
     <MainLayout>
       <div className="fixed inset-0 size-full bg-[url('/images/stars.jpeg')] bg-cover bg-center" />
-      <main className="w-full h-screen flex max-md:flex-col py-2 px-6 overflow-hidden justify-center md:items-center z-10 relative">
+      <main className="w-full md:h-screen flex max-md:flex-col py-2 px-6 overflow-hidden justify-center md:items-center z-10 relative">
         <div className="bg-black/70 projectView h-3/4">
           <div className="h-full delay-500 projectView grid grid-cols-2 max-md:grid-cols-1 gap-4 p-7 overflow-hidden text-left text-cyan-200 shadow-2xl rounded inset-shadow-sm inset-shadow-white/20 drop-shadow-2xl">
             {/* <h1
@@ -58,7 +58,7 @@ function Home() {
               <hr />
               Catalfamo
             </h1> */}
-            <div className="aspect-square profile-image w-1/2 min-w-64 m-auto">
+            <div className="aspect-square profile-image w-1/2 min-w-56 m-auto">
               <img className="rounded-lg" src="/images/ME.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">
