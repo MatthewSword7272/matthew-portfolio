@@ -4,9 +4,12 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
 import SplitText from "gsap/SplitText";
+import { useRef } from "react";
 
 function Home() {
   gsap.registerPlugin(ScrambleTextPlugin, SplitText);
+
+  const imageGlow = useRef();
 
   const description =
     "I'm a passionate Web Developer based in Melbourne, dedicated to crafting seamless web applications with meticulous attention to detail.";
@@ -14,6 +17,18 @@ function Home() {
     "I recently graduated from Swinburne University with a Bachelor of Computer Science (Professional) and am currently honing my skills as a Web Developer. My technical expertise spans front-end technologies like React, TypeScript, Vue.js, and Tailwind, back-end frameworks including Node.js, PHP, and Laravel, plus DevOps tools like AWS and Docker.";
 
   useGSAP(() => {
+    const imageGlowTL = gsap.timeline({ yoyo: true, repeat: -1 });
+    imageGlowTL
+      .to(imageGlow.current, {
+        boxShadow: "0 10px 15px -3px #bfdbfe",
+        duration: 2,
+        delay: 2,
+      })
+      .to(imageGlow.current, {
+        boxShadow: "0 10px 15px -3px #fb923c",
+        duration: 2,
+      });
+
     let split = SplitText.create("#name", {
       type: "words, chars",
       position: "relative",
@@ -59,23 +74,18 @@ function Home() {
               Catalfamo
             </h1> */}
             <div className="aspect-square profile-image w-1/2 min-w-56 m-auto">
-              <img className="rounded-lg" src="/images/ME.jpg" alt="" />
+              <img ref={imageGlow} className="rounded-lg" src="/images/ME.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">
               {/* <p className="text-5xl revealUp">Welcome</p> */}
               <div className="">
-                <p className="font-bold">
-                  <span className="text-3xl min-h-[3rem]" id="hello"></span>{" "}
-                  <br />
+                <div className="font-bold">
+                  <span className="text-3xl min-h-[3rem]" id="hello"></span> <br />
                   <p className="text-3xl min-h-[3rem] my-0.5">
-                    I'm{" "}
-                    <span className="italic font-thin">Matthew Catalfamo</span>
+                    I'm <span className="italic font-thin">Matthew Catalfamo</span>
                   </p>
-                  <span
-                    className="min-h-[5rem] font-normal"
-                    id="description"
-                  ></span>
-                </p>
+                  <span className="min-h-[5rem] font-normal" id="description"></span>
+                </div>
                 <br />
                 {/* <p className="min-h-[8rem]" id="description2"></p> */}
               </div>
