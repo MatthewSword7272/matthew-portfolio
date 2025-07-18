@@ -8,38 +8,77 @@ const Header = () => {
   gsap.registerPlugin(useGSAP);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const mobileNavRef = useRef();
   const titleRef = useRef();
   const navRef = useRef();
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    if (isMenuOpen && !isAnimating) {
+      setIsAnimating(true);
+
+      gsap.to("li", {
+        opacity: 0,
+        y: -10,
+        stagger: 0.15,
+        ease: "power2.out",
+        duration: 0.03,
+      });
+
+      gsap.to(mobileNavRef.current, {
+        scale: 0,
+        transformOrigin: "top right",
+        duration: 0.3,
+        delay: 0.7,
+        ease: "power2.out",
+        onComplete: () => {
+          setIsMenuOpen(false);
+          setIsAnimating(false);
+        },
+      });
+    } else if (!isMenuOpen && !isAnimating) {
+      setIsMenuOpen(true);
+    }
   };
 
   useGSAP(() => {
     if (isMenuOpen) {
-      gsap.fromTo(mobileNavRef.current, { scale: 0, transformOrigin: "top right" }, { scale: 1, ease: "power2.out" });
-      gsap.fromTo("li", { opacity: 0 }, { opacity: 1, stagger: 0.15, ease: "power2.out", delay: 0.4 });
-    } else {
       gsap.fromTo(
         mobileNavRef.current,
-        { opacity: 1, y: 0 },
-        { opacity: 0, y: -20, duration: 0.5, ease: "power2.out" }
+        { scale: 0, transformOrigin: "top right" },
+        { scale: 1, ease: "power2.out" }
+      );
+      gsap.fromTo(
+        "li",
+        { opacity: 0 },
+        { opacity: 1, stagger: 0.15, ease: "power2.out", delay: 0.4 }
       );
     }
   }, [isMenuOpen]);
 
   useGSAP(() => {
-    gsap.fromTo(titleRef.current, { x: -1000 }, { duration: 1, x: 0, ease: "power2.out" });
-    gsap.fromTo(navRef.current, { x: 1000 }, { duration: 1, x: 0, ease: "power2.out" });
+    gsap.fromTo(
+      titleRef.current,
+      { x: -1000 },
+      { duration: 1, x: 0, ease: "power2.out" }
+    );
+    gsap.fromTo(
+      navRef.current,
+      { x: 1000 },
+      { duration: 1, x: 0, ease: "power2.out" }
+    );
   }, []);
 
   return (
     <header className="p-6 flex items-center justify-between fixed top-0 w-full z-20">
       <Link to="/" className="flex items-center gap-10" ref={titleRef}>
         <div className="p-2 rounded-xl bg-gray-500">
-          <img src="images/mc_logo.png" className="size-10 hover:scale-110 duration-300" alt="" />
+          <img
+            src="images/mc_logo.png"
+            className="size-10 hover:scale-110 duration-300"
+            alt=""
+          />
         </div>
       </Link>
 
@@ -62,7 +101,10 @@ const Header = () => {
       </button>
 
       {isMenuOpen && (
-        <nav ref={mobileNavRef} className="absolute w-1/2 top-[5rem] right-2 rounded-xl bg-gray-100 p-6">
+        <nav
+          ref={mobileNavRef}
+          className="absolute w-1/2 top-[5rem] right-2 rounded-xl bg-gray-100 p-6"
+        >
           <ul className="flex flex-col gap-4">
             <li>
               <Link to="/" onClick={toggleMenu}>
@@ -80,7 +122,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/Matthew_Catalfamo_CV.pdf" target="_blank" onClick={toggleMenu}>
+              <Link
+                to="/Matthew_Catalfamo_CV.pdf"
+                target="_blank"
+                onClick={toggleMenu}
+              >
                 Resume
               </Link>
             </li>

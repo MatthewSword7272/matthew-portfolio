@@ -15,11 +15,12 @@ const ProjectPreview = ({ project, delay, last }) => {
   };
 
   const ref = useRef(null);
+  console.log(link);
   // const inView = useInView(ref, { amount: 0.4, once: true });
 
   return (
     <>
-      <Link
+      <a
         ref={ref}
         className={`border border-white bg-white p-5 rounded-lg projectView group box-shadow`}
         href={link}
@@ -43,7 +44,7 @@ const ProjectPreview = ({ project, delay, last }) => {
           <h2 className="text-xl font-medium mb-2">{title}</h2>
           <p className="text-center text-black">{description}</p>
         </div>
-      </Link>
+      </a>
       {/* <p className="text-center md:hidden">{description}</p> */}
       {!last && <div className="w-full h-px bg-slate-500 md:hidden"></div>}
     </>

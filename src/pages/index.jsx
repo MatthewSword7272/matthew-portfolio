@@ -47,7 +47,7 @@ function Home() {
     <MainLayout>
       <div className="fixed inset-0 size-full bg-[url('/images/stars.jpeg')] bg-cover bg-center" />
       <main className="w-full h-screen flex max-md:flex-col py-2 px-6 overflow-hidden justify-center md:items-center z-10 relative">
-        <div className="bg-black/70 projectView">
+        <div className="bg-black/70 projectView h-3/4">
           <div className="h-full delay-500 projectView grid grid-cols-2 max-md:grid-cols-1 gap-4 p-7 overflow-hidden text-left text-cyan-200 shadow-2xl rounded inset-shadow-sm inset-shadow-white/20 drop-shadow-2xl">
             {/* <h1
               style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}
@@ -58,18 +58,23 @@ function Home() {
               <hr />
               Catalfamo
             </h1> */}
-            <div className="aspect-square profile-image w-[20rem] m-auto">
+            <div className="aspect-square profile-image w-1/2 min-w-64 m-auto">
               <img className="rounded-lg" src="/images/ME.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">
               {/* <p className="text-5xl revealUp">Welcome</p> */}
               <div className="">
                 <p className="font-bold">
-                  <span className="text-3xl min-h-[3rem]" id="hello"></span> <br></br>
+                  <span className="text-3xl min-h-[3rem]" id="hello"></span>{" "}
+                  <br />
                   <p className="text-3xl min-h-[3rem] my-0.5">
-                    I'm <span className="italic font-thin">Matthew Catalfamo</span>
+                    I'm{" "}
+                    <span className="italic font-thin">Matthew Catalfamo</span>
                   </p>
-                  <span className="min-h-[5rem] font-normal" id="description"></span>
+                  <span
+                    className="min-h-[5rem] font-normal"
+                    id="description"
+                  ></span>
                 </p>
                 <br />
                 {/* <p className="min-h-[8rem]" id="description2"></p> */}
