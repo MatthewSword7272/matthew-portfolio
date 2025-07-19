@@ -64,6 +64,23 @@ h1 {
   }
 }
 
+.dramaFadeIn {
+  animation: dramaFadeIn linear 2s;
+  animation-delay: 100ms;
+  -webkit-animation: dramaFadeIn linear 2s;
+};
+
+@keyframes dramaFadeIn {
+  0% {
+    opacity: 0;
+    scale: 50%;
+  }
+  100% {
+    opacity: 1;
+    scale: 100%;
+  }
+}
+
 .revealUp {
   animation: revealUp 2s backwards;
   animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);

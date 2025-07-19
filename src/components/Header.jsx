@@ -87,8 +87,17 @@ const Header = () => {
   }, [isMenuOpen]);
 
   useGSAP(() => {
-    gsap.fromTo(titleRef.current, { x: -1000 }, { duration: 1, x: 0, ease: "power2.out" });
-    gsap.fromTo(navRef.current, { x: 1000 }, { duration: 1, x: 0, ease: "power2.out" });
+    // Listen for intro screen event
+    const handleIntroScreenUp = () => {
+      gsap.fromTo(titleRef.current, { x: -1000 }, { duration: 1, x: 0, ease: "power2.out" });
+      gsap.fromTo(navRef.current, { x: 1000 }, { duration: 1, x: 0, ease: "power2.out" });
+    };
+
+    window.addEventListener('introScreenUp', handleIntroScreenUp);
+
+    return () => {
+      window.removeEventListener('introScreenUp', handleIntroScreenUp);
+    };
   }, []);
 
   return (

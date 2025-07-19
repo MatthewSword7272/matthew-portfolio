@@ -17,46 +17,65 @@ function Home() {
     "I recently graduated from Swinburne University with a Bachelor of Computer Science (Professional) and am currently honing my skills as a Web Developer. My technical expertise spans front-end technologies like React, TypeScript, Vue.js, and Tailwind, back-end frameworks including Node.js, PHP, and Laravel, plus DevOps tools like AWS and Docker.";
 
   useGSAP(() => {
-    const imageGlowTL = gsap.timeline({ yoyo: true, repeat: -1 });
-    imageGlowTL
-      .to(imageGlow.current, {
-        boxShadow: "0 10px 15px -3px #bfdbfe",
-        duration: 2,
-        delay: 2,
-      })
-      .to(imageGlow.current, {
-        boxShadow: "0 10px 15px -3px #fb923c",
-        duration: 2,
-      });
+    const handleIntroScreenUp = () => {
+      const imageGlowTL = gsap.timeline({ yoyo: true, repeat: -1 });
+      imageGlowTL
+        .to(imageGlow.current, {
+          boxShadow: "0 10px 15px -3px #bfdbfe",
+          duration: 2,
+          delay: 2,
+        })
+        .to(imageGlow.current, {
+          boxShadow: "0 10px 15px -3px #fb923c",
+          duration: 2,
+        });
 
-    let split = SplitText.create("#name", {
-      type: "words, chars",
-      position: "relative",
-    });
-    gsap.from(split.chars, {
-      y: 200,
-      duration: 1,
-      stagger: 0.05,
-      delay: 1,
-    });
-    gsap.to("#hello", {
-      duration: 2,
-      scrambleText: "Welcome!",
-      delay: 1.5,
-      ease: "none",
-    });
-    gsap.to("#description", {
-      duration: 2,
-      scrambleText: description,
-      delay: 1.5,
-      ease: "none",
-    });
-    // gsap.to("#description2", {
-    //   duration: 2,
-    //   scrambleText: description2,
-    //   ease: "none",
-    //   delay: 1.5,
-    // });
+      let split = SplitText.create("#name", {
+        type: "words, chars",
+        position: "relative",
+      });
+      gsap.from(split.chars, {
+        y: 200,
+        duration: 1,
+        stagger: 0.05,
+        delay: 1,
+      });
+      gsap.to("#hello", {
+        duration: 2,
+        scrambleText: "Welcome!",
+        delay: 1.5,
+        ease: "none",
+      });
+      gsap.fromTo(
+        "#name",
+        {
+          x: "150%",
+        },
+        {
+          x: 0,
+          duration: 2,
+          delay: 1,
+        }
+      );
+      gsap.to("#description", {
+        duration: 2,
+        scrambleText: description,
+        delay: 1.5,
+        ease: "none",
+      });
+      // gsap.to("#description2", {
+      //   duration: 2,
+      //   scrambleText: description2,
+      //   ease: "none",
+      //   delay: 1.5,
+      // });
+    };
+
+    window.addEventListener("introScreenUp", handleIntroScreenUp);
+
+    return () => {
+      window.removeEventListener("introScreenUp", handleIntroScreenUp);
+    };
   });
   return (
     <MainLayout>
@@ -73,7 +92,7 @@ function Home() {
               <hr />
               Catalfamo
             </h1> */}
-            <div className="aspect-square profile-image w-1/2 min-w-56 m-auto">
+            <div style={{ animationDelay: "3s" }} className="aspect-square profile-image w-1/2 min-w-56 m-auto">
               <img ref={imageGlow} className="rounded-lg" src="/images/ME.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">
@@ -81,7 +100,7 @@ function Home() {
               <div className="">
                 <div className="font-bold">
                   <span className="text-3xl min-h-[3rem]" id="hello"></span> <br />
-                  <p className="text-3xl min-h-[3rem] my-0.5">
+                  <p id={"name"} className="text-3xl min-h-[3rem] my-0.5">
                     I'm <span className="italic font-thin">Matthew Catalfamo</span>
                   </p>
                   <span className="min-h-[5rem] font-normal" id="description"></span>
