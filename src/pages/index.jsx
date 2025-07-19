@@ -17,16 +17,15 @@ function Home() {
     "I recently graduated from Swinburne University with a Bachelor of Computer Science (Professional) and am currently honing my skills as a Web Developer. My technical expertise spans front-end technologies like React, TypeScript, Vue.js, and Tailwind, back-end frameworks including Node.js, PHP, and Laravel, plus DevOps tools like AWS and Docker.";
 
   useGSAP(() => {
-    const handleIntroScreenUp = () => {
-      const imageGlowTL = gsap.timeline({ yoyo: true, repeat: -1 });
+    const runAnimations = () => {
+      const imageGlowTL = gsap.timeline({ delay: 3, yoyo: true, repeat: -1 });
       imageGlowTL
         .to(imageGlow.current, {
-          boxShadow: "0 10px 15px -3px #bfdbfe",
+          boxShadow: "10px 15px 10px #bfdbfe",
           duration: 2,
-          delay: 2,
         })
         .to(imageGlow.current, {
-          boxShadow: "0 10px 15px -3px #fb923c",
+          boxShadow: "-10px 15px 10px #fb923c",
           duration: 2,
         });
 
@@ -63,18 +62,12 @@ function Home() {
         delay: 1.5,
         ease: "none",
       });
-      // gsap.to("#description2", {
-      //   duration: 2,
-      //   scrambleText: description2,
-      //   ease: "none",
-      //   delay: 1.5,
-      // });
     };
 
-    window.addEventListener("introScreenUp", handleIntroScreenUp);
+    window.addEventListener("introScreenUp", runAnimations);
 
     return () => {
-      window.removeEventListener("introScreenUp", handleIntroScreenUp);
+      window.removeEventListener("introScreenUp", runAnimations);
     };
   });
   return (
@@ -92,7 +85,7 @@ function Home() {
               <hr />
               Catalfamo
             </h1> */}
-            <div style={{ animationDelay: "3s" }} className="aspect-square profile-image w-1/2 min-w-56 m-auto">
+            <div className="aspect-square profile-image w-1/2 min-w-56 m-auto">
               <img ref={imageGlow} className="rounded-lg" src="/images/ME.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">

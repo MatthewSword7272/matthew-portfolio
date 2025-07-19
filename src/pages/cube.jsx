@@ -154,16 +154,6 @@ const Cube = () => {
   return (
     <MainLayout>
       <div className="flex flex-col items-center space-y-5">
-        <div>
-          From:{" "}
-          <a
-            href={"https://www.youtube.com/watch?v=uXISY-cMmuQ&t=1362s"}
-            target={"_blank"}
-            className={"underline hover:text-blue-500"}
-          >
-            this tutorial
-          </a>
-        </div>
         <h1>Cube Gallery</h1>
         {imageData.length > 0 && imageData.length < 54 && (
           <h4 className="text-red-600">Not enough results found. Try Again</h4>

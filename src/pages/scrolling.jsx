@@ -127,20 +127,11 @@ const Scrolling = () => {
     <MainLayout>
       <div className="" ref={container}>
         <section className="h-screen bg-blue-400 flex flex-col items-center justify-center space-y-2">
-          <h1>Navigation links with smooth scrolling</h1>
-          <caption>
-            This example is from{" "}
-            <a
-              className="underline hover:text-blue-100"
-              href="https://codepen.io/GreenSock/pen/xxjErmp"
-              target="_blank"
-            >
-              https://codepen.io/GreenSock/pen/xxjErmp
-            </a>
-          </caption>
+          <h1>GSAP Smooth scrolling</h1>
           <p>
-            ScrollTrigger works great with navigation links within the page! Try clicking one of the links above and see
-            how ScrollTrigger stays perfectly synced.
+            A scroll-driven animation showcase using React and GSAP. This is a demonstration page that shows off
+            advanced scroll-triggered animations where different visual elements animate in sync with the user's scroll
+            position.
           </p>
           <div className="scroll-down flex flex-col items-center justify-center">
             Scroll down
@@ -175,9 +166,6 @@ const Scrolling = () => {
             fading the background color and animating the transforms of the paragraph in addition to the line, all
             synced with the scroll position perfectly.
           </p>
-        </section>
-        <section className="h-screen bg-green-400 flex flex-col items-center justify-center">
-          <p>DONE</p>
         </section>
       </div>
     </MainLayout>
