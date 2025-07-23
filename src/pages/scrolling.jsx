@@ -2,8 +2,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import MainLayout from "../layouts/MainLayout";
 import "../assets/scolling.scss";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
+import { ScrollTrigger, ScrollToPlugin } from "gsap/all";
 import { FaChevronDown } from "react-icons/fa6";
 
 const Scrolling = () => {

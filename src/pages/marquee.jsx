@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import MainLayout from "../layouts/MainLayout";
 import "../assets/marquee.scss";
 import Marquee from "react-fast-marquee";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView } from "motion/react";
 
 const items = ["This", "Is", "Who", "You", "Are", "A", "Marquee", "Component"];
 

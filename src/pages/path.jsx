@@ -1,5 +1,4 @@
-import ScrollTrigger from "gsap/ScrollTrigger";
-import DrawSVGPlugin from "gsap/DrawSVGPlugin";
+import { ScrollTrigger, DrawSVGPlugin } from "gsap/all";
 
 import gsap from "gsap";
 import MainLayout from "../layouts/MainLayout";

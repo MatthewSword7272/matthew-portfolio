@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import ScrambleTextPlugin from "gsap/ScrambleTextPlugin";
-import SplitText from "gsap/SplitText";
+import { ScrambleTextPlugin } from "gsap/all";
+import { SplitText } from "gsap/all";
 import { useRef } from "react";
 
 function Home() {

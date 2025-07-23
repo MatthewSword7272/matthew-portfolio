@@ -3,7 +3,7 @@ import Card from "../components/Card";
 import MainLayout from "../layouts/MainLayout";
 import shuffleCards from "../utils/shuffledCards";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const MemoryGame = () => {
   const [cards, setCards] = useState(() => shuffleCards());
