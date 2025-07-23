@@ -38,7 +38,7 @@ const MainLayout = ({ children, className = "" }) => {
   return (
     <>
       {showIntro && (
-        <div ref={introScreen} className=" size-full absolute top-0 left-0 bg-black z-50">
+        <div ref={introScreen} className="size-full fixed top-0 left-0 bg-black z-50">
           <div className=" h-full flex items-center justify-center">
             <img className="w-1/3 dramaFadeIn" src="\images\mc_logo.png"></img>
           </div>
@@ -46,8 +46,7 @@ const MainLayout = ({ children, className = "" }) => {
       )}
       <div className="min-h-screen flex flex-col">
         <Header />
-        <div className="flex bg-blue-950 w-full">
-          <div className="mt-32" />
+        <div className="flex bg-blue-950 w-full min-h-screen">
           <div className={`flex-grow overflow-hidden ${className}`}>{children}</div>
         </div>
         <Footer />
