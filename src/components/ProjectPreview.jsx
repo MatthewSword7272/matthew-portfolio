@@ -15,7 +15,6 @@ const ProjectPreview = ({ project, delay, last }) => {
   };
 
   const ref = useRef(null);
-  console.log(link);
   // const inView = useInView(ref, { amount: 0.4, once: true });
 
   return (

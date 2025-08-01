@@ -16,6 +16,7 @@ import Path from "./pages/path.jsx";
 import SvgAnimate from "./pages/svg_animate.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import ProjectView from "./pages/projects/[slug].jsx";
+import LaravelEcommerce from "./pages/laravel-ecommerce.jsx";
 const MemoryGame = lazy(() => import("./pages/memory_game.jsx"));
 const DotGrid = lazy(() => import("./pages/dot_grid.jsx"));
 
@@ -23,17 +24,31 @@ const projects = [
   {
     id: 1,
     title: "One Two Boxing",
-    description:
-      "Revamped the One Two Boxing website using React and Tailwind CSS",
+    description: "Revamped the One Two Boxing website using React and Tailwind CSS",
     imageUrl: "/images/one_two_boxing.png",
     link: "https://onetwoboxing.com.au/",
     projectUrl: "https://onetwoboxing.com.au/",
   },
   {
-    id: 1,
+    id: 10,
+    title: "Laravel Ecommerce Demo Project",
+    slug : 'laravel-ecommerce',
+    description: "Created a ecomerce shopping site using React, Laravel and Filament",
+    imageUrl: "/images/10/product.png",
+    link: "/laravel-ecommerce",
+    images: [
+      "/images/10/product.png",
+      "/images/10/checkout.png",
+      "/images/10/payment.png",
+      "/images/10/admin.png",
+      "/images/10/admin_product.png",
+    ],
+    // projectUrl: "https://nostrahomes.com.au/",
+  },
+  {
+    id: 11,
     title: "Nostra Homes",
-    description:
-      "Revamped the Nostra Homes website using React and Tailwind CSS",
+    description: "Revamped the Nostra Homes website using React and Tailwind CSS",
     imageUrl: "/images/nostra.png",
     link: "https://nostrahomes.com.au/",
     projectUrl: "https://nostrahomes.com.au/",
@@ -48,8 +63,7 @@ const projects = [
   {
     id: 3,
     title: "An Interactive Marquee",
-    description:
-      "A fun marquee component built with Fast Marquee and Framer Motion",
+    description: "A fun marquee component built with Fast Marquee and Framer Motion",
     imageUrl: "/images/marquee.png",
     link: "/marquee",
   },
@@ -77,8 +91,7 @@ const projects = [
   {
     id: 7,
     title: "GSAP Draw Svg",
-    description:
-      "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
+    description: "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
     imageUrl: "/images/path.png",
     link: "/path",
   },
@@ -109,7 +122,10 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects projects={projects} />} />
-        <Route path="/projects/:projectId" element={<ProjectView />} />
+        {/* <Route
+          path="/projects/:projectName"
+          element={<ProjectView projects={projects} />}
+        /> */}
         <Route path="/about-me" element={<AboutMe />} />
         {/* <Route path="/:projectId" element={<Project />} /> */}
         <Route path="/amazing-button" element={<AmazingButton />} />
@@ -121,6 +137,7 @@ createRoot(document.getElementById("root")).render(
         <Route path="/cube" element={<Cube />} />
         <Route path="/memory-game" element={<MemoryGame />} />
         <Route path="/dot-grid" element={<DotGrid />} />
+        <Route path="/laravel-ecommerce" element={<LaravelEcommerce />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>
