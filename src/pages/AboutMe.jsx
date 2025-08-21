@@ -28,7 +28,7 @@ const AboutMe = () => {
             alt="Portait"
           />
         </div>
-        <div className="text-gray-900 flex flex-col gap-4 md:pr-32 max-md:items-center">
+        <div className="text-white flex flex-col gap-4 md:pr-32 max-md:items-center">
           <h2 className="text-3xl" ref={titleRef}>Hi, my name is Matthew!</h2>
           <div className="space-y-3" ref={descriptionRef}>
             <p>
