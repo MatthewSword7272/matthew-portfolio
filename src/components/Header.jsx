@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
 import gsap from "gsap";
@@ -81,22 +81,38 @@ const Header = () => {
 
   useGSAP(() => {
     if (isMenuOpen) {
-      gsap.fromTo(mobileNavRef.current, { scale: 0, transformOrigin: "top right" }, { scale: 1, ease: "power2.out" });
-      gsap.fromTo("li", { opacity: 0 }, { opacity: 1, stagger: 0.15, ease: "power2.out", delay: 0.4 });
+      gsap.fromTo(
+        mobileNavRef.current,
+        { scale: 0, transformOrigin: "top right" },
+        { scale: 1, ease: "power2.out" }
+      );
+      gsap.fromTo(
+        "li",
+        { opacity: 0 },
+        { opacity: 1, stagger: 0.15, ease: "power2.out", delay: 0.4 }
+      );
     }
   }, [isMenuOpen]);
 
   useGSAP(() => {
     // Listen for intro screen event
     const handleIntroScreenUp = () => {
-      gsap.fromTo(titleRef.current, { x: -1000 }, { duration: 1, x: 0, ease: "power2.out" });
-      gsap.fromTo(navRef.current, { x: 1000 }, { duration: 1, x: 0, ease: "power2.out" });
+      gsap.fromTo(
+        titleRef.current,
+        { x: -1000 },
+        { duration: 1, x: 0, ease: "power2.out" }
+      );
+      gsap.fromTo(
+        navRef.current,
+        { x: 1000 },
+        { duration: 1, x: 0, ease: "power2.out" }
+      );
     };
 
-    window.addEventListener('introScreenUp', handleIntroScreenUp);
+    window.addEventListener("introScreenUp", handleIntroScreenUp);
 
     return () => {
-      window.removeEventListener('introScreenUp', handleIntroScreenUp);
+      window.removeEventListener("introScreenUp", handleIntroScreenUp);
     };
   }, []);
 
@@ -104,7 +120,11 @@ const Header = () => {
     <header className="p-6 flex items-center justify-between fixed top-0 w-full z-20">
       <Link to="/" className="" ref={titleRef}>
         <div className="p-2 rounded-xl bg-gray-300 hover:scale-110 duration-200 group hover:bg-gray-400">
-          <img src="images/mc_logo.png" className="size-10 group-hover:scale-95 duration-200" alt="" />
+          <img
+            src="images/mc_logo.png"
+            className="size-10 group-hover:scale-95 duration-200"
+            alt=""
+          />
         </div>
       </Link>
 
@@ -124,15 +144,24 @@ const Header = () => {
       >
         <div ref={iconRef}>
           {isMenuOpen ? (
-            <IoClose className="text-2xl text-blue-900 group-hover:!scale-95 duration-200" onClick={toggleMenu} />
+            <IoClose
+              className="text-2xl text-blue-900 group-hover:!scale-95 duration-200"
+              onClick={toggleMenu}
+            />
           ) : (
-            <IoMenu className="text-2xl text-blue-900 group-hover:!scale-95 duration-200" onClick={toggleMenu} />
+            <IoMenu
+              className="text-2xl text-blue-900 group-hover:!scale-95 duration-200"
+              onClick={toggleMenu}
+            />
           )}
         </div>
       </button>
 
       {isMenuOpen && (
-        <nav ref={mobileNavRef} className="absolute w-1/2 top-[5rem] right-2 rounded-xl bg-gray-100 p-6">
+        <nav
+          ref={mobileNavRef}
+          className="absolute w-1/2 top-[5rem] right-2 rounded-xl bg-gray-100 p-6"
+        >
           <ul className="flex flex-col gap-4">
             <li>
               <Link to="/" onClick={toggleMenu}>
@@ -150,7 +179,11 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <Link to="/Matthew_Catalfamo_CV.pdf" target="_blank" onClick={toggleMenu}>
+              <Link
+                to="/Matthew_Catalfamo_CV.pdf"
+                target="_blank"
+                onClick={toggleMenu}
+              >
                 Resume
               </Link>
             </li>
