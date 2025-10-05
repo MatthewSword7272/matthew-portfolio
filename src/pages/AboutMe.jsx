@@ -23,8 +23,8 @@ const AboutMe = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 pt-20 px-4 pb-10 gap-2 overflow-hidden">
         <div className="flex justify-center profile-image">
           <img
-            className="rounded-full object-cover size-[400px] object-top"
-            src="/images/ME.jpg"
+            className="rounded-full object-cover size-[400px]"
+            src="/images/ME2.png"
             alt="Portait"
           />
         </div>
