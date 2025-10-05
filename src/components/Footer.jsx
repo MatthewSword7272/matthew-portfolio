@@ -1,32 +1,10 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { useRef } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 
 const Footer = () => {
-  const linkRef = useRef(null);
-
-  useGSAP(() => {
-    const link = linkRef.current;
-    const tl = gsap.timeline({ paused: true });
-
-    const enterAnimation = () => tl.tweenFromTo(0, "midway");
-    const leaveAnimation = () => tl.play();
-
-    link.addEventListener("mouseenter", () => enterAnimation(tl));
-
-    link.addEventListener("mouseleave", () => leaveAnimation(tl));
-
-    return () => {
-      link.removeEventListener("mouseenter", () => enterAnimation);
-      link.removeEventListener("mouseleave", () => leaveAnimation);
-    };
-  }, []);
-
   return (
     <footer className="bg-white p-4 flex flex-col items-center justify-center gap-5 text-xl z-20">
       <h2 className="">Contact Me</h2>
-      <a ref={linkRef} className={"relative group"} href="mailto:mcatalfamo5@gmail.com">
+      <a className={"relative group"} href="mailto:mcatalfamo5@gmail.com">
         <span>mcatalfamo5@gmail.com</span>
         <span className={"underline"} />
       </a>
