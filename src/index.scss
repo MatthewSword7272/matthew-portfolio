@@ -17,6 +17,10 @@ h1 {
   @apply text-2xl font-medium text-gray-800;
 }
 
+.underline {
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full;
+}
+
 .profile-image {
   animation: zoom-in 1s ease-in-out;
   animation-delay: 0.5s;
@@ -68,7 +72,7 @@ h1 {
   animation: dramaFadeIn linear 2s;
   animation-delay: 100ms;
   -webkit-animation: dramaFadeIn linear 2s;
-};
+}
 
 @keyframes dramaFadeIn {
   0% {
