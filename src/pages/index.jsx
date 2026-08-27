@@ -14,8 +14,6 @@ function Home() {
 
   const description =
     "I'm a passionate Web Developer based in Melbourne, dedicated to crafting seamless web applications with meticulous attention to detail.";
-  const description2 =
-    "I recently graduated from Swinburne University with a Bachelor of Computer Science (Professional) and am currently honing my skills as a Web Developer. My technical expertise spans front-end technologies like React, TypeScript, Vue.js, and Tailwind, back-end frameworks including Node.js, PHP, and Laravel, plus DevOps tools like AWS and Docker.";
 
   useGSAP(() => {
     const runAnimations = () => {
@@ -87,14 +85,14 @@ function Home() {
               Catalfamo
             </h1> */}
             <div className="aspect-square profile-image w-1/2 min-w-56 m-auto">
-              <img ref={imageGlow} className="rounded-lg" src="/images/ME.jpg" alt="" />
+              <img ref={imageGlow} className="rounded-lg" src="/images/Matthew.jpg" alt="" />
             </div>
             <div className="flex flex-col sm:justify-center space-y-5">
               {/* <p className="text-5xl revealUp">Welcome</p> */}
               <div className="">
+                  {/* <HeroText /> */}
                 <div className="font-bold">
                   {/* <span className="text-3xl min-h-[3rem]" id="hello"></span> <br /> */}
-                  {/* <HeroText /> */}
                   <p id={"name"} className="text-3xl min-h-[3rem] my-0.5">
                     I'm <span className="italic font-thin">Matthew Catalfamo</span>
                   </p>

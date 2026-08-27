@@ -104,7 +104,7 @@ const Header = () => {
     <header className="p-6 flex items-center justify-between fixed top-0 w-full z-20">
       <Link to="/" className="" ref={titleRef}>
         <div className="p-2 rounded-xl bg-gray-300 hover:scale-110 duration-200 group hover:bg-gray-400">
-          <img src="images/mc_logo.png" className="size-10 group-hover:scale-95 duration-200" alt="" />
+          <img src="/images/mc_logo.png" className="size-10 group-hover:scale-95 duration-200" alt="" />
         </div>
       </Link>
 

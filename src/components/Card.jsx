@@ -52,7 +52,7 @@ const Card = ({ card, addFlippedCard }) => {
       <div className="card-face bg-blue-950">
         <div className="bg-white rounded-3xl w-fit p-2">
           <img
-            src="./images/mc_logo.png"
+            src="/images/mc_logo.png"
             className="md:size-14 size-7"
             alt=""
           />
