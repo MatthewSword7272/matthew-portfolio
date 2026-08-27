@@ -96,7 +96,7 @@ function Projects({ projects }) {
         nextClassName="text-lg"
         previousClassName="text-lg"
         pageLinkClassName="rounded-full size-9 flex items-center justify-center hover:bg-blue-800/50 duration-300"
-        activeLinkClassName="bg-blue-800/80"
+        activeLinkClassName="bg-blue-600/90"
       />
     </MainLayout>
   );
