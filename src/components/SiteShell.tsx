@@ -7,6 +7,19 @@ import gsap from "gsap";
 import { checkReturningVisitor, setVisitTimestamp } from "@/utils/visitTracker";
 import Image from "next/image";
 
+declare global {
+  interface Window {
+    /** Set once the intro overlay has lifted; the root layout persists across
+     *  client navigation so the `introScreenUp` event only ever fires once. */
+    __introScreenUp?: boolean;
+  }
+}
+
+function fireIntroScreenUp() {
+  window.__introScreenUp = true;
+  window.dispatchEvent(new CustomEvent("introScreenUp"));
+}
+
 const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const introScreen = useRef<HTMLDivElement>(null);
   const [showIntro, setShowIntro] = useState(true);
@@ -24,13 +37,11 @@ const SiteShell = ({ children }: { children: React.ReactNode }) => {
         duration: 1,
         delay: 3,
         ease: "bounce",
-        onStart: () => {
-          window.dispatchEvent(new CustomEvent("introScreenUp"));
-        },
+        onStart: fireIntroScreenUp,
       });
     } else {
       // For returning visitors, trigger animations immediately
-      window.dispatchEvent(new CustomEvent("introScreenUp"));
+      fireIntroScreenUp();
     }
   }, []);
 

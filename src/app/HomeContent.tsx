@@ -49,6 +49,12 @@ export default function HomeContent() {
     };
 
     window.addEventListener("introScreenUp", runAnimations);
+
+    // The intro overlay (and its `introScreenUp` event) only plays once per
+    // session. On a client-side navigation back to Home it never replays, so
+    // run the hero animations directly if the intro has already lifted.
+    if (window.__introScreenUp) runAnimations();
+
     return () => window.removeEventListener("introScreenUp", runAnimations);
   });
 

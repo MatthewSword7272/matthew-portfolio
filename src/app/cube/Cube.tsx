@@ -138,9 +138,9 @@ const Cube = () => {
   });
 
   return (
-    <>
+    <div className="py-25">
       <div className="flex flex-col items-center space-y-5">
-        <h1>Cube Gallery</h1>
+        <h1 className="text-white!">Cube Gallery</h1>
         {imageData.length > 0 && imageData.length < 54 && (
           <h4 className="text-red-600">Not enough results found. Try Again</h4>
         )}
@@ -159,7 +159,7 @@ const Cube = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

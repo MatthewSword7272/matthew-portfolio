@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Red_Hat_Text } from "next/font/google";
+import { Red_Hat_Text, Geist } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/SiteShell";
 

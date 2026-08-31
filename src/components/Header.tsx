@@ -158,7 +158,7 @@ const Header = () => {
           <button
             key={item.label}
             onClick={() => handleNav(item)}
-            className="text-cyan-200 hover:text-white uppercase text-sm tracking-wide duration-200"
+            className="text-cyan-200 hover:text-white uppercase text-sm tracking-wide duration-200 cursor-pointer"
           >
             {item.label}
           </button>
