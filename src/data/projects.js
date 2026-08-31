@@ -9,15 +9,25 @@
 // ~16:9 (e.g. 1200x675) since the card and detail image use `aspect-video`.
 // TODO: review/replace the draft `summary` copy on the website projects.
 
+// Display order + labels for the grouped sections on /projects and the
+// homepage "Selected Work" section. `client: true` groups are the ones shown
+// on the homepage.
+export const groups = [
+  { key: "metronome", label: "Metronome", client: true },
+  { key: "visual-moda", label: "Visual Moda", client: true },
+  { key: "fun", label: "Fun Projects", client: false },
+];
+
 export const projects = [
   {
     id: 1,
     slug: "metronome",
     title: "Metronome",
+    group: "metronome",
     description:
-      "The website for Metronome, the growth agency I run — design, web development, performance marketing and managed services.",
+      "The agency website for Metronome, built during my time there as a front-end developer — design, web development, performance marketing and managed services.",
     summary:
-      "Metronome is the growth agency I run, helping mid-market businesses achieve long-term, measurable growth through design and UX, web development, performance marketing and managed services. I designed and built the agency's own website with React and Tailwind CSS: a fast, fully responsive marketing site with service pages, a continuous-improvement narrative and client case studies (Wilson Storage, JG King Homes, Sundays Beach Club, Smarter Bathrooms). It's treated as an evolving product rather than a one-off launch, and I keep iterating on the content, structure and performance over time.",
+      "Metronome is a growth agency helping mid-market businesses achieve long-term, measurable growth through design and UX, web development, performance marketing and managed services. As a front-end developer there, I built the agency's own website with React and Tailwind CSS: a fast, fully responsive marketing site with service pages, a continuous-improvement narrative and client case studies (Wilson Storage, JG King Homes, Sundays Beach Club, Smarter Bathrooms). It was treated as an evolving product rather than a one-off launch, with ongoing iteration on content, structure and performance.",
     tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", 'WPEngine Atlas'],
     imageUrl: "/images/metronome.png",
     link: "https://metronome.com.au/",
@@ -27,6 +37,7 @@ export const projects = [
     id: 2,
     slug: "the-ungasan",
     title: "The Ungasan",
+    group: "metronome",
     description:
       "A headless website for The Ungasan Clifftop Resort in Bali, built at Metronome.",
     summary:
@@ -40,6 +51,7 @@ export const projects = [
     id: 3,
     slug: "waatu",
     title: "Waatu",
+    group: "metronome",
     description:
       "A headless website for Waatu, a yakitori and open-flame restaurant in Uluwatu, built at Metronome.",
     summary:
@@ -53,6 +65,7 @@ export const projects = [
     id: 4,
     slug: "one-two-boxing",
     title: "One Two Boxing",
+    group: "visual-moda",
     description:
       "Revamped the One Two Boxing website using React and Tailwind CSS",
     summary:
@@ -66,6 +79,7 @@ export const projects = [
     id: 5,
     slug: "nostra-homes",
     title: "Nostra Homes",
+    group: "visual-moda",
     description:
       "Revamped the Nostra Homes website using React and Tailwind CSS",
     summary:
@@ -78,6 +92,7 @@ export const projects = [
   {
     id: 6,
     title: "The Amazing Button",
+    group: "fun",
     description: "A button component that does a thing in GSAP",
     imageUrl: "/images/button.png",
     link: "/amazing-button",
@@ -85,6 +100,7 @@ export const projects = [
   {
     id: 7,
     title: "An Interactive Marquee",
+    group: "fun",
     description:
       "A fun marquee component built with Fast Marquee and Framer Motion",
     imageUrl: "/images/marquee.png",
@@ -93,6 +109,7 @@ export const projects = [
   {
     id: 8,
     title: "Memory Game",
+    group: "fun",
     description: "A Memory Game with Animals, test your might",
     imageUrl: "/images/memory.png",
     link: "/memory-game",
@@ -100,6 +117,7 @@ export const projects = [
   {
     id: 9,
     title: "GSAP Scrolling",
+    group: "fun",
     description: "A Demonstration of a GSAP Scrolling Animation",
     imageUrl: "/images/scrolling.png",
     link: "/scrolling",
@@ -107,6 +125,7 @@ export const projects = [
   {
     id: 10,
     title: "Animate Svg",
+    group: "fun",
     description: "Using the animate tag in SVG to animate the text",
     imageUrl: "/images/svg-animate.png",
     link: "/svg-animate",
@@ -114,6 +133,7 @@ export const projects = [
   {
     id: 11,
     title: "GSAP Draw Svg",
+    group: "fun",
     description:
       "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
     imageUrl: "/images/path.png",
@@ -122,6 +142,7 @@ export const projects = [
   {
     id: 12,
     title: "3-D Image Cube",
+    group: "fun",
     description: "A movable 3D Cube with images you can search for",
     imageUrl: "/images/cube.png",
     link: "/cube",
@@ -129,6 +150,7 @@ export const projects = [
   {
     id: 13,
     title: "Magical Dot Grid",
+    group: "fun",
     description: "A Dot Grid that uses Anime.js to create animations",
     imageUrl: "/images/dot_grid.png",
     link: "/dot-grid",

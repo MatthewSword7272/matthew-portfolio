@@ -2,16 +2,10 @@ import { useState } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 
-const ProjectPreview = ({ project, delay, last }) => {
-  const delayIndex = (delay / 2) % 2;
-
+const ProjectPreview = ({ project, last }) => {
   const [loaded, setLoaded] = useState(false);
 
   const { title, description, imageUrl, link, slug } = project;
-
-  const style = {
-    animationDelay: `${delayIndex}ms`,
-  };
 
   const ref = useRef(null);
   // const inView = useInView(ref, { amount: 0.4, once: true });
@@ -27,8 +21,7 @@ const ProjectPreview = ({ project, delay, last }) => {
     <>
       <Wrapper
         ref={ref}
-        className={`border border-white bg-white p-5 rounded-lg projectView group box-shadow`}
-        style={style}
+        className={`border border-white bg-white p-5 rounded-lg projectCard group box-shadow`}
         {...wrapperProps}
       >
         <div className="rounded-lg">
