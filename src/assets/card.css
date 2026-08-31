@@ -1,0 +1,35 @@
+.card {
+  transform-style: preserve-3d;
+  transform-origin: center center;
+
+  position: relative;
+  height: 6rem;
+  width: 4rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+@media (min-width: 768px) {
+  .card {
+    height: 12rem;
+    width: 8rem;
+  }
+}
+
+.card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 0.5rem;
+
+  position: absolute;
+  inset: 0;
+  margin: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}

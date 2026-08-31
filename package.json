@@ -3,41 +3,49 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@headlessui/react": "^2.2.4",
+    "@tailwindcss/postcss": "^4.3.3",
     "animejs": "^4.0.2",
     "axios": "^1.9.0",
     "framer-motion": "^12.23.6",
     "gsap": "^3.13.0",
     "motion": "^12.16.0",
+    "next": "^15.5.24",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-fast-marquee": "^1.6.5",
     "react-icons": "^5.5.0",
-    "react-paginate": "^8.3.0",
-    "react-router-dom": "^7.5.3",
     "react-window": "^1.8.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react": "^4.4.1",
+    "@next/eslint-plugin-next": "15",
+    "@types/node": "^26.4.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@types/react-window": "^1.8.8",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.25.0",
+    "eslint-config-next": "^15.5.24",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-    "postcss": "^8.5.3",
-    "sass-embedded": "^1.87.0",
-    "tailwindcss": "^3.4.17",
-    "vite": "^6.3.5"
+    "postcss": "^8.5.26",
+    "sass": "^1.103.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.68.0"
   }
 }
