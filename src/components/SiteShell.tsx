@@ -1,11 +1,17 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
 import gsap from "gsap";
 import { checkReturningVisitor, setVisitTimestamp } from "@/utils/visitTracker";
 import Image from "next/image";
+
+// Routes that take over the whole viewport and supply their own navigation.
+// `trailingSlash: true` in next.config.mjs means the pathname can arrive as
+// "/descent/", so these are matched by prefix rather than equality.
+const FULL_BLEED_ROUTES = ["/descent"];
 
 declare global {
   interface Window {
@@ -23,27 +29,45 @@ function fireIntroScreenUp() {
 const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const introScreen = useRef<HTMLDivElement>(null);
   const [showIntro, setShowIntro] = useState(true);
+  const pathname = usePathname();
+  const fullBleed = FULL_BLEED_ROUTES.some((route) => pathname?.startsWith(route));
+
+  // The intro is a once-per-page-load event, and this effect must reflect that.
+  // This layout persists across client navigation, so re-running it on a route
+  // change could flip `showIntro` back to true — remounting the fixed z-50 black
+  // overlay on a tick where `introScreen.current` is still null. gsap.to(null)
+  // tweens nothing, so the overlay would never lift and the site would be stuck
+  // behind it until a reload. Leaving /descent after more than five minutes hit
+  // exactly that: `fullBleed` flips false, the visitor no longer counts as
+  // returning, and the intro tries to play a second time with no element.
+  const introHandled = useRef(false);
 
   useEffect(() => {
-    const isReturningVisitor = checkReturningVisitor();
+    if (introHandled.current) return;
+    introHandled.current = true;
 
-    setShowIntro(!isReturningVisitor);
+    // Full-bleed routes never render the intro overlay, so there is nothing to
+    // animate away — just mark the intro as done and let the route take over.
+    const playIntro = !checkReturningVisitor() && !fullBleed;
+    setShowIntro(playIntro);
 
-    if (!isReturningVisitor) {
-      setVisitTimestamp();
-
-      gsap.to(introScreen.current, {
-        y: "-100%",
-        duration: 1,
-        delay: 3,
-        ease: "bounce",
-        onStart: fireIntroScreenUp,
-      });
-    } else {
-      // For returning visitors, trigger animations immediately
+    if (!playIntro) {
+      // Returning visitor, or a route that owns the viewport: start immediately.
       fireIntroScreenUp();
+      return;
     }
-  }, []);
+
+    setVisitTimestamp();
+    gsap.to(introScreen.current, {
+      y: "-100%",
+      duration: 1,
+      delay: 3,
+      ease: "bounce",
+      onStart: fireIntroScreenUp,
+    });
+  }, [fullBleed]);
+
+  if (fullBleed) return <>{children}</>;
 
   return (
     <>
