@@ -40,7 +40,7 @@ const ProjectPreview = ({ project, last }: ProjectPreviewProps) => {
         </div>
         <div className="text-center rounded-lg duration-300 gap-2 p-4">
           <h2 className="text-xl text-cyan-100 font-medium mb-2">{title}</h2>
-          <p className="text-center text-black">{description}</p>
+          <p className="text-center text-cyan-300">{description}</p>
         </div>
       </Link>
       {!last && <div className="w-full h-px bg-slate-500 md:hidden"></div>}
