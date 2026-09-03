@@ -1,5 +1,5 @@
 // Data + math for "The Descent" — a scroll-driven dive from Rye Pier
-// (Port Phillip Bay, max ~7 m) down the full ocean water column to the bottom
+// (Port Phillip Bay, max ~6 m) down the full ocean water column to the bottom
 // of the Mariana Trench (10,935 m) and back up through a safety stop.
 //
 // Everything the scene renders is a pure function of one number: `p`, the
@@ -301,7 +301,7 @@ const SCRIPT: Omit<Beat, "d">[] = [
     kind: "beat",
     depth: "0m",
     title: "Rye Pier",
-    body: "Port Phillip Bay, 7:14 am. Fourteen degree water, a light current running under the pier. One giant jump off the end of the pier and the bay closes over your head.",
+    body: "Port Phillip Bay, 7:14 am. Fifteen degree water, a light current running under the pier. One giant jump off the end of the pier and the bay closes over your head.",
   },
   {
     id: "pile",
@@ -331,17 +331,17 @@ const SCRIPT: Omit<Beat, "d">[] = [
     id: "bottom",
     at: [0.3, 0.36],
     kind: "beat",
-    depth: "-6m",
+    depth: "−6m",
     title: "The bottom",
-    body: "This is as deep as Rye pier gets. You may find a lost torch and a few bottles going green. The light is still bright enough to read your air gauge. From this point on, you can travel further and deeper.",
+    body: "This is as deep as Rye Pier gets. You may find a lost torch and a few bottles going green. The light is still bright enough to read your air gauge. From this point on, you can travel further and deeper.",
   },
   {
     id: "handoff",
     at: [0.375, 0.44],
     kind: "transition",
     depth: "the water keeps going",
-    title: "Seven metres.",
-    body: "Everything you just saw fits in the first seven metres of ocean. Heading away from the pier and down towards abyss, Below is another eleven kilometers.",
+    title: "Six metres.",
+    body: "Everything you just saw fits in the first six metres of ocean. Heading away from the pier and down towards the abyss, below you is another eleven kilometres.",
   },
   {
     id: "rip",
@@ -349,7 +349,7 @@ const SCRIPT: Omit<Beat, "d">[] = [
     kind: "beat",
     depth: "−24m",
     title: "Port Phillip Heads",
-    body: "Where the bay drains through  The Rip into Bass Strait. A kilometer-wide, notoriously dangerous and fast-flowing stretch of water that runs at six knots and has sunk more than forty ships.",
+    body: "Where the bay drains through The Rip into Bass Strait. A kilometre-wide, notoriously dangerous and fast-flowing stretch of water that runs at six knots and has sunk more than forty ships.",
   },
   {
     id: "reclimit",
@@ -365,7 +365,7 @@ const SCRIPT: Omit<Beat, "d">[] = [
     kind: "beat",
     depth: "−200m",
     title: "The twilight zone",
-    body: "The Mesopelagic Zone. The layer of the ocean located between 200 and 1,000 meters below the surface. One percent of the surface light is left, the rest is now dark blue. Photosynthesis cannot past here.",
+    body: "The Mesopelagic Zone. The layer of the ocean located between 200 and 1,000 metres below the surface. One percent of the surface light is left; the rest is now dark blue. Photosynthesis cannot happen past here.",
   },
   {
     id: "midnight",
@@ -373,7 +373,7 @@ const SCRIPT: Omit<Beat, "d">[] = [
     kind: "beat",
     depth: "−1,000m",
     title: "The midnight zone",
-    body: "No sunlight has ever reached this deep. Most of what lives here makes its own light. The Anglerfish cast a glowing light, hanging in front of its teeth, to lure its pray.",
+    body: "No sunlight has ever reached this deep. Most of what lives here makes its own light. The Anglerfish cast a glowing light, hanging in front of its teeth, to lure its prey.",
   },
   {
     id: "abyss",
@@ -397,7 +397,7 @@ const SCRIPT: Omit<Beat, "d">[] = [
     kind: "beat",
     depth: "−10,935m",
     title: "The Challenger Deep",
-    body: "Here is the bottom of the Mariana Trench, and the deepest point on Earth. Fewer people have been here than those walked on the Moon.",
+    body: "Here is the bottom of the Mariana Trench, and the deepest point on Earth. Fewer people have been here than have walked on the Moon.",
   },
   {
     id: "silence",
@@ -405,7 +405,7 @@ const SCRIPT: Omit<Beat, "d">[] = [
     kind: "silence",
     depth: "−10,935m",
     title: "—",
-    body: "You are now four kilometers deeper than any submarine in any navy can go.",
+    body: "You are now four Kilometres deeper than any submarine in any navy can go.",
   },
   {
     id: "ascent",

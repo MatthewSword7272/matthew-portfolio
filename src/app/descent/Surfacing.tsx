@@ -28,11 +28,11 @@ const BUILD: { title: string; body: string }[] = [
   },
   {
     title: "Depth is logarithmic, scroll is not",
-    body: "Mapped linearly, the seven-metre pier dive would be an invisible sliver above eleven kilometres of nothing. Colour and the depth rail run on a log scale so the shallows keep the space they deserve, while the scroll-to-depth curve stays piecewise-linear and accelerates into the trench — which is what makes the fall feel like falling.",
+    body: "Mapped linearly, the six-metre pier dive would be an invisible sliver above eleven kilometres of nothing. Colour and the depth rail run on a log scale so the shallows keep the space they deserve, while the scroll-to-depth curve stays piecewise-linear and accelerates into the trench — which is what makes the fall feel like falling.",
   },
   {
-    title: "No images, anywhere",
-    body: "Every fish, crab, pier pile and shaft of light is inline SVG or canvas drawn at runtime. The seadragon is a handful of bezier curves; the marine snow and bubbles are one particle pool whose behaviour re-interpolates with depth. Nothing to license, nothing to download.",
+    title: "No photographs in the dive",
+    body: "Every fish, crab, pier pile and shaft of light in the descent is inline SVG or canvas drawn at runtime. The seadragon is a handful of bezier curves; the marine snow and bubbles are one particle pool whose behaviour re-interpolates with depth. Nothing to license, and the only photograph on the page is the one of me at the end.",
   },
   {
     title: "The instruments admit when it stops being real",
@@ -69,7 +69,7 @@ export default function Surfacing() {
 
         <div className="mt-14 border-l-2 border-slate-900/25 pl-6">
           <blockquote className="text-2xl font-medium leading-snug tracking-tight text-slate-900 sm:text-3xl">
-            "My deepest dive is 30 metres. I think about the other eleven kilometers a lot."
+            "My deepest dive is 30 metres. I think about the other eleven kilometres a lot."
           </blockquote>
           <span className="mt-4 block text-[15px] italic text-slate-900">
             Matthew Catalfamo, PADI Advanced Open Water Diver
@@ -77,12 +77,15 @@ export default function Surfacing() {
         </div>
 
         <div className="mt-10 w-3/5">
+          {/* 1050x1400 WebP, 120 KB. `images.unoptimized` is on for the static
+              export, so whatever is committed here is exactly what ships — the
+              source PNG was 3024x4032 and 8.5 MB for a ~460 px slot. */}
           <Image
-            width="768"
-            height="1000"
-            alt="Scuba Diver"
+            width={1050}
+            height={1400}
+            alt="Matthew Catalfamo in dive gear at the surface"
             className="object-contain rounded-lg"
-            src="/images/scuba_diver.png"
+            src="/images/scuba_diver.webp"
           />
         </div>
 
@@ -113,7 +116,7 @@ export default function Surfacing() {
 
         {/* ------------------------------------------------------------ notes */}
         <p className="mt-12 text-sm leading-relaxed text-slate-700/80">
-          Depths, temperatures and zone boundaries are real. Rye Pier bottoms out around 7 m; Port Phillip Heads runs to
+          Depths, temperatures and zone boundaries are real. Rye Pier bottoms out around 6 m; Port Phillip Heads runs to
           about 24 m; Challenger Deep, in the Mariana Trench, sits at roughly 10,935 m. The weedy seadragon and the
           winter spider crab aggregation are both genuinely why people dive this site.
         </p>

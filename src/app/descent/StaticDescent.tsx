@@ -30,7 +30,7 @@ export default function StaticDescent() {
           </Link>
           <h1 className="mt-8 text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">The Descent</h1>
           <p className="mt-5 max-w-[54ch] text-lg leading-relaxed text-slate-900/75">
-            A dive from Rye Pier in Port Phillip Bay — which bottoms out at about seven metres — all the way down to the
+            A dive from Rye Pier in Port Phillip Bay — which bottoms out at about six metres — all the way down to the
             deepest point in the ocean.
           </p>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-slate-900/50">
