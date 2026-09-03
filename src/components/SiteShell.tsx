@@ -1,11 +1,17 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Header from "./Header";
 import Footer from "./Footer";
 import gsap from "gsap";
 import { checkReturningVisitor, setVisitTimestamp } from "@/utils/visitTracker";
 import Image from "next/image";
+
+// Routes that take over the whole viewport and supply their own navigation.
+// `trailingSlash: true` in next.config.mjs means the pathname can arrive as
+// "/descent/", so these are matched by prefix rather than equality.
+const FULL_BLEED_ROUTES = ["/descent"];
 
 declare global {
   interface Window {
@@ -23,13 +29,17 @@ function fireIntroScreenUp() {
 const SiteShell = ({ children }: { children: React.ReactNode }) => {
   const introScreen = useRef<HTMLDivElement>(null);
   const [showIntro, setShowIntro] = useState(true);
+  const pathname = usePathname();
+  const fullBleed = FULL_BLEED_ROUTES.some((route) => pathname?.startsWith(route));
 
   useEffect(() => {
     const isReturningVisitor = checkReturningVisitor();
 
-    setShowIntro(!isReturningVisitor);
+    // Full-bleed routes never render the intro overlay, so there is nothing to
+    // animate away — just mark the intro as done and let the route take over.
+    setShowIntro(!isReturningVisitor && !fullBleed);
 
-    if (!isReturningVisitor) {
+    if (!isReturningVisitor && !fullBleed) {
       setVisitTimestamp();
 
       gsap.to(introScreen.current, {
@@ -43,7 +53,9 @@ const SiteShell = ({ children }: { children: React.ReactNode }) => {
       // For returning visitors, trigger animations immediately
       fireIntroScreenUp();
     }
-  }, []);
+  }, [fullBleed]);
+
+  if (fullBleed) return <>{children}</>;
 
   return (
     <>

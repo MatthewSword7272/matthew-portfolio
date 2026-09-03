@@ -1,0 +1,69 @@
+/* Ambient motion for "The Descent".
+   Anything that loops forever independently of scroll lives here as a CSS
+   animation, so it runs on the compositor instead of costing us JS frames.
+   Scroll-driven values are all set from the render loop in Descent.tsx. */
+
+.dsc-caustics {
+  background:
+    radial-gradient(120% 55% at 18% 0%, rgba(255, 255, 255, 0.22), transparent 62%),
+    radial-gradient(85% 45% at 68% 0%, rgba(255, 255, 255, 0.16), transparent 60%),
+    radial-gradient(60% 40% at 44% 0%, rgba(255, 255, 255, 0.12), transparent 58%);
+  filter: blur(7px);
+  animation: dsc-caustic 9s ease-in-out infinite alternate;
+}
+
+@keyframes dsc-caustic {
+  from {
+    transform: translate3d(-3%, 0, 0) scaleX(1);
+  }
+  to {
+    transform: translate3d(3%, 0, 0) scaleX(1.09);
+  }
+}
+
+/* Shafts of sunlight angling down through the surface. */
+.dsc-ray {
+  position: absolute;
+  top: -25%;
+  height: 155%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+  filter: blur(11px);
+  transform-origin: top center;
+  animation: dsc-ray 11s ease-in-out infinite alternate;
+}
+
+@keyframes dsc-ray {
+  from {
+    transform: skewX(-9deg) scaleY(1);
+    opacity: 0.6;
+  }
+  to {
+    transform: skewX(3deg) scaleY(1.09);
+    opacity: 1;
+  }
+}
+
+/* The scroll nudge on the opening beat. */
+@keyframes dsc-sink {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+.dsc-sink {
+  animation: dsc-sink 2.1s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsc-caustics,
+  .dsc-ray,
+  .dsc-sink {
+    animation: none;
+  }
+}

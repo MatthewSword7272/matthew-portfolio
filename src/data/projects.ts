@@ -90,9 +90,17 @@ export const projects: Project[] = [
     imageUrl: "/images/nostra.png",
     link: "https://nostrahomes.com.au/",
     projectUrl: "https://nostrahomes.com.au/",
+  },    {
+    id: 6,
+    title: "The Descent",
+    group: "fun",
+    description:
+      "A scroll-driven dive from Blairgowrie Pier to the bottom of the Mariana Trench — procedural water, light and life, with no photographs anywhere.",
+    imageUrl: "/images/descent.svg",
+    link: "/descent",
   },
   {
-    id: 6,
+    id: 7,
     title: "The Amazing Button",
     group: "fun",
     description: "A button component that does a thing in GSAP",
@@ -100,7 +108,7 @@ export const projects: Project[] = [
     link: "/amazing-button",
   },
   {
-    id: 7,
+    id: 8,
     title: "An Interactive Marquee",
     group: "fun",
     description:
@@ -109,7 +117,7 @@ export const projects: Project[] = [
     link: "/marquee",
   },
   {
-    id: 8,
+    id: 9,
     title: "Memory Game",
     group: "fun",
     description: "A Memory Game with Animals, test your might",
@@ -117,7 +125,7 @@ export const projects: Project[] = [
     link: "/memory-game",
   },
   {
-    id: 9,
+    id: 10,
     title: "GSAP Scrolling",
     group: "fun",
     description: "A Demonstration of a GSAP Scrolling Animation",
@@ -125,7 +133,7 @@ export const projects: Project[] = [
     link: "/scrolling",
   },
   {
-    id: 10,
+    id: 11,
     title: "Animate Svg",
     group: "fun",
     description: "Using the animate tag in SVG to animate the text",
@@ -133,7 +141,7 @@ export const projects: Project[] = [
     link: "/svg-animate",
   },
   {
-    id: 11,
+    id: 12,
     title: "GSAP Draw Svg",
     group: "fun",
     description:
@@ -142,7 +150,7 @@ export const projects: Project[] = [
     link: "/path",
   },
   {
-    id: 12,
+    id: 13,
     title: "3-D Image Cube",
     group: "fun",
     description: "A movable 3D Cube with images you can search for",
@@ -150,7 +158,7 @@ export const projects: Project[] = [
     link: "/cube",
   },
   {
-    id: 13,
+    id: 14,
     title: "Magical Dot Grid",
     group: "fun",
     description: "A Dot Grid that uses Anime.js to create animations",
