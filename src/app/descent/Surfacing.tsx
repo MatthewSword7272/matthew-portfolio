@@ -56,11 +56,11 @@ export default function Surfacing() {
 
         {/* --------------------------------------------------------- dive log */}
         <div className="mt-14 rounded-2xl border border-slate-900/10 bg-white/45 p-6 backdrop-blur-sm sm:p-8">
-          <h3 className="font-mono text-[11px] uppercase tracking-[0.35em] text-slate-700/70">Dive log</h3>
+          <h3 className="text-slate-800 text-lg">Dive Log</h3>
           <dl className="mt-6 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
             {LOG.map((row) => (
               <div key={row.label}>
-                <dt className="font-mono text-[10px] uppercase tracking-widest text-slate-600/70">{row.label}</dt>
+                <dt className="text-[10px] uppercase text-[12px] text-slate-600/70">{row.label}</dt>
                 <dd className="mt-1 text-lg font-medium tabular-nums text-slate-900">{row.value}</dd>
               </div>
             ))}
