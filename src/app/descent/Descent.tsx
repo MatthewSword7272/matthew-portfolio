@@ -26,6 +26,7 @@ import {
   lerp,
   logDepthFrac,
   ndlAt,
+  RAIL_MARKS,
   storyAt,
   tempAt,
   waterAt,
@@ -33,17 +34,6 @@ import {
 import { ArrowLeft } from "lucide-react";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-/** Fixed labels down the right-hand rail, placed on the same log scale as the
- *  live marker so the 7 m pier dive gets real estate instead of one pixel. */
-const RAIL_MARKS = [
-  { d: 7, label: "Pier 7 m" },
-  { d: 40, label: "Rec limit 40 m" },
-  { d: 200, label: "Twilight 200 m" },
-  { d: 1000, label: "Midnight 1 km" },
-  { d: 4000, label: "Abyss 4 km" },
-  { d: 10935, label: "Trench 10.9 km" },
-];
 
 const RING_R = 44;
 const RING_CIRC = 2 * Math.PI * RING_R;
@@ -147,16 +137,6 @@ function DiveStage() {
   // beat copy
   const beatEls = useRef<(HTMLDivElement | null)[]>([]);
 
-  // instruments
-  const hudDepth = useRef<HTMLSpanElement>(null);
-  const hudTime = useRef<HTMLSpanElement>(null);
-  const hudTemp = useRef<HTMLSpanElement>(null);
-  const hudNdl = useRef<HTMLSpanElement>(null);
-  const hudAir = useRef<HTMLSpanElement>(null);
-  const hudHeading = useRef<HTMLSpanElement>(null);
-  const tankFill = useRef<HTMLDivElement>(null);
-  const beyondTag = useRef<HTMLDivElement>(null);
-
   // depth rail
   const railMarker = useRef<HTMLDivElement>(null);
   const railLabel = useRef<HTMLSpanElement>(null);
@@ -232,24 +212,6 @@ function DiveStage() {
         drift(dragon.current, p, 0.14, 0.235, [104, -3], [-42, 5], { bob: 2, waves: 2, flip: true });
         drift(crabs.current, p, 0.212, 0.302, [0, 14], [0, -10], { fade: 0.03 });
         drift(angler.current, p, 0.62, 0.708, [58, 2], [-45, -4], { bob: 1.6, waves: 1.5 });
-
-        // --- instruments ---------------------------------------------------
-        const beyond = d > SCUBA_LIMIT && descending;
-        const air = airBarAt(p);
-
-        if (hudDepth.current) hudDepth.current.textContent = fmtDepth(d);
-        if (hudTime.current) hudTime.current.textContent = formatClock(diveMinutesAt(p));
-        if (hudTemp.current) hudTemp.current.textContent = tempAt(d).toFixed(1);
-        if (hudNdl.current) hudNdl.current.textContent = ndlAt(d, descending);
-        if (hudAir.current) hudAir.current.textContent = beyond ? "—" : String(Math.round(air));
-        if (tankFill.current) {
-          tankFill.current.style.transform = `scaleX(${beyond ? 0 : air / 200})`;
-        }
-        if (beyondTag.current) beyondTag.current.style.opacity = beyond ? "1" : "0";
-        if (hudHeading.current) {
-          hudHeading.current.textContent =
-            String(Math.round((p * 520) % 360)).padStart(3, "0") + "°";
-        }
 
         // --- depth rail ----------------------------------------------------
         if (railMarker.current) railMarker.current.style.top = `${logDepthFrac(d) * 100}%`;
@@ -408,7 +370,7 @@ function DiveStage() {
               }}
               className="absolute left-1/2 top-1/2 w-[min(700px,86vw)] text-center opacity-0 will-change-[opacity,transform]"
             >
-              <p className="font-mono text-[10px] uppercase tracking-[0.4em] text-cyan-200/60 sm:text-[11px]">
+              <p className="text-[10px] font-medium capitalize text-cyan-200 sm:text-[15px]">
                 {b.depth}
               </p>
               <h2
@@ -459,58 +421,6 @@ function DiveStage() {
 
         </div>
 
-        {/* ------------------------------------------------------------- HUD */}
-        <div className="pointer-events-none absolute bottom-4 left-4 select-none sm:bottom-8 sm:left-8">
-          <div className="rounded-xl border border-cyan-200/15 bg-black/40 px-4 py-3 font-mono text-cyan-100 backdrop-blur-md">
-            <div className="flex items-start justify-between gap-6">
-              <div className="flex items-end gap-1.5">
-                <span ref={hudDepth} className="text-4xl leading-none tabular-nums sm:text-5xl">
-                  0.0
-                </span>
-                <span className="mb-1 text-xs text-cyan-300/60">m</span>
-              </div>
-              <span ref={hudHeading} className="text-xs tabular-nums text-cyan-300/60">
-                000°
-              </span>
-            </div>
-
-            <div className="mt-3 grid grid-cols-3 gap-x-4 text-[9px] uppercase tracking-widest text-cyan-300/45 sm:gap-x-6 sm:text-[10px]">
-              <span>Time</span>
-              <span>Temp</span>
-              <span>No-stop</span>
-            </div>
-            <div className="grid grid-cols-3 gap-x-4 text-sm tabular-nums sm:gap-x-6">
-              <span ref={hudTime}>0:00</span>
-              <span>
-                <span ref={hudTemp}>15.0</span>
-                <span className="text-cyan-300/60">°C</span>
-              </span>
-              <span ref={hudNdl}>99+</span>
-            </div>
-
-            <div className="mt-3 w-full min-w-[190px]">
-              <div className="flex justify-between text-[9px] uppercase tracking-widest text-cyan-300/45 sm:text-[10px]">
-                <span>Cylinder</span>
-                <span>
-                  <span ref={hudAir} className="tabular-nums">
-                    200
-                  </span>{" "}
-                  bar
-                </span>
-              </div>
-              <div className="mt-1 h-1.5 w-full overflow-hidden rounded bg-white/10">
-                <div ref={tankFill} className="h-full w-full origin-left bg-cyan-300/70" />
-              </div>
-            </div>
-
-            <div
-              ref={beyondTag}
-              className="mt-2 text-[9px] uppercase tracking-widest text-amber-300/90 opacity-0 sm:text-[10px]"
-            >
-              ▲ No longer diving
-            </div>
-          </div>
-        </div>
 
         {/* ------------------------------------------------------- depth rail */}
         <div className="pointer-events-none absolute right-6 top-1/2 hidden h-[62vh] -translate-y-1/2 md:block">

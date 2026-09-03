@@ -7,8 +7,8 @@ import Link from "next/link";
 // at exactly the moment the diver lets go of the water.
 
 const LOG: { label: string; value: string }[] = [
-  { label: "Site", value: "Blairgowrie Pier" },
-  { label: "Deepest, actually", value: "7.2 m" },
+  { label: "Site", value: "Rye Pier" },
+  { label: "Deepest, actually", value: "6 m" },
   { label: "Deepest, in your head", value: "10,935 m" },
   { label: "Runtime", value: "48 min" },
   { label: "Water", value: "15 → 13 °C" },
@@ -113,9 +113,9 @@ export default function Surfacing() {
 
         {/* ------------------------------------------------------------ notes */}
         <p className="mt-12 text-sm leading-relaxed text-slate-700/80">
-          Depths, temperatures and zone boundaries are real. Blairgowrie Pier bottoms out around 7 m; Port Phillip Heads
-          runs to about 24 m; Challenger Deep, in the Mariana Trench, sits at roughly 10,935 m. The weedy seadragon and
-          the winter spider crab aggregation are both genuinely why people dive this site.
+          Depths, temperatures and zone boundaries are real. Rye Pier bottoms out around 7 m; Port Phillip Heads runs to
+          about 24 m; Challenger Deep, in the Mariana Trench, sits at roughly 10,935 m. The weedy seadragon and the
+          winter spider crab aggregation are both genuinely why people dive this site.
         </p>
 
         <div className="mt-12 flex flex-wrap gap-4">

@@ -30,7 +30,7 @@ export const projects: Project[] = [
       "The agency website for Metronome, built during my time there as a front-end developer — design, web development, performance marketing and managed services.",
     summary:
       "Metronome is a growth agency helping mid-market businesses achieve long-term, measurable growth through design and UX, web development, performance marketing and managed services. As a front-end developer there, I built the agency's own website with React and Tailwind CSS: a fast, fully responsive marketing site with service pages, a continuous-improvement narrative and client case studies (Wilson Storage, JG King Homes, Sundays Beach Club, Smarter Bathrooms). It was treated as an evolving product rather than a one-off launch, with ongoing iteration on content, structure and performance.",
-    tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", 'WPEngine Atlas'],
+    tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", "WPEngine Atlas"],
     imageUrl: "/images/metronome.png",
     link: "https://metronome.com.au/",
     projectUrl: "https://metronome.com.au/",
@@ -40,11 +40,10 @@ export const projects: Project[] = [
     slug: "the-ungasan",
     title: "The Ungasan",
     group: "metronome",
-    description:
-      "A headless website for The Ungasan Clifftop Resort in Bali, built at Metronome.",
+    description: "A headless website for The Ungasan Clifftop Resort in Bali, built at Metronome.",
     summary:
       "The Ungasan Clifftop Resort is an ultra-premium collection of private villas and ocean-view suites perched above the Indian Ocean on Bali's Bukit Peninsula. Built through Metronome, the site runs a headless WordPress back end with a Next.js and TypeScript front end on WP Engine Atlas, so the resort's team can manage cinematic photography and content while guests get a fast, fluid experience across devices. It spans eight individually named villas plus garden- and ocean-view suites, along with weddings and elopements, fine dining, wellness retreats and Sundays Beach Club — each with its own detail pages and a clear path to enquire.",
-    tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", 'WPEngine Atlas'],
+    tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", "WPEngine Atlas"],
     imageUrl: "/images/ungasan.png",
     link: "https://theungasan.com/",
     projectUrl: "https://theungasan.com/",
@@ -54,22 +53,20 @@ export const projects: Project[] = [
     slug: "waatu",
     title: "Waatu",
     group: "metronome",
-    description:
-      "A headless website for Waatu, a yakitori and open-flame restaurant in Uluwatu, built at Metronome.",
+    description: "A headless website for Waatu, a yakitori and open-flame restaurant in Uluwatu, built at Metronome.",
     summary:
       "Waatu is a yakitori and open-flame grill restaurant on the clifftops of Uluwatu, Bali, where every dish is cooked over coals — no gas, no electricity — blending Indigenous fire-cooking methods with a rugged but refined dining room. Built through Metronome on a headless WordPress and Next.js stack with TypeScript, running on WP Engine Atlas, the site carries the brand's ingredient-driven, artisanal tone across its breakfast, lunch and dinner menus, plant-based and kids' options, a natural-wine list and the weekend Otsumami brunch, with reservations and location details always within reach.",
-    tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", 'WPEngine Atlas'],
+    tech: ["React", "Tailwind CSS", "Next.js", "WordPress", "TypeScript", "WPEngine Atlas"],
     imageUrl: "/images/waatu.png",
     link: "https://waatu.com/",
     projectUrl: "https://waatu.com/",
   },
-    {
+  {
     id: 4,
     slug: "one-two-boxing",
     title: "One Two Boxing",
     group: "visual-moda",
-    description:
-      "Revamped the One Two Boxing website using React and Tailwind CSS",
+    description: "Revamped the One Two Boxing website using React and Tailwind CSS",
     summary:
       "A full front-end rebuild of the One Two Boxing website in React and Tailwind CSS. The focus was a fast, responsive layout with clear class information and a sign-up flow that works cleanly on mobile.",
     tech: ["React", "Tailwind CSS"],
@@ -82,20 +79,20 @@ export const projects: Project[] = [
     slug: "nostra-homes",
     title: "Nostra Homes",
     group: "visual-moda",
-    description:
-      "Revamped the Nostra Homes website using React and Tailwind CSS",
+    description: "Revamped the Nostra Homes website using React and Tailwind CSS",
     summary:
       "A marketing-site rebuild for home builder Nostra Homes, built in React and Tailwind CSS with image-heavy galleries, home and land listings and enquiry forms, tuned for performance and SEO.",
     tech: ["React", "Tailwind CSS"],
     imageUrl: "/images/nostra.png",
     link: "https://nostrahomes.com.au/",
     projectUrl: "https://nostrahomes.com.au/",
-  },    {
+  },
+  {
     id: 6,
     title: "The Descent",
     group: "fun",
     description:
-      "A scroll-driven dive from Blairgowrie Pier to the bottom of the Mariana Trench — procedural water, light and life, with no photographs anywhere.",
+      "A scroll-driven dive from Rye Pier to the bottom of the Mariana Trench — procedural water, light and life, with no photographs anywhere.",
     imageUrl: "/images/descent.svg",
     link: "/descent",
   },
@@ -111,8 +108,7 @@ export const projects: Project[] = [
     id: 8,
     title: "An Interactive Marquee",
     group: "fun",
-    description:
-      "A fun marquee component built with Fast Marquee and Framer Motion",
+    description: "A fun marquee component built with Fast Marquee and Framer Motion",
     imageUrl: "/images/marquee.png",
     link: "/marquee",
   },
@@ -144,8 +140,7 @@ export const projects: Project[] = [
     id: 12,
     title: "GSAP Draw Svg",
     group: "fun",
-    description:
-      "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
+    description: "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
     imageUrl: "/images/path.png",
     link: "/path",
   },

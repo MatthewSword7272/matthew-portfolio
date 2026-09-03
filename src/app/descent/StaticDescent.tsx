@@ -30,8 +30,8 @@ export default function StaticDescent() {
           </Link>
           <h1 className="mt-8 text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">The Descent</h1>
           <p className="mt-5 max-w-[54ch] text-lg leading-relaxed text-slate-900/75">
-            A dive from Blairgowrie Pier in Port Phillip Bay — which bottoms out at about seven metres — all the way
-            down to the deepest point in the ocean.
+            A dive from Rye Pier in Port Phillip Bay — which bottoms out at about seven metres — all the way down to the
+            deepest point in the ocean.
           </p>
           <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-slate-900/50">
             Motion reduced · read-through version
@@ -54,9 +54,7 @@ export default function StaticDescent() {
 
             <div className="relative mx-auto max-w-3xl">
               <div className="flex items-baseline gap-4">
-                <span className="font-mono text-[11px] uppercase tracking-[0.35em] text-cyan-200/70">
-                  {beat.depth}
-                </span>
+                <span className="text-[11px] tracking-[0.35em] capitalize text-cyan-200/70">{beat.depth}</span>
                 <span className="h-px flex-1 bg-white/15" />
                 <span className="font-mono text-[10px] tabular-nums text-white/30">
                   {Math.round(logDepthFrac(beat.d) * 100)}%

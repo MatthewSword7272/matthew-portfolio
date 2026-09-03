@@ -1,4 +1,4 @@
-// Data + math for "The Descent" — a scroll-driven dive from Blairgowrie Pier
+// Data + math for "The Descent" — a scroll-driven dive from Rye Pier
 // (Port Phillip Bay, max ~7 m) down the full ocean water column to the bottom
 // of the Mariana Trench (10,935 m) and back up through a safety stop.
 //
@@ -29,7 +29,10 @@ export interface Beat {
   id: string;
   /** [enter, exit] window on the master 0..1 timeline. */
   at: [number, number];
-  /** Representative depth in metres (drives the fallback background colour). */
+  /** Depth in metres at the middle of the beat's window — where its copy sits
+   *  at full opacity. Derived from depthAt(), never hand-written, so it cannot
+   *  drift away from the curve the scene is actually drawn from. Drives the
+   *  fallback background colour and StaticDescent's progress readout. */
   d: number;
   depth: string;
   title: string;
@@ -41,16 +44,11 @@ export interface Beat {
 
 export const clamp01 = (n: number) => (n < 0 ? 0 : n > 1 ? 1 : n);
 export const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-export const invlerp = (a: number, b: number, v: number) =>
-  a === b ? 0 : clamp01((v - a) / (b - a));
+export const invlerp = (a: number, b: number, v: number) => (a === b ? 0 : clamp01((v - a) / (b - a)));
 
 function hexToRgb(hex: string) {
   const h = hex.replace("#", "");
-  return [
-    parseInt(h.slice(0, 2), 16),
-    parseInt(h.slice(2, 4), 16),
-    parseInt(h.slice(4, 6), 16),
-  ] as const;
+  return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)] as const;
 }
 
 /** Blend two hex colours; returns an `rgb(...)` string. */
@@ -105,26 +103,33 @@ export function storyAt(raw: number): number {
 
 // --- depth -----------------------------------------------------------------
 
+// Every key sits on the *midpoint* of the beat that names it — the part of the
+// window where the copy is at full opacity. That is what keeps the rail reading
+// 40 m while you are reading "The Limit"; keys placed at a beat's start let the
+// curve run 2-3x past its own headline before the beat had finished. Depth still
+// moves throughout, so the fall never stops, it is just centred on the number.
+//
 // `log: true` on a key means "interpolate the segment *ending* here in log
 // space rather than linear metres" — see depthAt() for why the ascent needs it.
 const DEPTH_KEYS: { p: number; d: number; log?: boolean }[] = [
   { p: 0.0, d: 0 },
-  { p: 0.05, d: 1.5 },
-  { p: 0.14, d: 5 },
-  { p: 0.22, d: 6.5 },
-  { p: 0.29, d: 7.2 },
-  { p: 0.37, d: 7.2 }, // hold on the sand
-  { p: 0.44, d: 24 }, // the Rip
-  { p: 0.49, d: 40 }, // recreational limit
-  { p: 0.56, d: 200 }, // twilight
-  { p: 0.65, d: 1000 }, // midnight
-  { p: 0.74, d: 4000 }, // abyssal plain
-  { p: 0.83, d: 6000 }, // hadal
-  { p: 0.885, d: 10935 }, // Challenger Deep — arrives mid-beat, then settles
+  { p: 0.105, d: 3 }, // pile
+  { p: 0.1825, d: 4 }, // seadragon
+  { p: 0.2575, d: 5 }, // crabs
+  { p: 0.3, d: 6 }, // bottom — the pier's real floor
+  { p: 0.36, d: 6 }, // hold on the sand for that whole beat
+  { p: 0.46, d: 24 }, // the Rip
+  { p: 0.5175, d: 40 }, // recreational limit
+  { p: 0.585, d: 200 }, // twilight
+  { p: 0.6625, d: 1000 }, // midnight
+  { p: 0.7425, d: 4000 }, // abyssal plain
+  { p: 0.8175, d: 6000 }, // hadal
+  { p: 0.8835, d: 10935 }, // Challenger Deep — arrives mid-beat, then settles
   { p: 0.945, d: 10935 }, // on the bottom: the deep + silence beats both read here
   { p: 0.975, d: 5, log: true }, // ascent — even, unhurried, all the way up
   { p: 0.994, d: 5 }, // safety stop hold
-  { p: 1.0, d: 0 }, // surface
+  { p: 0.997, d: 0 }, // break the surface as the last beat opens
+  { p: 1.0, d: 0 },
 ];
 
 /** Master progress (0..1) -> depth in metres.
@@ -191,6 +196,23 @@ export function waterAt(d: number): { top: string; bot: string } {
 
 /** 0 at the surface, 1 in permanent darkness — used for the right-rail scale. */
 export const logDepthFrac = (d: number) => clamp01(logD(d) / logD(11001));
+
+/** Fixed labels down the right-hand rail, placed on the same log scale as the
+ *  live marker so the 7 m pier dive gets real estate instead of one pixel.
+ *
+ *  Every depth here is one the dive actually holds at in DEPTH_KEYS above, so
+ *  the marker settles exactly on a tick at the end of each beat rather than
+ *  near it. Add a key up there and it belongs here too. */
+export const RAIL_MARKS: { d: number; label: string }[] = [
+  { d: 6, label: "Pier 6 m" },
+  { d: 24, label: "The Rip 24 m" },
+  { d: 40, label: "Rec limit 40 m" },
+  { d: 200, label: "Twilight 200 m" },
+  { d: 1000, label: "Midnight 1 km" },
+  { d: 4000, label: "Abyss 4 km" },
+  { d: 6000, label: "Hadal 6 km" },
+  { d: 10935, label: "Trench 10.9 km" },
+];
 
 // --- instruments ---------------------------------------------------------
 
@@ -272,158 +294,144 @@ export function ndlAt(d: number, descending: boolean): string {
 
 // --- the script ---------------------------------------------------------
 
-export const BEATS: Beat[] = [
+const SCRIPT: Omit<Beat, "d">[] = [
   {
     id: "surface-in",
     at: [0.0, 0.055],
-    d: 0,
     kind: "beat",
-    depth: "0 m",
-    title: "Blairgowrie Pier",
-    body: "Port Phillip Bay, 7:14 am. Fourteen degrees, a light current running under the pier. One giant stride off the end and the bay closes over your head.",
+    depth: "0m",
+    title: "Rye Pier",
+    body: "Port Phillip Bay, 7:14 am. Fourteen degree water, a light current running under the pier. One giant jump off the end of the pier and the bay closes over your head.",
   },
   {
     id: "pile",
     at: [0.075, 0.135],
-    d: 3,
     kind: "beat",
-    depth: "−3 m",
-    title: "Down the pile",
-    body: "Every timber post is furred with sponge, ascidian and hydroid — a vertical garden built on eighty years of jetty. A school of old wives folds around you and re-forms.",
+    depth: "−3m",
+    title: "Down we go",
+    body: "Every timber post is furred with sea sponge, barnacles, urchins and mussels. A vertical garden built over eighty years under the jetty. A school of small fishes circles around you.",
   },
   {
     id: "seadragon",
     at: [0.15, 0.215],
-    d: 5,
     kind: "beat",
-    depth: "−5 m",
+    depth: "−4m",
     title: "Weedy seadragon",
-    body: "Endemic to southern Australia and almost nowhere else. It doesn't really swim — it drifts, a torn leaf that grew a spine and a long pipe of a snout.",
+    body: "Endemic to southern Australia and almost nowhere else. It doesn't really swim, it drifts. You would mistake it for a torn leaf that grew a spine and a long pipe of a snout.",
   },
   {
     id: "crabs",
     at: [0.225, 0.29],
-    d: 6.5,
     kind: "beat",
-    depth: "−6.5 m",
+    depth: "−5m",
     title: "Spider crab winter",
-    body: "Once a year tens of thousands of giant spider crabs heap onto the sand to moult at the same time. Safety in a slow, clattering mountain of legs.",
+    body: "Once a year tens of thousands of giant spider crabs crawl onto the sand to moult at the same time. Safety in a slow, clattering mountain of legs.",
   },
   {
     id: "bottom",
     at: [0.3, 0.36],
-    d: 7.2,
     kind: "beat",
-    depth: "−7.2 m",
+    depth: "-6m",
     title: "The bottom",
-    body: "This is as deep as Blairgowrie gets. Ribbed sand, a lost torch, a few bottles going green. The light is still bright enough to read a gauge without a lamp.",
+    body: "This is as deep as Rye pier gets. You may find a lost torch and a few bottles going green. The light is still bright enough to read your air gauge. From this point on, you can travel further and deeper.",
   },
   {
     id: "handoff",
     at: [0.375, 0.44],
-    d: 12,
     kind: "transition",
     depth: "the water keeps going",
     title: "Seven metres.",
-    body: "Everything you just saw fits in the first seven metres of ocean. Below the sand it keeps going down for another eleven kilometres. Keep scrolling.",
+    body: "Everything you just saw fits in the first seven metres of ocean. Heading away from the pier and down towards abyss, Below is another eleven kilometers.",
   },
   {
     id: "rip",
     at: [0.435, 0.485],
-    d: 24,
     kind: "beat",
-    depth: "−24 m",
+    depth: "−24m",
     title: "Port Phillip Heads",
-    body: "Where the whole bay drains into Bass Strait through 'The Rip' — a kilometre-wide gap that runs at six knots and has sunk more than forty ships.",
+    body: "Where the bay drains through  The Rip into Bass Strait. A kilometer-wide, notoriously dangerous and fast-flowing stretch of water that runs at six knots and has sunk more than forty ships.",
   },
   {
     id: "reclimit",
     at: [0.49, 0.545],
-    d: 40,
     kind: "beat",
-    depth: "−40 m",
-    title: "Recreational limit",
-    body: "Nitrogen under pressure starts to feel like three or four quick drinks. Your no-stop clock is nearly spent. For a sport diver this is the edge of the map.",
+    depth: "−40m",
+    title: "The Limit",
+    body: "Nitrogen under pressure starts to feel like three or four quick drinks. For a sport diver, this is the edge.",
   },
   {
     id: "twilight",
     at: [0.55, 0.62],
-    d: 200,
     kind: "beat",
-    depth: "−200 m",
+    depth: "−200m",
     title: "The twilight zone",
-    body: "The mesopelagic. Roughly one percent of the surface light is left, all of it blue. Nothing photosynthesises past here. The largest migration on Earth rises out of this layer every night.",
+    body: "The Mesopelagic Zone. The layer of the ocean located between 200 and 1,000 meters below the surface. One percent of the surface light is left, the rest is now dark blue. Photosynthesis cannot past here.",
   },
   {
     id: "midnight",
     at: [0.625, 0.7],
-    d: 1000,
     kind: "beat",
-    depth: "−1,000 m",
+    depth: "−1,000m",
     title: "The midnight zone",
-    body: "No sunlight has ever reached this deep. Most of what lives here makes its own light — and the anglerfish fishes with hers, a lure of glowing bacteria hung in front of her teeth.",
+    body: "No sunlight has ever reached this deep. Most of what lives here makes its own light. The Anglerfish cast a glowing light, hanging in front of its teeth, to lure its pray.",
   },
   {
     id: "abyss",
     at: [0.705, 0.78],
-    d: 4000,
     kind: "beat",
-    depth: "−4,000 m",
+    depth: "−4,000m",
     title: "The abyssal plain",
-    body: "Black, near-freezing, and almost completely still. 'Marine snow' — the falling dead of the sunlit ocean — drifts down for weeks and is the only food most of the year.",
+    body: "Black, near-freezing, and almost completely still. The chilling Marine Snow is the dead microorganisms falling from the ocean above, constantly drifting down and it is the only food for the creatures that live here.",
   },
   {
     id: "hadal",
     at: [0.785, 0.85],
-    d: 6000,
     kind: "beat",
-    depth: "−6,000 m",
-    title: "The hadal zone",
-    body: "Named for Hades. Only the deep trenches reach it. Six hundred atmospheres of pressure — about a tonne pressing on every thumbnail.",
+    depth: "−6,000m",
+    title: "The Hadel Zone",
+    body: "The Deepest Regions of the Ocean. Named after Hades. Six hundred atmospheres of pressure. The creatures that live here appear quite frightening, but possibly harmless...",
   },
   {
     id: "challenger",
     at: [0.855, 0.912],
-    d: 10935,
     kind: "beat",
-    depth: "−10,935 m",
-    title: "Challenger Deep",
-    body: "The bottom of the Mariana Trench, and the deepest point on Earth. Fewer people have been here than have walked on the Moon.",
+    depth: "−10,935m",
+    title: "The Challenger Deep",
+    body: "Here is the bottom of the Mariana Trench, and the deepest point on Earth. Fewer people have been here than those walked on the Moon.",
   },
   {
     id: "silence",
     at: [0.912, 0.945],
-    d: 10935,
     kind: "silence",
-    depth: "−10,935 m",
+    depth: "−10,935m",
     title: "—",
-    body: "You are now four kilometres deeper than any submarine in any navy can go.",
+    body: "You are now four kilometers deeper than any submarine in any navy can go.",
   },
   {
     id: "ascent",
     at: [0.945, 0.976],
-    d: 60,
     kind: "ascent",
     depth: "ascending",
     title: "Come up slow",
-    body: "The whole climb back has to be slower than your smallest bubbles. Breathe out the entire way. Never hold it.",
+    body: "The whole climb back has to be slower than your bubbles. Breathe out the entire way. Never hold your breath.",
   },
   {
     id: "safety",
     at: [0.977, 0.996],
-    d: 5,
     kind: "beat",
-    depth: "−5 m",
+    depth: "−5m",
     title: "Safety stop",
-    body: "Three minutes hanging at five metres to let the nitrogen ease back out of your blood. This is the part you are not allowed to rush.",
+    body: "Three minutes hanging at five metres to let the nitrogen ease back out of your blood stream. This is the part you are not allowed to rush.",
   },
   {
     id: "surface-out",
     at: [0.996, 1.0],
-    d: 0,
     kind: "surface",
-    depth: "0 m",
+    depth: "0m",
     title: "Surface",
-    body: "Inflate, roll onto your back, spit out the reg. The pier is right where you left it.",
+    body: "Inflate, roll onto your back, remove the regulator. The pier is right where you left it.",
   },
 ];
+
+/** The script, with each beat's depth read straight off the curve. */
+export const BEATS: Beat[] = SCRIPT.map((b) => ({ ...b, d: depthAt((b.at[0] + b.at[1]) / 2) }));
