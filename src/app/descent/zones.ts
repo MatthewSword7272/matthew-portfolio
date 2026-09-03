@@ -216,39 +216,6 @@ export const RAIL_MARKS: { d: number; label: string }[] = [
 
 // --- instruments ---------------------------------------------------------
 
-/** Water temperature in °C at a given depth (Port Phillip Bay -> deep ocean). */
-export function tempAt(d: number): number {
-  if (d <= 7) return lerp(15, 13, invlerp(0, 7, d));
-  if (d <= 24) return lerp(13, 10, invlerp(7, 24, d));
-  if (d <= 200) return lerp(10, 6, invlerp(24, 200, d));
-  if (d <= 1000) return lerp(6, 4, invlerp(200, 1000, d));
-  if (d <= 4000) return lerp(4, 2.4, invlerp(1000, 4000, d));
-  return lerp(2.4, 1.6, invlerp(4000, 10935, d));
-}
-
-const TIME_KEYS: { p: number; m: number }[] = [
-  { p: 0, m: 0 },
-  { p: 0.29, m: 12 },
-  { p: 0.37, m: 16 },
-  { p: 0.49, m: 22 },
-  { p: 0.65, m: 31 },
-  { p: 0.83, m: 39 },
-  { p: 0.93, m: 43 },
-  { p: 0.965, m: 44 },
-  { p: 0.992, m: 47 },
-  { p: 1, m: 48 },
-];
-
-/** Elapsed dive time in minutes since entry. */
-export function diveMinutesAt(p: number): number {
-  const c = clamp01(p);
-  for (let i = 0; i < TIME_KEYS.length - 1; i++) {
-    const a = TIME_KEYS[i];
-    const b = TIME_KEYS[i + 1];
-    if (c >= a.p && c <= b.p) return lerp(a.m, b.m, invlerp(a.p, b.p, c));
-  }
-  return 48;
-}
 
 export function formatClock(minutes: number): string {
   const m = Math.floor(minutes);
@@ -268,29 +235,9 @@ const AIR_KEYS: { p: number; bar: number }[] = [
   { p: 1, bar: 58 },
 ];
 
-/** Tank pressure in bar (0..200). */
-export function airBarAt(p: number): number {
-  const c = clamp01(p);
-  for (let i = 0; i < AIR_KEYS.length - 1; i++) {
-    const a = AIR_KEYS[i];
-    const b = AIR_KEYS[i + 1];
-    if (c >= a.p && c <= b.p) return lerp(a.bar, b.bar, invlerp(a.p, b.p, c));
-  }
-  return 58;
-}
-
 /** Past this depth the dive stops being physically possible on air. */
 export const SCUBA_LIMIT = 45;
 
-/** No-decompression limit readout for the current depth. */
-export function ndlAt(d: number, descending: boolean): string {
-  if (!descending) return "—";
-  if (d < 9) return "99+";
-  if (d < 18) return String(Math.round(60 - d * 1.4));
-  if (d < 30) return String(Math.max(9, Math.round(620 / d)));
-  if (d <= 40) return String(Math.max(4, Math.round(10 - (d - 30) * 0.6)));
-  return "DECO";
-}
 
 // --- the script ---------------------------------------------------------
 
