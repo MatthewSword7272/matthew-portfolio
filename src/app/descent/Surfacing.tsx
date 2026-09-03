@@ -20,7 +20,7 @@ const LOG: { label: string; value: string }[] = [
 const BUILD: { title: string; body: string }[] = [
   {
     title: "One number drives everything",
-    body: "Scroll progress is reduced to a single value, p. Depth, water colour, light, fog, every creature's position and every instrument reading is a pure function of it. Nothing in the scene holds its own state, so any frame can be reproduced exactly from one float.",
+    body: "Scroll progress is reduced to a single value, p. Depth, water colour, light, fog, the depth rail and every creature's position are pure functions of it — no per-element timelines and no easing state, so all of it can be recomputed exactly from one float. The only things that keep state of their own are the particle pool and the ambient caustics, which run on their own clock because the water should not freeze the moment you stop scrolling.",
   },
   {
     title: "Zero React renders while scrolling",
@@ -28,15 +28,15 @@ const BUILD: { title: string; body: string }[] = [
   },
   {
     title: "Depth is logarithmic, scroll is not",
-    body: "Mapped linearly, the six-metre pier dive would be an invisible sliver above eleven kilometres of nothing. Colour and the depth rail run on a log scale so the shallows keep the space they deserve, while the scroll-to-depth curve stays piecewise-linear and accelerates into the trench — which is what makes the fall feel like falling.",
+    body: "Mapped linearly, the six-metre pier dive would be an invisible sliver above eleven kilometres of nothing. Colour and the depth rail run on a log scale so the shallows keep the space they deserve, while the descent stays linear in metres and accelerates into the trench — which is what makes the fall feel like falling. The ascent is the one exception: it interpolates in log space, so the climb reads as one even rise instead of thousands of identical black metres and then a flash through every visible zone.",
   },
   {
     title: "No photographs in the dive",
-    body: "Every fish, crab, pier pile and shaft of light in the descent is inline SVG or canvas drawn at runtime. The seadragon is a handful of bezier curves; the marine snow and bubbles are one particle pool whose behaviour re-interpolates with depth. Nothing to license, and the only photograph on the page is the one of me at the end.",
+    body: "Every fish and crab in the descent is inline SVG written by hand — the seadragon is a handful of bezier curves. The marine snow, bubbles and bioluminescence are one canvas particle pool whose behaviour re-interpolates with depth, and the shafts of sunlight are blurred CSS gradients left on the compositor. Nothing to license, and the only photograph on the page is the one of me at the end.",
   },
   {
-    title: "The instruments admit when it stops being real",
-    body: "Past forty-five metres the cylinder readout drops to a dash and the computer flags that you are no longer diving. The dive clock keeps counting, because it is measuring time since entry, not plausibility.",
+    title: "The safety stop runs in phases",
+    body: "The three-minute stop is a single beat's scroll window split into four: the ring fades up holding a full 3:00, then the clock actually runs down, then it sits at 0:00 long enough to read as finished, and only then does it clear as you rise. The phases are fractions of the window, so they follow if the beat is ever re-timed. Overlapping them was the first version, and it made the stop look like it started half-elapsed.",
   },
   {
     title: "Reduced motion is a real version",
@@ -46,7 +46,7 @@ const BUILD: { title: string; body: string }[] = [
 
 export default function Surfacing() {
   return (
-    <section className="relative bg-gradient-to-b from-[#3f92a6] via-[#8fc6d6] to-[#e8f2f5] px-6 pb-24 pt-24 text-slate-900 sm:px-10">
+    <section className="relative bg-linear-to-b from-[#3f92a6] via-[#8fc6d6] to-[#e8f2f5] px-6 pb-24 pt-24 text-slate-900 sm:px-10">
       <div className="mx-auto max-w-3xl">
         <h3 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">You break the surface.</h3>
         <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-slate-800/85">

@@ -214,30 +214,18 @@ export const RAIL_MARKS: { d: number; label: string }[] = [
   { d: 10935, label: "Trench 10.9 km" },
 ];
 
-// --- instruments ---------------------------------------------------------
+// --- readouts --------------------------------------------------------------
 
-
+/** Minutes -> m:ss, for the safety-stop countdown. */
 export function formatClock(minutes: number): string {
   const m = Math.floor(minutes);
   const s = Math.floor((minutes - m) * 60);
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-const AIR_KEYS: { p: number; bar: number }[] = [
-  { p: 0, bar: 200 },
-  { p: 0.29, bar: 170 },
-  { p: 0.37, bar: 160 },
-  { p: 0.49, bar: 138 },
-  { p: 0.65, bar: 104 },
-  { p: 0.83, bar: 78 },
-  { p: 0.93, bar: 68 },
-  { p: 0.992, bar: 60 },
-  { p: 1, bar: 58 },
-];
-
-/** Past this depth the dive stops being physically possible on air. */
+/** Past this depth the dive stops being physically possible on air, which is
+ *  also where the last of the sunlight goes. */
 export const SCUBA_LIMIT = 45;
-
 
 // --- the script ---------------------------------------------------------
 
