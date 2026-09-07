@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { toast } from "@/components/ui/toast";
 
 const FACE_SIZE = 3;
 const ITEM_SIZE = 240;
@@ -34,6 +35,10 @@ const Cube = () => {
         } catch (error) {
           console.error("Failed to fetch images:", error);
           setImageData([]);
+          toast.add({
+            type: "error",
+            description: "No images found. Please try a different search term.",
+          })
         }
       } else {
         setImageData([]);

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Red_Hat_Text, Geist } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/SiteShell";
+import { Toaster } from "@/components/ui/toast";
 
 const redHat = Red_Hat_Text({
   subsets: ["latin"],
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={redHat.variable}>
       <body>
+        <Toaster />
         <SiteShell>{children}</SiteShell>
       </body>
     </html>
