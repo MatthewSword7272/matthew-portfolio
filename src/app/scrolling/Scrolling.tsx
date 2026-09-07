@@ -78,7 +78,7 @@ const Scrolling = () => {
   return (
     <div ref={container}>
       <section className="h-screen bg-blue-400 flex flex-col items-center justify-center space-y-2">
-        <h1>GSAP Smooth scrolling</h1>
+        <h1 className="text-gray-800">GSAP Smooth scrolling</h1>
         <p>
           A scroll-driven animation showcase using React and GSAP. This is a demonstration page that shows off advanced
           scroll-triggered animations where different visual elements animate in sync with the user&apos;s scroll

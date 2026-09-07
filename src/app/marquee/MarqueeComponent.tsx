@@ -37,7 +37,7 @@ const MarqueeComponent = () => {
 
   return (
     <div className="grow pt-25 text-white">
-      <h1 className="text-center text-3xl font-bold mb-5 text-white!">
+      <h1 className="text-center text-3xl font-bold mb-5 text-white">
         A Interactive Marquee
       </h1>
       <p className="text-center! text-xl pb-5 border-b-2 border-gray-500 border-dotted">

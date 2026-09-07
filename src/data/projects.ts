@@ -4,12 +4,13 @@
 // at /projects/:slug. Interactive demo projects have no `slug` and link straight
 // to their demo route.
 //
-// TODO: replace the placehold.co `imageUrl`s below with real screenshots dropped
-// into public/images/ (metronome.png, the_ungasan.png, waatu.png), captured
-// ~16:9 (e.g. 1200x675) since the card and detail image use `aspect-video`.
-// TODO: review/replace the draft `summary` copy on the website projects.
+// The demos all live in this repo, so each carries a `repoUrl` pointing at its
+// own source folder — the card renders a "View source" link from it.
 
 import type { Project, ProjectGroup } from "@/types";
+
+// Every demo is one folder under src/app/, so source links can be exact.
+const REPO = "https://github.com/MatthewSword7272/matthew-portfolio/tree/main/src/app";
 
 // Display order + labels for the grouped sections on /projects and the
 // homepage "Selected Work" section. `client: true` groups are the ones shown
@@ -92,9 +93,10 @@ export const projects: Project[] = [
     title: "The Descent",
     group: "fun",
     description:
-      "A scroll-driven dive from Rye Pier to the bottom of the Mariana Trench — procedural water, light and life, with no photographs anywhere.",
+      "A scroll-driven dive from Rye Pier to the bottom of the Mariana Trench — procedural water, light and life, with no photographs anywhere. Built with Claude Code",
     imageUrl: "/images/descent.svg",
     link: "/descent",
+    repoUrl: `${REPO}/descent`,
   },
   {
     id: 7,
@@ -103,6 +105,7 @@ export const projects: Project[] = [
     description: "A button component that does a thing in GSAP",
     imageUrl: "/images/button.png",
     link: "/amazing-button",
+    repoUrl: `${REPO}/amazing-button`,
   },
   {
     id: 8,
@@ -111,6 +114,7 @@ export const projects: Project[] = [
     description: "A fun marquee component built with Fast Marquee and Framer Motion",
     imageUrl: "/images/marquee.png",
     link: "/marquee",
+    repoUrl: `${REPO}/marquee`,
   },
   {
     id: 9,
@@ -119,6 +123,7 @@ export const projects: Project[] = [
     description: "A Memory Game with Animals, test your might",
     imageUrl: "/images/memory.png",
     link: "/memory-game",
+    repoUrl: `${REPO}/memory-game`,
   },
   {
     id: 10,
@@ -127,6 +132,7 @@ export const projects: Project[] = [
     description: "A Demonstration of a GSAP Scrolling Animation",
     imageUrl: "/images/scrolling.png",
     link: "/scrolling",
+    repoUrl: `${REPO}/scrolling`,
   },
   {
     id: 11,
@@ -135,6 +141,7 @@ export const projects: Project[] = [
     description: "Using the animate tag in SVG to animate the text",
     imageUrl: "/images/svg-animate.png",
     link: "/svg-animate",
+    repoUrl: `${REPO}/svg-animate`,
   },
   {
     id: 12,
@@ -143,6 +150,7 @@ export const projects: Project[] = [
     description: "Using GSAP DrawSVG and ScrollTrigger to create a Scroll Animation with this SVG",
     imageUrl: "/images/path.png",
     link: "/path",
+    repoUrl: `${REPO}/path`,
   },
   {
     id: 13,
@@ -151,6 +159,7 @@ export const projects: Project[] = [
     description: "A movable 3D Cube with images you can search for",
     imageUrl: "/images/cube.png",
     link: "/cube",
+    repoUrl: `${REPO}/cube`,
   },
   {
     id: 14,
@@ -159,6 +168,7 @@ export const projects: Project[] = [
     description: "A Dot Grid that uses Anime.js to create animations",
     imageUrl: "/images/dot_grid.png",
     link: "/dot-grid",
+    repoUrl: `${REPO}/dot-grid`,
   },
 ];
 

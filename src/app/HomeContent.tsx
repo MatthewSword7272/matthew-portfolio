@@ -9,6 +9,7 @@ import TechStack from "@/components/sections/TechStack";
 import Experience from "@/components/sections/Experience";
 import SelectedWork from "@/components/sections/SelectedWork";
 import Contact from "@/components/sections/Contact";
+import Image from "next/image";
 
 const stats = [
   { value: "4+", label: "Years Experience" },
@@ -63,10 +64,12 @@ export default function HomeContent() {
       <main className="w-full flex flex-col items-center overflow-hidden pb-10">
         {/* Hero */}
         <section className="w-full min-h-screen flex flex-col justify-center md:items-center px-6 pt-32 pb-16">
-          <div className="projectView w-full max-w-5xl">
-            <div className="projectView bg-black/70 grid grid-cols-2 max-md:grid-cols-1 gap-4 p-7 overflow-hidden text-left text-cyan-200 shadow-2xl rounded ring-1 ring-white/10 drop-shadow-2xl">
-              <div className="relative aspect-square profile-image w-1/2 min-w-56 m-auto">
-                <img
+          <div className="projectView w-full max-w-7xl">
+            <div className="projectView min-h-144 panel grid grid-cols-2 max-md:grid-cols-1 items-center gap-4 p-7 overflow-hidden text-left text-cyan-200">
+              <div className="relative profile-image aspect-3/4 w-full max-w-96 mx-auto">
+                <Image
+                  fill
+                  sizes="288px"
                   ref={imageGlow}
                   className="rounded-lg object-cover"
                   src="/images/Matthew.jpg"
@@ -111,7 +114,7 @@ export default function HomeContent() {
                   {stats.map((stat) => (
                     <div key={stat.label}>
                       <p className="text-3xl font-[Impact] text-cyan-200 leading-none">{stat.value}</p>
-                      <p className="text-xs uppercase tracking-widest text-cyan-200/60 mt-1">{stat.label}</p>
+                      <p className="text-xs uppercase tracking-widest text-cyan-200/90 mt-1">{stat.label}</p>
                     </div>
                   ))}
                 </div>
@@ -120,9 +123,11 @@ export default function HomeContent() {
           </div>
         </section>
 
-        <TechStack />
-        <Experience />
+        {/* Client work leads: it answers "what can Matthew build for us?" before
+            the reader has to scroll past skills and job history to find out. */}
         <SelectedWork />
+        <Experience />
+        <TechStack />
         <Contact />
       </main>
     </>

@@ -17,7 +17,7 @@ const SelectedWork = () => {
           const items = projects.filter((p) => p.group === group.key);
           return (
             <div key={group.key} className="work-group">
-              <h3 className="text-sm uppercase tracking-widest text-cyan-200/80 mb-5">{group.label}</h3>
+              <h3 className="text-sm uppercase tracking-widest text-cyan-200 mb-5">{group.label}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {items.map((project, index) => (
                   <ProjectPreview project={project} last={index === items.length - 1} key={project.id} />

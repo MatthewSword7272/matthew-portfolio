@@ -44,14 +44,14 @@ const TechStack = () => {
       <div ref={scope} className="flex flex-col gap-10">
         {techStack.map((group) => (
           <div key={group.category} className="tech-group">
-            <h3 className="text-sm uppercase tracking-widest text-cyan-200/80 mb-4">
+            <h3 className="text-sm uppercase tracking-widest text-cyan-200 mb-4">
               {group.category}
             </h3>
             <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {group.items.map((item) => (
                 <li
                   key={item.name}
-                  className="flex items-center gap-3 rounded-lg border border-white/10 bg-slate-500/70 px-3 py-2.5 duration-300"
+                  className="flex items-center gap-3 rounded-lg border border-white/25 bg-slate-700/80 px-3 py-2.5 duration-300"
                 >
                   <div className="bg-white/80 rounded p-1.5">
                     <Image

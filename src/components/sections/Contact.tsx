@@ -24,7 +24,7 @@ const Contact = () => {
   return (
     <Section id="contact" title="Let's build something">
       <div ref={scope}>
-        <p className="contact-reveal text-cyan-100/90 max-w-xl leading-relaxed">
+        <p className="contact-reveal text-slate-100 max-w-xl leading-relaxed">
           I&apos;m a Melbourne-based full-stack developer open to new projects and roles. If you&apos;ve got something in
           mind, the fastest way to reach me is below.
         </p>

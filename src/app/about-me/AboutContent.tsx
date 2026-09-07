@@ -52,7 +52,7 @@ const AboutContent = () => {
           priority
         />
       </div>
-      <div className="flex flex-col bg-slate-800/80 p-3 rounded-xl text-white gap-4 max-md:items-center">
+      <div className="flex flex-col panel p-6 text-slate-100 gap-4 max-md:items-center">
         <h2 className="text-3xl" ref={titleRef}>
           Hi, my name is Matthew!
         </h2>

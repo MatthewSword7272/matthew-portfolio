@@ -49,6 +49,13 @@ export const techStack: TechCategory[] = [
       { name: "Docker", icon: "/images/tech/docker.svg" },
     ],
   },
+  {
+    category: "AI Tools",
+    items: [
+      { name: "Cursor IDE", icon: "/images/tech/cursor.svg" },
+      { name: "Claude Code", icon: "/images/tech/claude.svg" },
+    ],
+  },
 ];
 
 export default techStack;

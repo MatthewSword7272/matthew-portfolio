@@ -17,9 +17,12 @@ interface NavItem {
 
 // `hash` items scroll to a homepage section; `to` items are plain routes;
 // `external` opens in a new tab.
+// Order mirrors the homepage section order in HomeContent.tsx — it is not
+// derived from it, so the two have to be kept in step by hand.
 const navItems: NavItem[] = [
-  { label: "Tech Stack", hash: "tech" },
+  { label: "Work", hash: "work" },
   { label: "Experience", hash: "experience" },
+  { label: "Tech Stack", hash: "tech" },
   { label: "Projects", to: "/projects" },
   { label: "About Me", to: "/about-me" },
   { label: "Resume", to: "/Matthew_Catalfamo_CV.pdf", external: true },

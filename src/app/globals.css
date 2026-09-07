@@ -44,11 +44,13 @@ nav {
   @apply uppercase text-lg font-medium text-gray-700;
 }
 
+/* Sizing only — no colour. This is a bare-element default on a dark site, so
+   setting a colour here forced light-on-dark headings to fight it with `!`. */
 h1 {
   > div {
     overflow: hidden;
   }
-  @apply text-2xl font-medium text-gray-800;
+  @apply text-2xl font-medium;
 }
 
 .underline {
@@ -148,6 +150,14 @@ h1 {
 
 .box-shadow {
   box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* The shared surface for readable copy. The starfield is a fixed background
+   photo, so body text needs a near-opaque panel over it — at /70 the stars
+   showed through the text itself. The blur keeps the remaining star glow soft
+   rather than speckled. */
+.panel {
+  @apply bg-slate-950/90 backdrop-blur-sm rounded-lg ring-1 ring-white/15 shadow-2xl drop-shadow-2xl;
 }
 
 @keyframes fadeIn {

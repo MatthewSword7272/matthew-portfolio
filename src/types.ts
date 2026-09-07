@@ -21,6 +21,9 @@ export interface Project {
   summary?: string;
   tech?: string[];
   projectUrl?: string;
+  /** Present on personal projects — deep-links to that demo's source folder.
+   *  Client work has none: that code isn't ours to publish. */
+  repoUrl?: string;
 }
 
 export interface TechItem {
