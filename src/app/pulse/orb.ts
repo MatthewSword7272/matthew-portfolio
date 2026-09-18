@@ -324,7 +324,6 @@ export function createOrb(scope: paper.PaperScope, { reducedMotion, onColour }: 
       view.onFrame = null;
       view.onResize = null;
       scope.project.remove();
-      scope.view.remove();
     },
   };
 }
