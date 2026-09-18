@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={redHat.variable}>
+    <html lang="en" className={`${redHat.variable} scroll-smooth`}>
       <body>
         <Toaster />
         <SiteShell>{children}</SiteShell>

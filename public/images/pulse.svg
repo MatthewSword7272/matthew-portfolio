@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Pulse — an interactive glowing orb">
+  <defs>
+    <radialGradient id="stage" cx="50%" cy="50%" r="75%">
+      <stop offset="0%" stop-color="#2a0f3f"/>
+      <stop offset="100%" stop-color="#050509"/>
+    </radialGradient>
+    <radialGradient id="halo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c04bff" stop-opacity="0.5"/>
+      <stop offset="56%" stop-color="#c04bff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#c04bff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="body" cx="36%" cy="34%" r="78%">
+      <stop offset="0%" stop-color="#e6a3ff"/>
+      <stop offset="45%" stop-color="#b13cf0"/>
+      <stop offset="100%" stop-color="#3d0a5c"/>
+    </radialGradient>
+    <radialGradient id="flare" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#f1c9ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#f1c9ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#stage)"/>
+  <circle cx="600" cy="338" r="270" fill="url(#halo)"/>
+  <circle cx="600" cy="338" r="245" fill="none" stroke="#c04bff" stroke-opacity="0.25" stroke-width="3"/>
+  <circle cx="600" cy="338" r="210" fill="none" stroke="#c04bff" stroke-opacity="0.4" stroke-width="4"/>
+  <circle cx="600" cy="338" r="150" fill="url(#body)"/>
+  <circle cx="600" cy="338" r="150" fill="none" stroke="url(#rim)" stroke-width="6"/>
+  <circle cx="494" cy="232" r="60" fill="url(#flare)"/>
+</svg>

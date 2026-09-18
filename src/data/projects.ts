@@ -99,6 +99,16 @@ export const projects: Project[] = [
     repoUrl: `${REPO}/descent`,
   },
   {
+    id: 15,
+    title: "Pulse",
+    group: "fun",
+    description:
+      "An interactive orb drawn with Paper.js — a rim light tracks your cursor, and every click sends a shockwave and a fresh colour through it. Built with Paper.js and Claude Code",
+    imageUrl: "/images/pulse.svg",
+    link: "/pulse",
+    repoUrl: `${REPO}/pulse`,
+  },
+  {
     id: 7,
     title: "The Amazing Button",
     group: "fun",

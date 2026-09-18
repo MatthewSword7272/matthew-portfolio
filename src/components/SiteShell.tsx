@@ -11,7 +11,7 @@ import Image from "next/image";
 // Routes that take over the whole viewport and supply their own navigation.
 // `trailingSlash: true` in next.config.mjs means the pathname can arrive as
 // "/descent/", so these are matched by prefix rather than equality.
-const FULL_BLEED_ROUTES = ["/descent"];
+const FULL_BLEED_ROUTES = ["/descent", "/pulse"];
 
 declare global {
   interface Window {
