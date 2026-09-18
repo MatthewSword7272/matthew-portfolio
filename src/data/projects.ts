@@ -103,7 +103,7 @@ export const projects: Project[] = [
     title: "Pulse",
     group: "fun",
     description:
-      "An interactive orb drawn with Paper.js — a rim light tracks your cursor, and every click sends a shockwave and a fresh colour through it. Built with Paper.js and Claude Code",
+      "An interactive orb drawn with Paper.js. A rim light tracks your cursor, and every click sends a shockwave and a fresh colour through it. Built with Paper.js and Claude Code",
     imageUrl: "/images/pulse.svg",
     link: "/pulse",
     repoUrl: `${REPO}/pulse`,

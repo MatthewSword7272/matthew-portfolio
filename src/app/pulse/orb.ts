@@ -289,10 +289,6 @@ export function createOrb(scope: paper.PaperScope, { reducedMotion, onColour }: 
       charge = 0;
     },
     pulse(x, y) {
-      // A tap spends almost no charge and pulses as before; a full hold hits
-      // a bit over twice as hard and throws out extra rings.
-      const power = 1 + 1.2 * charge;
-      const ringCount = 3 + Math.round(charge * 3);
       charging = false;
       charge = 0;
 
