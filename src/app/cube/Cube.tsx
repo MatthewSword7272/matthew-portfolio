@@ -26,19 +26,30 @@ const Cube = () => {
           const { data } = await axios.get("https://pixabay.com/api/", {
             params: {
               key: process.env.NEXT_PUBLIC_PIXABAY_API,
-              q: encodeURIComponent(query),
+              q: query,
               per_page: 54,
               orientation: "horizontal",
             },
           });
-          setImageData(data.hits.map((hit: { webformatURL: string }) => hit.webformatURL));
+          const urls = data.hits.map(
+            (hit: { webformatURL: string }) => hit.webformatURL,
+          );
+          setImageData(urls);
+
+          if (urls.length === 0) {
+            toast.add({
+              type: "warning",
+              description:
+                "No images found. Please try a different search term.",
+            });
+          }
         } catch (error) {
           console.error("Failed to fetch images:", error);
           setImageData([]);
           toast.add({
             type: "error",
             description: "No images found. Please try a different search term.",
-          })
+          });
         }
       } else {
         setImageData([]);
@@ -100,15 +111,31 @@ const Cube = () => {
       const rotX = -(yRatio - 0.5) * 200;
 
       // gsap stashes the current values on the element under `_gsap`
-      const gs = (cube as unknown as { _gsap?: { rotationY?: string; rotationX?: string } })._gsap;
+      const gs = (
+        cube as unknown as {
+          _gsap?: { rotationY?: string; rotationX?: string };
+        }
+      )._gsap;
 
       gsap.to(
         {},
         {
           duration: 0.5,
           onUpdate(this: gsap.core.Tween) {
-            setRotY(gsap.utils.interpolate(parseFloat(gs?.rotationY ?? "0") || 0, rotY, this.progress()));
-            setRotX(gsap.utils.interpolate(parseFloat(gs?.rotationX ?? "0") || 0, rotX, this.progress()));
+            setRotY(
+              gsap.utils.interpolate(
+                parseFloat(gs?.rotationY ?? "0") || 0,
+                rotY,
+                this.progress(),
+              ),
+            );
+            setRotX(
+              gsap.utils.interpolate(
+                parseFloat(gs?.rotationX ?? "0") || 0,
+                rotX,
+                this.progress(),
+              ),
+            );
           },
           ease: "power3.out",
         },
@@ -160,7 +187,11 @@ const Cube = () => {
       <div className="cube-container" ref={containerRef}>
         <div className="cubic-gallery" ref={cubeRef}>
           {imageData.map((image, index) => (
-            <div key={index} style={{ backgroundImage: `url(${image})` }} className="cubic-gallery-item" />
+            <div
+              key={index}
+              style={{ backgroundImage: `url(${image})` }}
+              className="cubic-gallery-item"
+            />
           ))}
         </div>
       </div>

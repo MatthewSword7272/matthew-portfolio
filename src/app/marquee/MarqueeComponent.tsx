@@ -33,7 +33,7 @@ const MarqueeComponent = () => {
 
   const reverse = () => setReverseDirection((v) => !v);
   const increaseSpeed = () => setSpeed((prev) => prev + 10);
-  const decreaseSpeed = () => setSpeed((prev) => prev - 10);
+  const decreaseSpeed = () => setSpeed((prev) => Math.max(5, prev - 10));
 
   return (
     <div className="grow pt-25 text-white">
@@ -65,6 +65,7 @@ const MarqueeComponent = () => {
             Increase Speed
           </button>
           <button
+            disabled={speed <= 5}
             onClick={decreaseSpeed}
             className="bg-red-500 text-white px-4 py-2 rounded"
           >

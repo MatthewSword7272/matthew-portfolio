@@ -13,6 +13,7 @@ const MemoryGame = () => {
   const [gameWon, setGameWon] = useState(false);
 
   function addFlippedCard(card: MemoryCard) {
+    if (flippedCards.length >= 2) return;
     setCards((prev) => prev.map((c) => (c.id === card.id ? { ...c, flipped: true } : c)));
     setFlippedCards((prev) => [...prev, card]);
   }

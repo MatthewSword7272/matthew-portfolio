@@ -27,7 +27,7 @@ const Path = () => {
     tl.to("#circle2", { fill: "#FFB703" }, 0.5);
     tl.to("#circle3", { fill: "#FB8500" }, 0.5);
 
-    tl.from("#circleText", { opacity: 0 }, 1.5);
+    tl.from(".circle-text", { opacity: 0 }, 1.5);
 
     tl.to("#circle1", { opacity: 0 }, 1.5);
     tl.to("#circle2", { opacity: 0 }, 1.5);
@@ -54,13 +54,13 @@ const Path = () => {
           />
           <path id="circle3" d="M 540 360 m-40,0 a40,40 0 1,1 120,0 a40,40 0 1,1 -120,0" stroke="#fff" fill="none" />
           <text fontSize="50px" letterSpacing="23px" fill="#fff">
-            <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="0%">
+            <textPath className="circle-text" href="#circle1" method="align" spacing="auto" startOffset="0%">
               abcdefghijklmnopqrstuvwxyz
               <animate attributeName="startOffset" from="0%" to="100%" dur="20s" repeatCount="indefinite" />
             </textPath>
           </text>
           <text fontSize="50px" letterSpacing="23px" fill="#fff">
-            <textPath id="circleText" href="#circle1" method="align" spacing="auto" startOffset="-100%">
+            <textPath className="circle-text" href="#circle1" method="align" spacing="auto" startOffset="-100%">
               abcdefghijklmnopqrstuvwxyz
               <animate attributeName="startOffset" from="-100%" to="0%" dur="20s" repeatCount="indefinite" />
             </textPath>
